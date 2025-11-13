@@ -1,2 +1,2 @@
-"""Test suite for Akshara tokenizer."""
+"""Test suite for Akshar tokenizer."""
 

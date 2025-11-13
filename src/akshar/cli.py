@@ -1,5 +1,5 @@
 """
-Command-line interface for Akshara tokenizer.
+Command-line interface for akshar tokenizer.
 
 Provides simple commands for tokenization, detokenization, and analysis.
 """
@@ -9,12 +9,12 @@ import sys
 import json
 from pathlib import Path
 
-from .tokenizer import AksharaTokenizer
+from .tokenizer import aksharTokenizer
 
 
 def tokenize_command(args):
     """Handle 'tokenize' command."""
-    tokenizer = AksharaTokenizer(
+    tokenizer = aksharTokenizer(
         model_path=args.model,
         model_type=args.model_type
     )
@@ -42,7 +42,7 @@ def tokenize_command(args):
 
 def detokenize_command(args):
     """Handle 'detokenize' command."""
-    tokenizer = AksharaTokenizer(
+    tokenizer = aksharTokenizer(
         model_path=args.model,
         model_type=args.model_type
     )
@@ -70,7 +70,7 @@ def detokenize_command(args):
 
 def explain_command(args):
     """Handle 'explain' command - detailed analysis."""
-    tokenizer = AksharaTokenizer(
+    tokenizer = aksharTokenizer(
         model_path=args.model,
         model_type=args.model_type
     )
@@ -78,11 +78,11 @@ def explain_command(args):
     analysis = tokenizer.explain(args.text)
     
     # pretty print the analysis
-    print("\n=== Akshara Analysis ===\n")
+    print("\n=== akshar Analysis ===\n")
     print(f"Original: {analysis['original']}")
     print(f"Normalized: {analysis['normalized']}")
-    print(f"\nAksharas ({len(analysis['aksharas'])}):")
-    print("  " + " | ".join(analysis['aksharas']))
+    print(f"\nakshars ({len(analysis['akshars'])}):")
+    print("  " + " | ".join(analysis['akshars']))
     
     print(f"\nCode Switches ({len(analysis['code_switches'])}):")
     for segment, script in analysis['code_switches']:
@@ -102,7 +102,7 @@ def explain_command(args):
 def main():
     """Main CLI entry point."""
     parser = argparse.ArgumentParser(
-        description="Akshara: Linguistically-aware tokenizer for Hindi, Sanskrit, and Hinglish"
+        description="akshar: Linguistically-aware tokenizer for Hindi, Sanskrit, and Hinglish"
     )
     
     subparsers = parser.add_subparsers(dest='command', help='Available commands')

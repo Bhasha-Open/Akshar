@@ -8,15 +8,15 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent / 'src'))
 
-from akshara.tokenizer import AksharaTokenizer
+from Akshar.tokenizer import AksharTokenizer
 
 
 class TestTokenizer(unittest.TestCase):
     
     def setUp(self):
         """Initialize tokenizer for tests."""
-        # without model - will fall back to akshara segmentation
-        self.tokenizer = AksharaTokenizer()
+        # without model - will fall back to akshar segmentation
+        self.tokenizer = AksharTokenizer()
     
     def test_initialization(self):
         """Test tokenizer initialization."""
@@ -33,7 +33,7 @@ class TestTokenizer(unittest.TestCase):
         self.assertIn('नमस्ते', result)
     
     def test_tokenize_without_model(self):
-        """Test tokenization without loaded model (falls back to aksharas)."""
+        """Test tokenization without loaded model (falls back to akshars)."""
         text = "नमस्ते"
         tokens = self.tokenizer.tokenize(text)
         
@@ -49,7 +49,7 @@ class TestTokenizer(unittest.TestCase):
         self.assertIn('tokens', result)
         self.assertIn('token_count', result)
         self.assertIn('original_text', result)
-        self.assertIn('akshara_count', result)
+        self.assertIn('akshar_count', result)
     
     def test_explain(self):
         """Test explain method."""
@@ -59,7 +59,7 @@ class TestTokenizer(unittest.TestCase):
         # should return comprehensive analysis
         self.assertIn('original', analysis)
         self.assertIn('normalized', analysis)
-        self.assertIn('aksharas', analysis)
+        self.assertIn('akshars', analysis)
         self.assertIn('code_switches', analysis)
         self.assertIn('tokens', analysis)
         self.assertIn('stats', analysis)

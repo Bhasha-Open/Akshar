@@ -1,4 +1,4 @@
-# Akshara Documentation Guide
+# Akshar Documentation Guide
 
 This project includes comprehensive Sphinx documentation covering all features, tutorials, and API reference.
 
@@ -62,7 +62,7 @@ docs/source/
 │   └── ml_features.rst    # Feature extraction for ML
 │
 ├── api/                   # API reference
-│   ├── tokenizer.rst      # AksharaTokenizer class
+│   ├── tokenizer.rst      # AksharTokenizer class
 │   ├── normalize.rst      # Normalization functions
 │   ├── segment.rst        # Segmentation functions
 │   ├── morph.rst          # Morphology functions
@@ -83,9 +83,9 @@ docs/source/
 - **Quick Start**: 5-minute getting started guide with examples
 - **CLI Reference**: Complete command-line interface documentation
 - **Feature Overview**: All 22 features with examples
-- **Grapheme Clusters**: Deep dive into akshara segmentation
+- **Grapheme Clusters**: Deep dive into akshar segmentation
 - **Basic Tutorial**: 10-step tutorial covering common patterns
-- **API Reference**: Complete AksharaTokenizer class documentation
+- **API Reference**: Complete AksharTokenizer class documentation
 
 ### Ready to Expand (📝 Outlined)
 
@@ -126,15 +126,15 @@ The documentation follows these principles:
 
 ## Key Features Documented
 
-1. **Grapheme-cluster awareness**: How Akshara preserves Devanagari conjuncts
+1. **Grapheme-cluster awareness**: How Akshar preserves Devanagari conjuncts
 2. **Code-switch detection**: Finding script boundaries in mixed text
 3. **Text normalization**: Cleaning social media Hinglish
-4. **Word vs akshara tokenization**: Different granularity levels
+4. **Word vs akshar tokenization**: Different granularity levels
 5. **Morphological segmentation**: Breaking words into morphemes
 6. **Phonetic analysis**: Linguistic properties of characters
 7. **Multi-script support**: Handling Roman + Devanagari + more
 8. **Batch processing**: Efficient handling of multiple texts
-9. **Feature extraction**: Using Akshara for ML pipelines
+9. **Feature extraction**: Using Akshar for ML pipelines
 10. **Model training**: Training custom SentencePiece/BPE models
 
 ## Examples in Documentation
@@ -170,7 +170,7 @@ Basic Usage
 
 .. code-block:: python
 
-   from akshara import new_feature
+   from Akshar import new_feature
    
    result = new_feature("input")
    print(result)

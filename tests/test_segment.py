@@ -8,8 +8,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent / 'src'))
 
-from akshara.segment import (
-    segment_aksharas,
+from Akshar.segment import (
+    segment_akshars,
     identify_script,
     detect_code_switches,
     analyze_text_composition
@@ -18,21 +18,21 @@ from akshara.segment import (
 
 class TestSegment(unittest.TestCase):
     
-    def test_segment_aksharas_simple(self):
-        """Test simple akshara segmentation."""
+    def test_segment_akshars_simple(self):
+        """Test simple akshar segmentation."""
         text = "नमस्ते"
-        aksharas = segment_aksharas(text)
+        akshars = segment_akshars(text)
         # should get grapheme clusters
-        self.assertIsInstance(aksharas, list)
-        self.assertTrue(len(aksharas) > 0)
+        self.assertIsInstance(akshars, list)
+        self.assertTrue(len(akshars) > 0)
     
-    def test_segment_aksharas_conjuncts(self):
+    def test_segment_akshars_conjuncts(self):
         """Test that conjuncts stay together."""
         text = "क्षेत्र"
-        aksharas = segment_aksharas(text)
+        akshars = segment_akshars(text)
         
-        # क्ष should be one akshara
-        self.assertTrue(any('क्ष' in a for a in aksharas))
+        # क्ष should be one akshar
+        self.assertTrue(any('क्ष' in a for a in akshars))
     
     def test_identify_script_devanagari(self):
         """Test Devanagari script identification."""
@@ -92,7 +92,7 @@ class TestSegment(unittest.TestCase):
         analysis = analyze_text_composition(text)
         
         # should return dict with expected keys
-        self.assertIn('akshara_count', analysis)
+        self.assertIn('akshar_count', analysis)
         self.assertIn('script_switches', analysis)
         self.assertIn('devanagari_ratio', analysis)
         self.assertIn('roman_ratio', analysis)

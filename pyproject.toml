@@ -3,7 +3,7 @@ requires = ["setuptools>=45", "wheel", "setuptools_scm>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "akshara"
+name = "Akshar"
 version = "0.1.0"
 description = "A linguistically-aware tokenizer for Hindi, Sanskrit, and Hinglish"
 readme = "README.md"
@@ -47,13 +47,13 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/bhasha-open/akshara"
-Documentation = "https://github.com/bhasha-open/akshara#readme"
-Repository = "https://github.com/bhasha-open/akshara"
-"Bug Tracker" = "https://github.com/bhasha-open/akshara/issues"
+Homepage = "https://github.com/bhasha-open/Akshar"
+Documentation = "https://github.com/bhasha-open/Akshar#readme"
+Repository = "https://github.com/bhasha-open/Akshar"
+"Bug Tracker" = "https://github.com/bhasha-open/Akshar/issues"
 
 [project.scripts]
-akshara = "akshara.cli:main"
+Akshar = "Akshar.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

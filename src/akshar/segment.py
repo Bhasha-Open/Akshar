@@ -10,17 +10,17 @@ from typing import List, Tuple
 
 
 # regex \X matches full grapheme clusters - neat trick
-AKSHARA_PAT = re.compile(r'\X', re.UNICODE)
+akshar_PAT = re.compile(r'\X', re.UNICODE)
 
 
-def segment_aksharas(text):
+def segment_akshars(text):
     """
-    split into aksharas (grapheme clusters)
+    split into akshars (grapheme clusters)
     
     wont break stuff like क्ष or ज्ञ which are multiple unicode points
     but one visual unit
     """
-    return AKSHARA_PAT.findall(text)
+    return akshar_PAT.findall(text)
 
 
 def identify_script(char):
@@ -96,26 +96,26 @@ def analyze_text_composition(text):
     """
     get stats about text - how much devanagari vs roman, switches, etc
     """
-    aksharas = segment_aksharas(text)
+    akshars = segment_akshars(text)
     switches = detect_code_switches(text)
     
     total = len(text)
     dev_chars = sum(len(s) for s, scr in switches if scr == 'devanagari')
     roman_chars = sum(len(s) for s, scr in switches if scr == 'roman')
     
-    # tried normalizing by aksharas instead of chars but this works better
-    # also tried: total / len(aksharas) for density but didnt help much
+    # tried normalizing by akshars instead of chars but this works better
+    # also tried: total / len(akshars) for density but didnt help much
     return {
-        'akshara_count': len(aksharas),
+        'akshar_count': len(akshars),
         'script_switches': len(switches) - 1,  # n segments = n-1 switches
         'devanagari_ratio': dev_chars / total if total > 0 else 0,
         'roman_ratio': roman_chars / total if total > 0 else 0,
     }
 
 
-# experimental: tried clustering similar aksharas but too slow
-# def cluster_aksharas(text):
-#     aksharas = segment_aksharas(text)
+# experimental: tried clustering similar akshars but too slow
+# def cluster_akshars(text):
+#     akshars = segment_akshars(text)
 #     # group by first char? or phonetic sig?
 #     # TODO: revisit this later
 #     pass

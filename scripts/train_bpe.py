@@ -10,11 +10,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent / 'src'))
 
-from akshara.normalize import normalize_text
+from Akshar.normalize import normalize_text
 
 
 def preprocess_corpus(input_file, output_file):
-    """Preprocess corpus with Akshara normalization."""
+    """Preprocess corpus with Akshar normalization."""
     print(f"Preprocessing {input_file}...")
     
     with open(input_file, 'r', encoding='utf-8') as f:
@@ -109,11 +109,11 @@ def train_bpe_tokenizer(
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Train BPE tokenizer for Akshara"
+        description="Train BPE tokenizer for Akshar"
     )
     
     parser.add_argument('input', help='Input corpus file')
-    parser.add_argument('--output', default='akshara_bpe.json',
+    parser.add_argument('--output', default='Akshar_bpe.json',
                        help='Output tokenizer file')
     parser.add_argument('--vocab-size', type=int, default=24000,
                        help='Vocabulary size (default: 24000)')

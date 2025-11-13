@@ -1,10 +1,10 @@
-# Akshara
+# Akshar
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/bhasha-open/akshara/issues)
+[![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/bhasha-open/Akshar/issues)
 
-Akshara is a linguistically-aware tokenizer for Hindi, Sanskrit, and Hinglish. Unlike standard tokenizers that treat Indic text as character sequences, Akshara understands **grapheme clusters** (aksharas), detects **code-switch boundaries** in mixed-script text, and applies **phonetic normalization** for Romanized Hindi. It supports both **BPE** and **Unigram** models and can be trained directly on raw multilingual corpora without pre-tokenization.
+Akshar is a linguistically-aware tokenizer for Hindi, Sanskrit, and Hinglish. Unlike standard tokenizers that treat Indic text as character sequences, Akshar understands **grapheme clusters**aksharras), detects **code-switch boundaries** in mixed-script text, and applies **phonetic normalization** for Romanized Hindi. It supports both **BPE** and **Unigram** models and can be trained directly on raw multilingual corpora without pre-tokenization.
 
 ## Technical highlights
 
@@ -20,7 +20,7 @@ Akshara is a linguistically-aware tokenizer for Hindi, Sanskrit, and Hinglish. U
 
 ## Comparisons with other implementations
 
-| Feature                       |         Akshara         |    IndicNLP    | SentencePiece | HF Tokenizers |
+| Feature                       |         Akshar         |    IndicNLP    | SentencePiece | HF Tokenizers |
 | :---------------------------- | :----------------------: | :-------------: | :-----------: | :-----------: |
 | Grapheme-cluster preservation |           Yes           |     Partial     |      No      |      No      |
 | Code-switch detection         |           Yes           |       No       |      No      |      No      |
@@ -32,24 +32,24 @@ Akshara is a linguistically-aware tokenizer for Hindi, Sanskrit, and Hinglish. U
 | Trained model required?       |    No (fallback mode)    |       No       |      Yes      |      Yes      |
 | Python library                |           Yes           |       Yes       |      Yes      |      Yes      |
 
-Note: IndicNLP provides broader Indic language support and mature normalization. Akshara specializes in code-mixing scenarios and modern ML tokenization.
+Note: IndicNLP provides broader Indic language support and mature normalization. Akshar specializes in code-mixing scenarios and modern ML tokenization.
 
 ## Overview
 
-### What is Akshara?
+### What is Akshar?
 
-Akshara is designed for **Hindi-Sanskrit-Hinglish** text where:
+Akshar is designed for **Hindi-Sanskrit-Hinglish** text where:
 
 - Words may use Devanagari script (नमस्ते) or Roman script (namaste) or both
 - Conjuncts must stay intact (क्षेत्र should not become क + ् + ष + े + त + ् + र)
 - Script switches mid-sentence ("aaj मौसम बहुत nice hai")
 - Social media text has elongations ("yaaaar" → "yaar")
 
-Standard tokenizers (GPT2, BERT, SentencePiece) treat each Unicode codepoint independently, breaking visual units. Akshara uses grapheme-cluster regex to keep conjuncts together and detects script changes for proper boundary detection.
+Standard tokenizers (GPT2, BERT, SentencePiece) treat each Unicode codepoint independently, breaking visual units. Akshar uses grapheme-cluster regex to keep conjuncts together and detects script changes for proper boundary detection.
 
 ### The number of unique tokens is predetermined
 
-Like SentencePiece, Akshara trains models with fixed vocabulary size (e.g., 8k, 16k, 24k). This is specified during training:
+Like SentencePiece, Akshar trains models with fixed vocabulary size (e.g., 8k, 16k, 24k). This is specified during training:
 
 ```bash
 python scripts/train_spm.py --vocab_size 24000 corpus.txt
@@ -67,7 +67,7 @@ yaar aaj ka din bohot badhiya hai
 मैं California में रहता हूं
 ```
 
-Akshara handles normalization, script detection, and segmentation internally. This is crucial for Hinglish where word boundaries are ambiguous.
+Akshar handles normalization, script detection, and segmentation internally. This is crucial for Hinglish where word boundaries are ambiguous.
 
 ### Whitespace is treated as a basic symbol
 
@@ -75,7 +75,7 @@ Input text is normalized, then segmented preserving whitespace info. For example
 
 ```
 Input:  "aaj मौसम अच्छा है"
-Aksharas: ['a', 'a', 'j', ' ', 'मौ', 'स', 'म', ' ', 'अ', 'च्छा', ' ', 'है']
+akshars: ['a', 'a', 'j', ' ', 'मौ', 'स', 'म', ' ', 'अ', 'च्छा', ' ', 'है']
 ```
 
 Whitespace is preserved as tokens, enabling perfect reconstruction:
@@ -84,7 +84,7 @@ Whitespace is preserved as tokens, enabling perfect reconstruction:
 original = ''.join(tokens)
 ```
 
-This makes Akshara suitable for round-trip encoding in NMT systems.
+This makes Akshar suitable for round-trip encoding in NMT systems.
 
 ## Installation
 
@@ -109,8 +109,8 @@ Optional dependencies:
 ### Build from source
 
 ```bash
-git clone https://github.com/bhasha-open/akshara.git
-cd akshara
+git clone https://github.com/bhasha-open/Akshar.git
+cd Akshar
 pip install -e .
 ```
 
@@ -122,13 +122,13 @@ python -m pytest tests/
 
 ## Usage instructions
 
-### Train Akshara Model
+### Train Akshar Model
 
 Prepare a corpus file (one sentence per line):
 
 ```bash
 python scripts/train_spm.py data/corpus.txt \
-  --output models/akshara \
+  --output models/Akshar \
   --vocab_size 24000 \
   --model_type unigram
 ```
@@ -143,18 +143,18 @@ For BPE training:
 
 ```bash
 python scripts/train_bpe.py data/corpus.txt \
-  --output models/akshara.json \
+  --output models/Akshar.json \
   --vocab_size 24000
 ```
 
 ### Tokenize text
 
-Without a trained model (fallback to akshara-level):
+Without a trained model (fallback to akshar-level):
 
 ```python
-from akshara import AksharaTokenizer
+from Akshar import AksharTokenizer
 
-tokenizer = AksharaTokenizer()
+tokenizer = AksharTokenizer()
 tokens = tokenizer.tokenize("आज मौसम अच्छा है")
 # ['आ', 'ज', ' ', 'मौ', 'स', 'म', ' ', 'अ', 'च्छा', ' ', 'है']
 ```
@@ -162,8 +162,8 @@ tokens = tokenizer.tokenize("आज मौसम अच्छा है")
 With trained model:
 
 ```python
-tokenizer = AksharaTokenizer(
-    model_path="models/akshara.model",
+tokenizer = AksharTokenizer(
+    model_path="models/Akshar.model",
     model_type="sentencepiece"
 )
 
@@ -190,23 +190,23 @@ print(analysis['code_switches'])
 # [('aaj ', 'roman'), ('मौसम बहुत ', 'devanagari'), ('nice hai', 'roman')]
 
 print(analysis['stats'])
-# {'akshara_count': 23, 'script_switches': 2, 'devanagari_ratio': 0.48, ...}
+# {'akshar_count': 23, 'script_switches': 2, 'devanagari_ratio': 0.48, ...}
 ```
 
 ### Command-line usage
 
 ```bash
 # tokenize
-akshara tokenize "आज मौसम अच्छा है"
+Akshar tokenize "आज मौसम अच्छा है"
 
 # with model
-akshara tokenize --model models/akshara.model "आज का मौसम"
+Akshar tokenize --model models/Akshar.model "आज का मौसम"
 
 # explain
-akshara explain "yaar aaj मौसम bohot nice hai"
+Akshar explain "yaar aaj मौसम bohot nice hai"
 
 # detokenize
-akshara detokenize "▁आज ▁मौसम ▁अच्छा ▁है"
+Akshar detokenize "▁आज ▁मौसम ▁अच्छा ▁है"
 ```
 
 ### Word-level tokenization (IndicNLP style)
@@ -215,7 +215,7 @@ For word-level tokens instead of subwords:
 
 ```python
 def word_tokenize(text):
-    tokenizer = AksharaTokenizer()
+    tokenizer = AksharTokenizer()
     normalized = tokenizer.preprocess(text)
     words = normalized.split()
     return words
@@ -224,7 +224,7 @@ tokens = word_tokenize("aaj मौसम बहुत अच्छा है")
 # ['aaj', 'मौसम', 'बहुत', 'अच्छा', 'है']
 ```
 
-This uses Akshara's normalization but returns words, not subwords.
+This uses Akshar's normalization but returns words, not subwords.
 
 ## Advanced features
 
@@ -233,7 +233,7 @@ This uses Akshara's normalization but returns words, not subwords.
 Requires `morfessor` library:
 
 ```python
-from akshara import segment_hindi, get_hindi_segmenter
+from Akshar import segment_hindi, get_hindi_segmenter
 
 # segment words into morphemes
 morphemes = segment_hindi("समझना")  
@@ -248,7 +248,7 @@ if segmenter.is_model_loaded():
 ### Phonetic analysis
 
 ```python
-from akshara import get_phonetic_analyzer
+from Akshar import get_phonetic_analyzer
 
 analyzer = get_phonetic_analyzer()
 
@@ -264,7 +264,7 @@ analysis = analyzer.analyze_word("नमस्ते")
 ### Script detection
 
 ```python
-from akshara import identify_scripts, analyze_script
+from Akshar import identify_scripts, analyze_script
 
 # which scripts present
 scripts = identify_scripts("Hello नमस्ते World")
@@ -293,18 +293,18 @@ for text in texts:
 ### Feature extraction for ML
 
 ```python
-from akshara import (
+from Akshar import (
     detect_code_switches,
     analyze_phonetics,
     analyze_script,
-    segment_aksharas
+    segment_akshars
 )
 
 def extract_features(text):
     """Extract linguistic features for ML models"""
     return {
         'length': len(text),
-        'aksharas': len(segment_aksharas(text)),
+        'akshars': len(segment_akshars(text)),
         'switches': len(detect_code_switches(text)),
         'devanagari_ratio': analyze_script(text)['indic_chars'] / len(text),
         'vowels': analyze_phonetics(text)['vowels'],
@@ -333,7 +333,7 @@ tokenizer.explain("आज मौसम बहुत अच्छा है")
 ```python
 tokenizer.explain("क्षेत्रे धर्मक्षेत्रे समवेता युयुत्सवः")
 # - Complex conjuncts preserved
-# - क्ष, त्र, र्म kept as single aksharas
+# - क्ष, त्र, र्म kept as single akshars
 ```
 
 ### Hinglish
@@ -362,7 +362,7 @@ normalized = tokenizer.preprocess(text)
 # "yar aaj ka din bohot badhiya hai"  # elongations removed
 ```
 
-## Why use Akshara?
+## Why use Akshar?
 
 ### For researchers
 
@@ -385,18 +385,18 @@ normalized = tokenizer.preprocess(text)
 - **Hinglish native**: Designed for code-mixed scenarios
 - **Multi-script**: Seamless Roman + Devanagari handling
 
-GPT2, BERT, and standard SentencePiece don't understand Indic script structure. Akshara does.
+GPT2, BERT, and standard SentencePiece don't understand Indic script structure. Akshar does.
 
 ## Technical details
 
-### Akshara segmentation algorithm
+### Akshar segmentation algorithm
 
 Uses Unicode regex `\X` which matches extended grapheme clusters:
 
 ```python
 import regex as re
-AKSHARA_PAT = re.compile(r'\X', re.UNICODE)
-aksharas = AKSHARA_PAT.findall(text)
+akshar_PAT = re.compile(r'\X', re.UNICODE)
+akshars = akshar_PAT.findall(text)
 ```
 
 This keeps क + ् + ष + े together as one unit (क्षे).
@@ -438,12 +438,12 @@ Use Unigram for mixed-script stability, BPE for pure Devanagari.
 ## Project structure
 
 ```
-akshara/
-├── src/akshara/
+Akshar/
+├── src/Akshar/
 │   ├── __init__.py          # main exports
-│   ├── tokenizer.py         # AksharaTokenizer class
+│   ├── tokenizer.py         # AksharTokenizer class
 │   ├── normalize.py         # text normalization
-│   ├── segment.py           # akshara + code-switch logic
+│   ├── segment.py           # akshar + code-switch logic
 │   ├── morph.py             # morphological segmentation
 │   ├── phonetic.py          # phonetic analysis
 │   ├── script_utils.py      # multi-script detection
@@ -485,7 +485,7 @@ Test coverage:
 - Unicode normalization
 - Elongation removal
 - Phonetic signatures
-- Akshara segmentation
+- Akshar segmentation
 - Code-switch detection
 - Tokenization with/without models
 
@@ -500,7 +500,7 @@ Contributions welcome! Areas that need work:
 - **Performance**: Optimize segmentation algorithms
 - **Testing**: More edge cases, multilingual tests
 
-Submit issues or pull requests at [github.com/bhasha-open/akshara](https://github.com/bhasha-open/akshara)
+Submit issues or pull requests at [github.com/bhasha-open/Akshar](https://github.com/bhasha-open/Akshar)
 
 ## License
 
@@ -508,14 +508,14 @@ MIT License - see LICENSE file
 
 ## Citation
 
-If you use Akshara in research:
+If you use Akshar in research:
 
 ```bibtex
-@software{akshara2025,
-  title={Akshara: A Linguistically-Aware Tokenizer for Hindi, Sanskrit, and Hinglish},
+@software{Akshar2025,
+  title={Akshar: A Linguistically-Aware Tokenizer for Hindi, Sanskrit, and Hinglish},
   author={Bhasha Open},
   year={2025},
-  url={https://github.com/bhasha-open/akshara}
+  url={https://github.com/bhasha-open/Akshar}
 }
 ```
 
@@ -528,4 +528,4 @@ If you use Akshara in research:
 
 ---
 
-**Akshara treats Indian languages with the structural intelligence they deserve.**
+**Akshar treats Indian languages with the structural intelligence they deserve.**

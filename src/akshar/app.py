@@ -1,31 +1,31 @@
 """
-Streamlit web application for interactive Akshara tokenization.
+Streamlit web application for interactive akshar tokenization.
 
 This provides a visual interface to explore how text is tokenized,
-showing aksharas, script boundaries, and token breakdowns.
+showing akshars, script boundaries, and token breakdowns.
 """
 
 import streamlit as st
 import sys
 from pathlib import Path
 
-# make sure we can import akshara
+# make sure we can import akshar
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from akshara.tokenizer import AksharaTokenizer
-from akshara.viz import colorize_by_script, format_token_boundaries, generate_html_visualization
+from akshar.tokenizer import aksharTokenizer
+from akshar.viz import colorize_by_script, format_token_boundaries, generate_html_visualization
 
 
 st.set_page_config(
-    page_title="Akshara Tokenizer",
+    page_title="akshar Tokenizer",
     page_icon="🔤",
     layout="wide"
 )
 
 # header
-st.title("Akshara: Smart Tokenizer for Hindi, Sanskrit & Hinglish")
+st.title("akshar: Smart Tokenizer for Hindi, Sanskrit & Hinglish")
 st.markdown(
-    "A linguistically-aware tokenizer that understands Devanagari aksharas, "
+    "A linguistically-aware tokenizer that understands Devanagari akshars, "
     "detects code-switch boundaries, and handles Hinglish intelligently."
 )
 
@@ -49,7 +49,7 @@ clean_hinglish = st.sidebar.checkbox("Clean Hinglish", value=True)
 # initialize tokenizer
 @st.cache_resource
 def load_tokenizer(model_path, model_type, normalize_roman, clean_hinglish):
-    return AksharaTokenizer(
+    return aksharTokenizer(
         model_path=model_path if model_path else None,
         model_type=model_type,
         normalize_roman=normalize_roman,
@@ -83,7 +83,7 @@ if st.button("Analyze") or text:
         
         # create tabs for different views
         tab1, tab2, tab3, tab4, tab5 = st.tabs([
-            "Overview", "Aksharas", "Script Boundaries", "Tokens", "Statistics"
+            "Overview", "akshars", "Script Boundaries", "Tokens", "Statistics"
         ])
         
         with tab1:
@@ -99,31 +99,31 @@ if st.button("Analyze") or text:
             
             with col2:
                 st.markdown("**Quick Stats:**")
-                st.metric("Aksharas", analysis['stats']['akshara_count'])
+                st.metric("akshars", analysis['stats']['akshar_count'])
                 st.metric("Tokens", len(analysis['tokens']))
                 st.metric("Script Switches", analysis['stats']['script_switches'])
         
         with tab2:
-            st.subheader("Grapheme Clusters (Aksharas)")
+            st.subheader("Grapheme Clusters (akshars)")
             st.markdown(
                 "These are the visual units that should never be split. "
                 "Notice how conjuncts like क्ष stay together."
             )
             
-            # display aksharas in a nice grid
-            akshara_html = '<div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">'
-            for idx, akshara in enumerate(analysis['aksharas']):
-                akshara_html += f'''
+            # display akshars in a nice grid
+            akshar_html = '<div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">'
+            for idx, akshar in enumerate(analysis['akshars']):
+                akshar_html += f'''
                 <div style="border: 1px solid #ddd; padding: 8px 12px; 
                             border-radius: 4px; background: #f9f9f9; font-size: 18px;">
                     <div style="font-size: 10px; color: #666;">{idx}</div>
-                    <div>{akshara}</div>
+                    <div>{akshar}</div>
                 </div>
                 '''
-            akshara_html += '</div>'
-            st.markdown(akshara_html, unsafe_allow_html=True)
+            akshar_html += '</div>'
+            st.markdown(akshar_html, unsafe_allow_html=True)
             
-            st.markdown(f"**Total: {len(analysis['aksharas'])} aksharas**")
+            st.markdown(f"**Total: {len(analysis['akshars'])} akshars**")
         
         with tab3:
             st.subheader("Code-Switch Detection")
@@ -159,7 +159,7 @@ if st.button("Analyze") or text:
             
             if tokenizer.model is None:
                 st.info(
-                    "No model loaded. Showing akshara-level tokenization. "
+                    "No model loaded. Showing akshar-level tokenization. "
                     "Load a trained model to see subword tokenization."
                 )
             
@@ -195,7 +195,7 @@ if st.button("Analyze") or text:
             col1, col2, col3 = st.columns(3)
             
             with col1:
-                st.metric("Akshara Count", stats['akshara_count'])
+                st.metric("akshar Count", stats['akshar_count'])
                 st.metric("Token Count", len(analysis['tokens']))
             
             with col2:
@@ -212,15 +212,15 @@ if st.button("Analyze") or text:
             st.markdown("**Detailed Breakdown:**")
             
             breakdown_data = {
-                "Metric": ["Original Length", "Normalized Length", "Aksharas", "Tokens", 
-                          "Avg Chars/Akshara", "Avg Chars/Token"],
+                "Metric": ["Original Length", "Normalized Length", "akshars", "Tokens", 
+                          "Avg Chars/akshar", "Avg Chars/Token"],
                 "Value": [
                     len(analysis['original']),
                     len(analysis['normalized']),
-                    stats['akshara_count'],
+                    stats['akshar_count'],
                     len(analysis['tokens']),
-                    f"{len(analysis['normalized']) / stats['akshara_count']:.2f}" 
-                        if stats['akshara_count'] > 0 else "0",
+                    f"{len(analysis['normalized']) / stats['akshar_count']:.2f}" 
+                        if stats['akshar_count'] > 0 else "0",
                     f"{len(analysis['normalized']) / len(analysis['tokens']):.2f}" 
                         if len(analysis['tokens']) > 0 else "0"
                 ]
@@ -231,7 +231,7 @@ if st.button("Analyze") or text:
 st.markdown("---")
 st.markdown(
     """
-    **Akshara** is built by Bhasha Open.  
+    **akshar** is built by Bhasha Open.  
     A smart tokenizer that treats Indian languages with the structural intelligence they deserve.
     
     [GitHub](https://github.com) | [Documentation](#)

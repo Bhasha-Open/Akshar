@@ -7,14 +7,14 @@ from pathlib import Path
 from typing import List, Optional, Union
 
 from .normalize import normalize_text
-from .segment import segment_aksharas, detect_code_switches, analyze_text_composition
+from .segment import segment_akshars, detect_code_switches, analyze_text_composition
 
 
-class AksharaTokenizer:
+class aksharTokenizer:
     """
     tokenizer for hindi/sanskrit/hinglish
     
-    does normalization -> akshara segmentation -> code-switch detection 
+    does normalization -> akshar segmentation -> code-switch detection 
     then applies SP/BPE if model is loaded
     """
     
@@ -64,16 +64,16 @@ class AksharaTokenizer:
         """
         tokenize text
         
-        if no model loaded, falls back to akshara-level tokens
+        if no model loaded, falls back to akshar-level tokens
         """
         norm = self.preprocess(text)
         
         if return_metadata:
             meta = analyze_text_composition(norm)
         
-        # use model if we have one, otherwise just segment aksharas
+        # use model if we have one, otherwise just segment akshars
         if self.model is None:
-            tokens = segment_aksharas(norm)
+            tokens = segment_akshars(norm)
         elif self.model_type == "sentencepiece":
             tokens = self.model.EncodeAsPieces(norm)
         elif self.model_type == "bpe":
@@ -134,7 +134,7 @@ class AksharaTokenizer:
         useful to see whats happening inside
         """
         norm = self.preprocess(text)
-        aksharas = segment_aksharas(norm)
+        akshars = segment_akshars(norm)
         switches = detect_code_switches(norm)
         stats = analyze_text_composition(norm)
         tokens = self.tokenize(text)
@@ -142,7 +142,7 @@ class AksharaTokenizer:
         return {
             'original': text,
             'normalized': norm,
-            'aksharas': aksharas,
+            'akshars': akshars,
             'code_switches': switches,
             'tokens': tokens,
             'stats': stats

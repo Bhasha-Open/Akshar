@@ -1,7 +1,7 @@
 """
 Training script for SentencePiece Unigram model.
 
-This prepares data and trains an Akshara tokenizer using SentencePiece.
+This prepares data and trains an Akshar tokenizer using SentencePiece.
 """
 
 import argparse
@@ -11,8 +11,8 @@ from pathlib import Path
 # add parent to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent / 'src'))
 
-from akshara.normalize import normalize_text
-from akshara.segment import segment_by_script
+from Akshar.normalize import normalize_text
+from Akshar.segment import segment_by_script
 
 
 def preprocess_corpus(input_file, output_file, normalize=True):
@@ -52,7 +52,7 @@ def train_sentencepiece(
     model_type='unigram'
 ):
     """
-    Train SentencePiece model with Akshara-friendly settings.
+    Train SentencePiece model with Akshar-friendly settings.
     
     Args:
         input_file: Path to training corpus
@@ -114,11 +114,11 @@ def train_sentencepiece(
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Train SentencePiece model for Akshara tokenizer"
+        description="Train SentencePiece model for Akshar tokenizer"
     )
     
     parser.add_argument('input', help='Input corpus file')
-    parser.add_argument('--output', default='akshara', help='Output model prefix')
+    parser.add_argument('--output', default='Akshar', help='Output model prefix')
     parser.add_argument('--vocab-size', type=int, default=24000, 
                        help='Vocabulary size (default: 24000)')
     parser.add_argument('--coverage', type=float, default=0.9997,

@@ -1,7 +1,7 @@
 """
-Visualization helpers for Akshara tokenizer.
+Visualization helpers for akshar tokenizer.
 
-Provides utilities for displaying token boundaries, aksharas, and script switches.
+Provides utilities for displaying token boundaries, akshars, and script switches.
 """
 
 from typing import List, Tuple
@@ -46,14 +46,14 @@ def format_token_boundaries(text: str, tokens: List[str]) -> str:
     return " | ".join(tokens)
 
 
-def format_akshara_boundaries(aksharas: List[str]) -> str:
+def format_akshar_boundaries(akshars: List[str]) -> str:
     """
-    Display aksharas with boundaries marked.
+    Display akshars with boundaries marked.
     
     Example:
         [क] [्] [ष] [े] [त] [्] [र] [े]
     """
-    return " ".join(f"[{a}]" for a in aksharas)
+    return " ".join(f"[{a}]" for a in akshars)
 
 
 def generate_html_visualization(analysis: dict) -> str:
@@ -75,14 +75,14 @@ def generate_html_visualization(analysis: dict) -> str:
             .roman { color: #009900; background: #e6ffe6; padding: 2px 4px; }
             .token { display: inline-block; border: 1px solid #999; padding: 3px 6px; 
                      margin: 2px; border-radius: 3px; background: #f9f9f9; }
-            .akshara { display: inline-block; border: 1px dashed #ccc; padding: 2px 4px; 
+            .akshar { display: inline-block; border: 1px dashed #ccc; padding: 2px 4px; 
                        margin: 1px; font-family: monospace; }
             .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .stat-item { padding: 10px; background: #f5f5f5; border-radius: 3px; }
         </style>
     </head>
     <body>
-        <h1>Akshara Analysis</h1>
+        <h1>akshar Analysis</h1>
     """
     
     # original text
@@ -108,10 +108,10 @@ def generate_html_visualization(analysis: dict) -> str:
         html += f'<span class="{css_class}">{segment}</span>'
     html += '</div></div>'
     
-    # aksharas
-    html += '<div class="section"><div class="label">Aksharas (Grapheme Clusters):</div><div style="margin-top: 5px;">'
-    for akshara in analysis['aksharas']:
-        html += f'<span class="akshara">{akshara}</span>'
+    # akshars
+    html += '<div class="section"><div class="label">akshars (Grapheme Clusters):</div><div style="margin-top: 5px;">'
+    for akshar in analysis['akshars']:
+        html += f'<span class="akshar">{akshar}</span>'
     html += '</div></div>'
     
     # tokens
@@ -153,17 +153,17 @@ def print_comparison_table(texts: List[str], tokenizer):
     Useful for debugging and evaluation.
     """
     print("\n" + "=" * 80)
-    print(f"{'Text':<40} | {'Tokens':<10} | {'Aksharas':<10}")
+    print(f"{'Text':<40} | {'Tokens':<10} | {'akshars':<10}")
     print("=" * 80)
     
     for text in texts:
         analysis = tokenizer.explain(text)
         token_count = len(analysis['tokens'])
-        akshara_count = len(analysis['aksharas'])
+        akshar_count = len(analysis['akshars'])
         
         # truncate long text for display
         display_text = text if len(text) <= 37 else text[:34] + "..."
-        print(f"{display_text:<40} | {token_count:<10} | {akshara_count:<10}")
+        print(f"{display_text:<40} | {token_count:<10} | {akshar_count:<10}")
     
     print("=" * 80 + "\n")
 
