@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "akshara"
+version = "0.1.0"
+description = "A linguistically-aware tokenizer for Hindi, Sanskrit, and Hinglish"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Bhasha Open", email = "contact@bhashaopen.dev"}
+]
+keywords = ["tokenizer", "hindi", "sanskrit", "hinglish", "nlp", "indic"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Text Processing :: Linguistic",
+]
+
+dependencies = [
+    "regex>=2022.1.18",
+]
+
+[project.optional-dependencies]
+sentencepiece = ["sentencepiece>=0.1.99"]
+bpe = ["tokenizers>=0.13.0"]
+viz = ["streamlit>=1.20.0"]
+all = [
+    "sentencepiece>=0.1.99",
+    "tokenizers>=0.13.0",
+    "streamlit>=1.20.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/bhasha-open/akshara"
+Documentation = "https://github.com/bhasha-open/akshara#readme"
+Repository = "https://github.com/bhasha-open/akshara"
+"Bug Tracker" = "https://github.com/bhasha-open/akshara/issues"
+
+[project.scripts]
+akshara = "akshara.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
