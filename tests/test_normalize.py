@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent / 'src'))
 
-from Akshar.normalize import (
+from akshar.normalize import (
     normalize_unicode,
     semantic_normalize,
     remove_elongations,

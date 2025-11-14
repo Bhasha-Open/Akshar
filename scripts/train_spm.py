@@ -11,8 +11,8 @@ from pathlib import Path
 # add parent to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent / 'src'))
 
-from Akshar.normalize import normalize_text
-from Akshar.segment import segment_by_script
+from akshar.normalize import normalize_text
+from akshar.segment import segment_by_script
 
 
 def preprocess_corpus(input_file, output_file, normalize=True):

@@ -10,7 +10,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent / 'src'))
 
-from Akshar.normalize import normalize_text
+from akshar.normalize import normalize_text
 
 
 def preprocess_corpus(input_file, output_file):

@@ -109,7 +109,7 @@ Optional dependencies:
 ### Build from source
 
 ```bash
-git clone https://github.com/bhasha-open/Akshar.git
+git clone https://github.com/bhasha-open/akshar.git
 cd Akshar
 pip install -e .
 ```
@@ -143,7 +143,7 @@ For BPE training:
 
 ```bash
 python scripts/train_bpe.py data/corpus.txt \
-  --output models/Akshar.json \
+  --output models/akshar.json \
   --vocab_size 24000
 ```
 
@@ -163,7 +163,7 @@ With trained model:
 
 ```python
 tokenizer = AksharTokenizer(
-    model_path="models/Akshar.model",
+    model_path="models/akshar.model",
     model_type="sentencepiece"
 )
 
@@ -200,7 +200,7 @@ print(analysis['stats'])
 Akshar tokenize "आज मौसम अच्छा है"
 
 # with model
-Akshar tokenize --model models/Akshar.model "आज का मौसम"
+Akshar tokenize --model models/akshar.model "आज का मौसम"
 
 # explain
 Akshar explain "yaar aaj मौसम bohot nice hai"

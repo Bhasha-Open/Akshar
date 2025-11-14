@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent / 'src'))
 
-from Akshar.tokenizer import AksharTokenizer
+from akshar.tokenizer import AksharTokenizer
 
 
 class TestTokenizer(unittest.TestCase):

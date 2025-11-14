@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent / 'src'))
 
-from Akshar.segment import (
+from akshar.segment import (
     segment_akshars,
     identify_script,
     detect_code_switches,

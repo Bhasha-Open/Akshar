@@ -53,7 +53,7 @@ Repository = "https://github.com/bhasha-open/Akshar"
 "Bug Tracker" = "https://github.com/bhasha-open/Akshar/issues"
 
 [project.scripts]
-Akshar = "Akshar.cli:main"
+akshar = "akshar.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
