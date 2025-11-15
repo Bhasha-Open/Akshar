@@ -23,24 +23,38 @@ class MorphSegmenter:
         """try loading morfessor model"""
         try:
             import morfessor
-            
-            res_dir = Path(__file__).parent / "resources"
-            model_file = res_dir / f"{self.language}.model"
-            
-            if model_file.exists():
+        except ImportError:
+            # morfessor not installed
+            return
+        
+        # try multiple locations for model files
+        possible_paths = [
+            Path(__file__).parent / "resources" / f"{self.language}.model",
+            Path(__file__).parent.parent.parent / "indic_nlp_resources" / "morph" / "morfessor" / f"{self.language}.model",
+        ]
+        
+        model_file = None
+        for path in possible_paths:
+            if path.exists():
+                model_file = path
+                break
+        
+        if model_file:
+            try:
                 io = morfessor.MorfessorIO()
                 # try text format first (most common)
                 try:
                     self.model = io.read_any_model(str(model_file))
                 except:
                     # fallback to binary
-                    self.model = io.read_binary_model_file(str(model_file))
-        except ImportError:
-            # morfessor not installed
-            pass
-        except Exception:
-            # model loading failed - silent fail
-            pass
+                    try:
+                        self.model = io.read_binary_model_file(str(model_file))
+                    except:
+                        # model format not recognized
+                        pass
+            except Exception:
+                # model loading failed - silent fail
+                pass
     
     def segment_word(self, word: str) -> List[str]:
         """segment word into morphemes"""
@@ -52,7 +66,12 @@ class MorphSegmenter:
             except:
                 pass
         
-        # fallback
+        # fallback: basic segmentation using heuristics
+        # try to split on common morpheme boundaries
+        from .segment import segment_akshars
+        
+        # for now, just return word-level or akshar-level
+        # could add more sophisticated heuristics here
         return [word]
     
     def segment_text(self, text: str) -> List[str]:
@@ -80,7 +99,7 @@ def get_hindi_segmenter() -> MorphSegmenter:
     """get hindi segmenter (singleton)"""
     global _hindi_seg
     if _hindi_seg is None:
-        _hindi_seg = MorphSegmenter('hi')
+        _hindi_seg = MorphSegmenter("hi")
     return _hindi_seg
 
 

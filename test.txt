@@ -1,0 +1,151 @@
+TO ADD IN FEATURE NOTEBOOK
+
+**1. Grapheme-Cluster Segmentation**
+```python
+from akshar import grapheme_cluster_segmentation
+grapheme_cluster_segmentation("सी")  # ['सी'] - never splits vowel marks
+```
+
+**2. Akṣara-Level Tokenization**
+```python
+from akshar import akshara_level_tokenization
+akshara_level_tokenization("प्रकाश")  # ['प्र', 'का', 'श'] - halant-aware
+```
+
+**3. NFC Normalization Enforcement**
+```python
+from akshar import enforce_nfc_normalization
+enforce_nfc_normalization("क" + "\u093F")  # normalizes to NFC
+```
+
+**4. Sandhi-Aware Boundary Heuristics**
+```python
+from akshar import sandhi_aware_tokenization
+sandhi_aware_tokenization("देवोऽपि")  # marks boundaries, preserves original
+```
+
+**5. Schwa-Deletion Modeling (Hindi)**
+```python
+from akshar import schwa_deletion_modeling
+schwa_deletion_modeling("कमल")  # annotates deletion positions
+```
+
+**6. Conjunct-Cluster Preservation**
+```python
+from akshar import preserve_conjuncts
+preserve_conjuncts("शक्ति")  # ['श', 'क्ति'] - preserves conjuncts
+```
+
+**7. Intelligent Anusvāra Resolution**
+```python
+from akshar import intelligent_anusvara_resolution
+intelligent_anusvara_resolution("संकर")  # {'original': '...', 'resolved': 'सङ्कर'}
+```
+
+**8. Chandrabindu Handling**
+```python
+from akshar import handle_chandrabindu
+handle_chandrabindu("हँस")  # ['हँस'] - chandrabindu stays with vowel
+```
+
+**9. Script-Boundary Detection**
+```python
+from akshar import script_boundary_detection
+script_boundary_detection("यह file है")  # detects script switches
+```
+
+**10. Urdu-Loanword Accommodation**
+```python
+from akshar import preserve_nukta
+preserve_nukta("क़दम")  # preserves nukta characters
+```
+
+**11. Virāma-Function Recognition**
+```python
+from akshar import recognize_virama_function
+recognize_virama_function("क्ष")  # analyzes halant context
+```
+
+**12. Mora-Aware Meter Structuring**
+```python
+from akshar import mora_aware_segmentation
+mora_aware_segmentation("गं ग")  # counts light/heavy syllables
+```
+
+**13. Punctuation Sensitivity for Sanskrit Verse**
+```python
+from akshar import sanskrit_punctuation_tokenization
+sanskrit_punctuation_tokenization("रामः। कृष्णः॥")  # ['रामः', '।', 'कृष्णः', '॥']
+```
+
+**14. Swara-Mark Preservation (Vedic Texts)**
+```python
+from akshar import preserve_svara_marks_feature
+preserve_svara_marks_feature("अ॒ग्निः")  # preserves vedic accent marks
+```
+
+**15. Number-System Adaptation**
+```python
+from akshar import devanagari_digit_tokenization
+devanagari_digit_tokenization("१२३")  # ['१', '२', '३']
+```
+
+**16. Robust Zero-Width Joiner Handling**
+```python
+from akshar import preserve_zwj
+preserve_zwj("क्‍या")  # preserves ZWJ/ZWNJ
+```
+
+**17. Proper-Name Integrity**
+```python
+from akshar import preserve_proper_names
+preserve_proper_names("श्रीमंगलम्", names=['श्री'])  # preserves proper names
+```
+
+**18. Dictionary-Backed Lemma Hints**
+```python
+from akshar import provide_lemma_hints
+provide_lemma_hints("गच्छामि", lemma_dict={'गच्छामि': 'गम्'})  # provides lemmas
+```
+
+**19. Mixed-Era Orthography Support**
+```python
+from akshar import preserve_orthographic_variants
+preserve_orthographic_variants("ऋषि")  # preserves orthographic history
+```
+
+**20. Transliteration-Friendly Tokens**
+```python
+from akshar import transliteration_tokenization
+transliteration_tokenization("क्ष", scheme='iast')  # IAST transliteration
+```
+
+**21. Visarga-Condition Handling**
+```python
+from akshar import visarga_condition_tokenization
+visarga_condition_tokenization("रामः सः")  # analyzes visarga behavior
+```
+
+**22. Non-Breaking Vowel Recognition**
+```python
+from akshar import preserve_independent_vowels
+preserve_independent_vowels("ओम्")  # ['ओम्'] - preserves independent vowels
+```
+
+**23. Loanword Code-Switch Detection**
+```python
+from akshar import loanword_detection
+loanword_detection("हमने update कर दिया")  # detects code switches
+```
+
+**24. Emoji Stability Rules**
+```python
+from akshar import emoji_tokenization
+emoji_tokenization("शुभ रात्रि 🌙")  # ['शु', 'भ', ' ', 'रा', 'त्रि', ' ', '🌙']
+```
+
+**25. Morphological Case-Suffix Awareness**
+```python
+from akshar import morphological_segmentation
+morphological_segmentation("रामस्य", language='sanskrit')  # morphological segmentation
+```

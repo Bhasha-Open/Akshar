@@ -54,3 +54,9 @@ data/processed/
 /indic_nlp_resources
 setup.py
 /docs
+id
+data/corpus.txt
+data/mini_corpus.txt
+data/corpus.txt
+/data
+

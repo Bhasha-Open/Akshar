@@ -26,31 +26,39 @@ class aksharTokenizer:
         clean_hinglish: bool = True
     ):
         self.model_path = model_path
-        self.model_type = model_type
         self.normalize_roman = normalize_roman
         self.clean_hinglish = clean_hinglish
         self.model = None
+        self._configured_model_type = model_type  # store configured type
         
         if model_path and os.path.exists(model_path):
             self._load_model()
+        else:
+            # no model loaded - use akshar segmentation
+            self.model_type = "akshar"
     
     def _load_model(self):
         """load SP or BPE model"""
-        if self.model_type == "sentencepiece":
+        # use configured model type when loading
+        model_type = self._configured_model_type
+        
+        if model_type == "sentencepiece":
             try:
                 import sentencepiece as spm
                 self.model = spm.SentencePieceProcessor()
                 self.model.Load(self.model_path)
+                self.model_type = "sentencepiece"
             except ImportError:
                 raise ImportError("need sentencepiece: pip install sentencepiece")
-        elif self.model_type == "bpe":
+        elif model_type == "bpe":
             try:
                 from tokenizers import Tokenizer
                 self.model = Tokenizer.from_file(self.model_path)
+                self.model_type = "bpe"
             except ImportError:
                 raise ImportError("need tokenizers: pip install tokenizers")
         else:
-            raise ValueError(f"unknown model_type: {self.model_type}")
+            raise ValueError(f"unknown model_type: {model_type}")
     
     def preprocess(self, text: str) -> str:
         """run normalization before tokenizing"""
@@ -159,4 +167,5 @@ class aksharTokenizer:
             return self.model.get_vocab_size()
         
         return 0
+    
 
