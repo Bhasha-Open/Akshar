@@ -1,0 +1,35 @@
+Transliteration
+===============
+
+Quick Reference
+---------------
+
+.. list-table::
+   :header-rows: 1
+
+   * - Function
+     - Parameters
+     - Returns
+   * - ``token_to_iast``
+     - ``token``
+     - ``str``
+   * - ``transliterate_tokens``
+     - ``tokens``, ``scheme``
+     - ``List[str]``
+
+Toy Examples
+------------
+
+.. code-block:: python
+
+   from akshar.transliteration import token_to_iast, transliterate_tokens
+   print(token_to_iast("कौ"))
+   print(transliterate_tokens(["भारत"], scheme="iast"))
+
+API
+---
+
+.. automodule:: akshar.transliteration
+   :members:
+   :undoc-members:
+

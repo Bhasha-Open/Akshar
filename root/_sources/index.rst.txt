@@ -1,0 +1,79 @@
+Akshar
+======
+
+.. raw:: html
+
+   <div class="ak-hero">
+     <div class="ak-hero-inner">
+       <h1>Indic-aware tokenization & text tools</h1>
+       <p class="ak-tagline">Grapheme-first segmentation, Hinglish-safe normalization, and handy helpers for analysis.</p>
+     </div>
+   </div>
+
+.. raw:: html
+
+   <div class="ak-grid">
+     <div class="ak-card">
+       <h3>Text content</h3>
+       <p>Tokenize by akshars; keep conjuncts intact for UI and labeling.</p>
+     </div>
+     <div class="ak-card">
+       <h3>Mixed-script</h3>
+       <p>Detect code‑switch spans and work safely with Hinglish inputs.</p>
+     </div>
+     <div class="ak-card">
+       <h3>Normalization</h3>
+       <p>Conservative cleanups that respect Indic shaping and display.</p>
+     </div>
+     <div class="ak-card">
+       <h3>Phonetics</h3>
+       <p>Places of articulation, aspirated/voiced/nasal checks and more.</p>
+     </div>
+   </div>
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Tutorials
+   :hidden:
+
+   quickstart
+   tutorials/basic
+   tutorials/features_demo
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Topic Guides
+   :hidden:
+
+   features/overview
+   features/graphemes
+   features/phonetic_radar
+   cli
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Reference
+   :hidden:
+
+   installation
+   api/index
+
+.. raw:: html
+
+   <hr style="margin: 1.25rem 0; opacity: .25;">
+
+What you can do in 60 seconds
+-----------------------------
+
+.. code-block:: python
+
+   from akshar.tokenizer import aksharTokenizer
+   tk = aksharTokenizer()
+   tokens = tk.tokenize("आज मौसम अच्छा है")
+   print(tokens)
+
+.. code-block:: python
+
+   from akshar.segment import detect_code_switches
+   print(detect_code_switches("aaj मौसम accha hai"))
+

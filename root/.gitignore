@@ -1,0 +1,6 @@
+# GitHub Pages branch - only HTML files should be here
+# This file is kept minimal since this branch only contains built docs
+
+.DS_Store
+*.swp
+*~

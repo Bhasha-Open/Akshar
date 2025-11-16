@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>akshar.normalize - Akshar documentation</title><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=e1a1ceaf" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=14737038" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="akshar.normalize"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      
+      
+      <strong>Akshar</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials"></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features/overview.html">Features Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features/graphemes.html">Graphemes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/basic.html">Basic Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/tokenizer.html">Tokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/normalize.html">Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/segment.html">Segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/morph.html">Morphology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/phonetic.html">Phonetics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/script_utils.html">Script Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/sandhi.html">Sandhi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/schwa.html">Schwa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/anusvara.html">Anusvara</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/vedic.html">Vedic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/visarga.html">Visarga</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/transliteration.html">Transliteration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/features.html">Features (Module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/viz.html">Visualizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/app.html">App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/cli_api.html">CLI (API)</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">Akshar</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">Module code</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">akshar.normalize</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <h1>Source code for akshar.normalize</h1><div class="highlight"><pre>
+<span></span><span data-line="1"><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="2"><span class="sd">Normalization utilities for Hindi/Sanskrit/Hinglish text.</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="sd">We keep Devanagari intact while lightly normalizing Roman script and cleaning</span>
+</span><span data-line="5"><span class="sd">social-media style noise. This is intentionally conservative to avoid breaking</span>
+</span><span data-line="6"><span class="sd">conjuncts or script-specific semantics.</span>
+</span><span data-line="7"><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="kn">import</span><span class="w"> </span><span class="nn">unicodedata</span>
+</span><span data-line="10"><span class="kn">import</span><span class="w"> </span><span class="nn">regex</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">re</span>
+</span><span data-line="11">
+</span><span data-line="12">
+<div class="viewcode-block" id="normalize_unicode">
+<a class="viewcode-back" href="../../api/normalize.html#akshar.normalize.normalize_unicode">[docs]</a>
+</span><span data-line="13"><span class="k">def</span><span class="w"> </span><span class="nf">normalize_unicode</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+</span><span data-line="14"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply NFC Unicode normalization.</span>
+</span><span data-line="15"><span class="sd">    </span>
+</span><span data-line="16"><span class="sd">    We use NFC because NFD can break conjunct shaping in Indic scripts.</span>
+</span><span data-line="17"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="18">    <span class="k">return</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="s1">&#39;NFC&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span></div>
+
+</span><span data-line="19">
+</span><span data-line="20">
+<div class="viewcode-block" id="semantic_normalize">
+<a class="viewcode-back" href="../../api/normalize.html#akshar.normalize.semantic_normalize">[docs]</a>
+</span><span data-line="21"><span class="k">def</span><span class="w"> </span><span class="nf">semantic_normalize</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+</span><span data-line="22"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Lowercase Roman characters but keep Indic scripts unchanged.</span>
+</span><span data-line="23"><span class="sd">    </span>
+</span><span data-line="24"><span class="sd">    Parameters</span>
+</span><span data-line="25"><span class="sd">    ----------</span>
+</span><span data-line="26"><span class="sd">    text : str</span>
+</span><span data-line="27"><span class="sd">        Mixed-script input.</span>
+</span><span data-line="28"><span class="sd">    </span>
+</span><span data-line="29"><span class="sd">    Returns</span>
+</span><span data-line="30"><span class="sd">    -------</span>
+</span><span data-line="31"><span class="sd">    str</span>
+</span><span data-line="32"><span class="sd">        Lowercased only for characters whose Unicode name contains &#39;LATIN&#39;.</span>
+</span><span data-line="33"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="34">    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="35">    <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+</span><span data-line="36">        <span class="k">try</span><span class="p">:</span>
+</span><span data-line="37">            <span class="n">cname</span> <span class="o">=</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span><span data-line="38">            <span class="k">if</span> <span class="s1">&#39;LATIN&#39;</span> <span class="ow">in</span> <span class="n">cname</span><span class="p">:</span>
+</span><span data-line="39">                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+</span><span data-line="40">            <span class="k">else</span><span class="p">:</span>
+</span><span data-line="41">                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</span><span data-line="42">        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+</span><span data-line="43">            <span class="c1"># some chars dont have names idk why</span>
+</span><span data-line="44">            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</span><span data-line="45">    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
+
+</span><span data-line="46">
+</span><span data-line="47">
+<div class="viewcode-block" id="remove_elongations">
+<a class="viewcode-back" href="../../api/normalize.html#akshar.normalize.remove_elongations">[docs]</a>
+</span><span data-line="48"><span class="k">def</span><span class="w"> </span><span class="nf">remove_elongations</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+</span><span data-line="49"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Collapse 3+ repeated characters to 1 (keep doubles).</span>
+</span><span data-line="50"><span class="sd">    </span>
+</span><span data-line="51"><span class="sd">    Examples</span>
+</span><span data-line="52"><span class="sd">    --------</span>
+</span><span data-line="53"><span class="sd">        &gt;&gt;&gt; remove_elongations(&quot;yaaaaar&quot;)</span>
+</span><span data-line="54"><span class="sd">        &#39;yaar&#39;</span>
+</span><span data-line="55"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="56">    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(.)\1{2,}&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span></div>
+
+</span><span data-line="57">
+</span><span data-line="58">
+<div class="viewcode-block" id="roman_phonetic_signature">
+<a class="viewcode-back" href="../../api/normalize.html#akshar.normalize.roman_phonetic_signature">[docs]</a>
+</span><span data-line="59"><span class="k">def</span><span class="w"> </span><span class="nf">roman_phonetic_signature</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+</span><span data-line="60"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="61"><span class="sd">    Compute a crude phonetic signature for Roman Hinglish variants.</span>
+</span><span data-line="62"><span class="sd">    </span>
+</span><span data-line="63"><span class="sd">    Examples</span>
+</span><span data-line="64"><span class="sd">    --------</span>
+</span><span data-line="65"><span class="sd">        &gt;&gt;&gt; roman_phonetic_signature(&quot;nahee&quot;)</span>
+</span><span data-line="66"><span class="sd">        &#39;nahi&#39;</span>
+</span><span data-line="67"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="68">    <span class="n">w</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</span><span data-line="69">    <span class="n">w</span> <span class="o">=</span> <span class="n">remove_elongations</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</span><span data-line="70">    
+</span><span data-line="71">    <span class="c1"># common hinglish patterns i noticed</span>
+</span><span data-line="72">    <span class="c1"># TODO: maybe add more? check corpus for patterns</span>
+</span><span data-line="73">    <span class="n">replacements</span> <span class="o">=</span> <span class="p">[</span>
+</span><span data-line="74">        <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;ee$&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">),</span>    <span class="c1"># long i</span>
+</span><span data-line="75">        <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;oo$&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">),</span>    <span class="c1"># long u  </span>
+</span><span data-line="76">        <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;aa&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">),</span>     
+</span><span data-line="77">        <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;kh&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">),</span>     <span class="c1"># aspirated stuff</span>
+</span><span data-line="78">        <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;gh&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">),</span>
+</span><span data-line="79">        <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;ch&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">),</span>
+</span><span data-line="80">        <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;th&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">),</span>
+</span><span data-line="81">        <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;ph&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">),</span>
+</span><span data-line="82">        <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;bh&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">),</span>
+</span><span data-line="83">        <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;dh&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">),</span>
+</span><span data-line="84">    <span class="p">]</span>
+</span><span data-line="85">    
+</span><span data-line="86">    <span class="k">for</span> <span class="n">pat</span><span class="p">,</span> <span class="n">repl</span> <span class="ow">in</span> <span class="n">replacements</span><span class="p">:</span>
+</span><span data-line="87">        <span class="n">w</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pat</span><span class="p">,</span> <span class="n">repl</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+</span><span data-line="88">    
+</span><span data-line="89">    <span class="k">return</span> <span class="n">w</span></div>
+
+</span><span data-line="90">
+</span><span data-line="91">
+<div class="viewcode-block" id="filter_garbage">
+<a class="viewcode-back" href="../../api/normalize.html#akshar.normalize.filter_garbage">[docs]</a>
+</span><span data-line="92"><span class="k">def</span><span class="w"> </span><span class="nf">filter_garbage</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+</span><span data-line="93"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Drop characters outside a conservative allowlist for noisy inputs.</span>
+</span><span data-line="94"><span class="sd">    </span>
+</span><span data-line="95"><span class="sd">    This keeps Devanagari, basic punctuation, ASCII alnum, and whitespace.</span>
+</span><span data-line="96"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="97">    <span class="n">allowed</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+</span><span data-line="98">        <span class="sa">r</span><span class="s1">&#39;[\u0900-\u097F&#39;</span>  <span class="c1"># devanagari</span>
+</span><span data-line="99">        <span class="sa">r</span><span class="s1">&#39;\u0980-\u09FF&#39;</span>   <span class="c1"># bengali (sometimes see this mixed in)</span>
+</span><span data-line="100">        <span class="sa">r</span><span class="s1">&#39;a-zA-Z0-9&#39;</span>       
+</span><span data-line="101">        <span class="sa">r</span><span class="s1">&#39;\s&#39;</span>              
+</span><span data-line="102">        <span class="sa">r</span><span class="s1">&#39;.,!?;:</span><span class="se">\&#39;</span><span class="s1">\&quot;\-]&#39;</span>   
+</span><span data-line="103">    <span class="p">)</span>
+</span><span data-line="104">    
+</span><span data-line="105">    <span class="c1"># might be slow for long texts but works</span>
+</span><span data-line="106">    <span class="n">cleaned</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">text</span> <span class="k">if</span> <span class="n">allowed</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+</span><span data-line="107">    <span class="k">return</span> <span class="n">cleaned</span></div>
+
+</span><span data-line="108">
+</span><span data-line="109">
+<div class="viewcode-block" id="normalize_hinglish">
+<a class="viewcode-back" href="../../api/normalize.html#akshar.normalize.normalize_hinglish">[docs]</a>
+</span><span data-line="110"><span class="k">def</span><span class="w"> </span><span class="nf">normalize_hinglish</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+</span><span data-line="111"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Clean up Hinglish text (garbage filter + elongation removal).&quot;&quot;&quot;</span>
+</span><span data-line="112">    <span class="n">text</span> <span class="o">=</span> <span class="n">filter_garbage</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span data-line="113">    <span class="n">text</span> <span class="o">=</span> <span class="n">remove_elongations</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span data-line="114">    <span class="k">return</span> <span class="n">text</span></div>
+
+</span><span data-line="115">
+</span><span data-line="116">
+<div class="viewcode-block" id="normalize_text">
+<a class="viewcode-back" href="../../api/normalize.html#akshar.normalize.normalize_text">[docs]</a>
+</span><span data-line="117"><span class="k">def</span><span class="w"> </span><span class="nf">normalize_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">normalize_roman</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">clean_hinglish</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+</span><span data-line="118"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="119"><span class="sd">    Main normalization function used by the tokenizer.</span>
+</span><span data-line="120"><span class="sd">    </span>
+</span><span data-line="121"><span class="sd">    Steps:</span>
+</span><span data-line="122"><span class="sd">      1) NFC unicode normalization</span>
+</span><span data-line="123"><span class="sd">      2) Roman lowercasing (optional)</span>
+</span><span data-line="124"><span class="sd">      3) Hinglish cleanup (optional)</span>
+</span><span data-line="125"><span class="sd">    </span>
+</span><span data-line="126"><span class="sd">    Parameters</span>
+</span><span data-line="127"><span class="sd">    ----------</span>
+</span><span data-line="128"><span class="sd">    text : str</span>
+</span><span data-line="129"><span class="sd">        Input string.</span>
+</span><span data-line="130"><span class="sd">    normalize_roman : bool</span>
+</span><span data-line="131"><span class="sd">        If True, lowercase Roman letters only.</span>
+</span><span data-line="132"><span class="sd">    clean_hinglish : bool</span>
+</span><span data-line="133"><span class="sd">        If True, apply lightweight social-text cleanup.</span>
+</span><span data-line="134"><span class="sd">    </span>
+</span><span data-line="135"><span class="sd">    Returns</span>
+</span><span data-line="136"><span class="sd">    -------</span>
+</span><span data-line="137"><span class="sd">    str</span>
+</span><span data-line="138"><span class="sd">        Normalized string.</span>
+</span><span data-line="139"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="140">    <span class="n">text</span> <span class="o">=</span> <span class="n">normalize_unicode</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span data-line="141">    
+</span><span data-line="142">    <span class="k">if</span> <span class="n">normalize_roman</span><span class="p">:</span>
+</span><span data-line="143">        <span class="n">text</span> <span class="o">=</span> <span class="n">semantic_normalize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span data-line="144">    
+</span><span data-line="145">    <span class="k">if</span> <span class="n">clean_hinglish</span><span class="p">:</span>
+</span><span data-line="146">        <span class="n">text</span> <span class="o">=</span> <span class="n">normalize_hinglish</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span data-line="147">    
+</span><span data-line="148">    <span class="k">return</span> <span class="n">text</span></div>
+
+</span><span data-line="149">
+</span></pre></div>
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, Akshar contributors</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials"></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

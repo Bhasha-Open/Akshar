@@ -1,0 +1,118 @@
+Quick Start
+===========
+
+This guide gets you started with akshar in 5 minutes.
+
+Basic Tokenization
+------------------
+
+Without a trained model, akshar segments text into grapheme clusters (akshars):
+
+.. code-block:: python
+
+   from akshar.tokenizer import aksharTokenizer
+
+   tokenizer = aksharTokenizer()
+
+   text = "आज मौसम अच्छा है"
+   tokens = tokenizer.tokenize(text)
+   print(tokens)
+   # ['आ', 'ज', ' ', 'मौ', 'स', 'म', ' ', 'अ', 'च्', 'छ', 'ा', ' ', 'है']
+
+Notice that "ख" stays as one unit — that's the grapheme cluster preservation in action.
+
+Word-Level Tokenization
+-----------------------
+
+For word-level tokens (like IndicNLP):
+
+.. code-block:: python
+
+   def word_tokenize(text):
+       tokenizer = aksharTokenizer()
+       normalized = tokenizer.preprocess(text)
+       return normalized.split()
+
+   tokens = word_tokenize("aaj मौसम बहुत अच्छा है")
+   print(tokens)
+   # ['aaj', 'मौसम', 'बहुत', 'अच्छा', 'है']
+
+This uses akshar's normalization but splits on whitespace.
+
+Code-Switch Detection
+---------------------
+
+Find boundaries in mixed-script text (Hinglish):
+
+.. code-block:: python
+
+   from akshar.segment import detect_code_switches
+
+   switches = detect_code_switches("aaj मौसम बहुत accha hai")
+   print(switches)
+   # [('aaj ', 'roman'), ('मौसम', 'devanagari'), (' ', 'punct'), ('बहुत ', 'devanagari'), ('accha hai', 'roman')]
+
+Detailed Analysis
+-----------------
+
+Peel back the layers for debugging:
+
+.. code-block:: python
+
+   tk = aksharTokenizer()
+   report = tk.explain("क्षेत्रे धर्मक्षेत्रे")
+   print(report.keys())
+   # dict_keys(['original', 'normalized', 'akshars', 'code_switches', 'tokens', 'stats'])
+
+Normalization
+-------------
+
+.. code-block:: python
+
+   from akshar.normalize import normalize_text
+   normalize_text("yaaaaar mausam bohot achaaa hai!!")
+   # 'yaar mausam bohot acha hai!!'
+
+Grapheme Segmentation
+---------------------
+
+.. code-block:: python
+
+   from akshar.segment import segment_akshars
+   segment_akshars("मौसम")
+   # ['मौ', 'स', 'म']
+
+Using Trained Models
+--------------------
+
+SentencePiece:
+
+.. code-block:: python
+
+   tk = aksharTokenizer(model_path="models/akshar.model", model_type="sentencepiece")
+   tk.tokenize("aaj मौसम बहुत अच्छा hai")
+   # ['▁aaj', '▁', 'मौ', 'सम', '▁बहुत', '▁अच्छा', '▁hai']
+
+Command Line Usage
+------------------
+
+.. code-block:: bash
+
+   akshar tokenize "आज मौसम अच्छा है"
+   akshar explain "क्षेत्रे धर्मक्षेत्रे समवेता"
+   akshar train data/corpus.txt --output models/akshar --vocab-size 24000
+
+Common Patterns
+---------------
+
+- Normalize inputs first when comparing tokens.
+- Keep akshars intact for display or annotation tasks.
+- Use code-switch detection for Hinglish analytics.
+
+Next Steps
+----------
+
+- See the :doc:`cli` for batch processing.
+- Browse the :doc:`features/overview` to discover more helpers.
+
+

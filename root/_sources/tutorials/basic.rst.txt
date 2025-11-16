@@ -1,0 +1,126 @@
+Basic Tutorial
+==============
+
+This tutorial covers basic akshar usage patterns. We'll start simple and build up to more advanced features.
+
+Installation Check
+------------------
+
+.. code-block:: python
+
+   import akshar
+   print(akshar.__version__)
+
+If you get an import error, install akshar:
+
+.. code-block:: bash
+
+   pip install -e /path/to/akshar
+
+Step 1: Your First Tokenization
+-------------------------------
+
+.. code-block:: python
+
+   from akshar.tokenizer import aksharTokenizer
+
+   # create tokenizer
+   tokenizer = aksharTokenizer()
+
+   # tokenize
+   text = "आज मौसम अच्छा है"
+   tokens = tokenizer.tokenize(text)
+
+   print(tokens)
+   # ['आ', 'ज', ' ', 'मौ', 'स', 'म', ' ', 'अ', 'च्', 'छ', 'ा', ' ', 'है']
+
+Step 2: Word-Level Tokens
+-------------------------
+
+.. code-block:: python
+
+   tk = aksharTokenizer()
+   normalized = tk.preprocess("aaj मौसम बहुत accha hai")
+   words = normalized.split()
+   print(words)
+
+Step 3: Mixed Script (Hinglish)
+-------------------------------
+
+.. code-block:: python
+
+   from akshar.segment import detect_code_switches
+   detect_code_switches("aaj मौसम बहुत accha hai")
+
+Step 4: Code-Switch Detection
+-----------------------------
+
+.. code-block:: python
+
+   switches = detect_code_switches("main California me rehta hoon और हिंदी बोलता हूं")
+   for seg, scr in switches:
+       print(f"{scr:12} | {seg!r}")
+
+Step 5: Text Normalization
+--------------------------
+
+.. code-block:: python
+
+   from akshar.normalize import normalize_text
+   normalize_text("yaaaar mausam bohot achaaa hai!!")
+
+Step 6: Detailed Analysis
+-------------------------
+
+.. code-block:: python
+
+   report = tk.explain("क्षेत्रे धर्मक्षेत्रे समवेता युयुत्सवः")
+   for k, v in report.items():
+       print(k, type(v))
+
+Step 7: Grapheme Clusters
+-------------------------
+
+.. code-block:: python
+
+   from akshar.segment import segment_akshars
+   segment_akshars("च्छा", matras=True)
+
+Step 8: Batch Processing
+------------------------
+
+.. code-block:: python
+
+   texts = ["आज मौसम अच्छा है", "क्षेत्रे धर्मक्षेत्रे", "aaj mausam accha hai"]
+   results = [tk.tokenize(t) for t in texts]
+
+Step 9: Feature Extraction
+--------------------------
+
+.. code-block:: python
+
+   from akshar.phonetic import analyze_phonetics
+   analyze_phonetics("भारत")
+
+Step 10: Handling Sanskrit
+--------------------------
+
+.. code-block:: python
+
+   from akshar.vedic import analyze_metre
+   analyze_metre("क्षि॒त्रे ध॒र्मक्षि॑त्रे")
+
+Common Patterns
+---------------
+
+- Normalize once, reuse normalized string.
+- Keep akshars intact for UI/annotation tasks.
+- Morphology and metre are optional add-ons; degrade gracefully if not present.
+
+Troubleshooting
+---------------
+
+- If you see Streamlit warnings while building docs, they are safe to ignore.
+- For ID outputs, ensure a model is loaded and paths are correct.
+
+

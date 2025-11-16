@@ -1,0 +1,190 @@
+Features Demo
+=============
+
+This page mirrors the example notebook and breaks it into focused, copy‑pasteable chunks.
+
+Setup
+-----
+
+.. code-block:: python
+
+   from akshar import aksharTokenizer
+   tokenizer = aksharTokenizer()
+
+Basic tokenization
+------------------
+
+.. code-block:: python
+
+   examples = ["आज मौसम बहुत अच्छा है", "नमस्ते दुनिया", "क्षेत्रे धर्मक्षेत्रे"]
+   for text in examples:
+       tokens = tokenizer.tokenize(text)
+       print(f"Text: {text}")
+       print(f"Tokens ({len(tokens)}): {' | '.join(tokens)}\n")
+
+Word‑level tokenization (Hindi/Sanskrit)
+----------------------------------------
+
+.. code-block:: python
+
+   from akshar import word_tokenize_hindi, word_tokenize, word_tokenize_sanskrit
+
+   text_hi = "aaj मौसम बहुत अच्छा है"
+   text_sa = "नास॑दासी॒न्नो सदा॑सीत्त॒दानीं॒ नासी॒द्रजो॒ नो वयो॑मा प॒रो यत्।"
+   print("Hindi:", word_tokenize_hindi(text_hi))
+   print("Sanskrit:", word_tokenize_sanskrit(text_sa))
+   print("Auto:", word_tokenize(text_hi, language="auto"))
+
+akshar segmentation (conjuncts preserved)
+-----------------------------------------
+
+.. code-block:: python
+
+   from akshar import segment_akshars
+
+   for text in ["क्षेत्र", "ज्ञान", "त्रिशूल", "धर्मक्षेत्रे"]:
+       print(text, "→", segment_akshars(text))
+
+Code‑switch detection (Hinglish)
+--------------------------------
+
+.. code-block:: python
+
+   from akshar import detect_code_switches
+
+   for text in [
+       "aaj मौसम बहुत अच्छा है",
+       "मैं California में रहता हूं",
+       "hello यार kya हाल है",
+       "आज का day बहुत nice था",
+   ]:
+       print(text)
+       for seg, script in detect_code_switches(text):
+           print(f"  [{script}] {seg!r}")
+       print()
+
+Text normalization
+------------------
+
+.. code-block:: python
+
+   from akshar import normalize_text
+   for text in ["Hello नमस्ते WORLD", "Heyyy यार kya HAAL hai", "मैं California में रहता हूं"]:
+       print("Original:  ", text)
+       print("Normalized:", normalize_text(text))
+       print()
+
+Hinglish normalization utilities
+--------------------------------
+
+.. code-block:: python
+
+   from akshar.normalize import remove_elongations, roman_phonetic_signature
+
+   for w in ["heyyy", "yaaaaar", "niceeee", "bohoooot"]:
+       print(w, "→", remove_elongations(w))
+
+   print("\nPhonetic signatures:")
+   for group in [["nahi","nahii","nahee"], ["yaar","yar"], ["achha","acha","accha"]]:
+       print(group, "→", [roman_phonetic_signature(w) for w in group])
+
+Detailed analysis (explain)
+---------------------------
+
+.. code-block:: python
+
+   analysis = tokenizer.explain("yaar aaj ka मौसम बहुत अच्छा hai")
+   print("Original:", analysis["original"])
+   print("akshars:", len(analysis["akshars"]), "switches:", analysis["stats"]["script_switches"])
+
+Composition analysis
+--------------------
+
+.. code-block:: python
+
+   from akshar.segment import analyze_text_composition
+   for name, text in {
+       "Pure Hindi": "आज मौसम बहुत अच्छा है",
+       "Pure English": "today weather is very nice",
+       "Hinglish": "aaj ka मौसम बहुत nice hai",
+       "Sanskrit": "क्षेत्रे धर्मक्षेत्रे समवेता युयुत्सवः",
+   }.items():
+       comp = analyze_text_composition(text)
+       print(name, comp)
+
+Tokenization + metadata
+-----------------------
+
+.. code-block:: python
+
+   result = tokenizer.tokenize("hello नमस्ते दोस्तों", return_metadata=True)
+   print(result["token_count"], "tokens;", result["stats"])
+
+Script detection helpers
+------------------------
+
+.. code-block:: python
+
+   from akshar.segment import identify_script
+   for ch in ['न','a','क','h','5','.','म','Z']:
+       print(ch, "→", identify_script(ch))
+
+Sanskrit processing snippets
+----------------------------
+
+.. code-block:: python
+
+   print(segment_akshars("क्षेत्रे धर्मक्षेत्रे"))
+
+Visualization helpers (text mode)
+---------------------------------
+
+.. code-block:: python
+
+   from akshar.viz import format_token_boundaries, format_akshar_boundaries
+   text = "aaj मौसम अच्छा है"
+   tokens = tokenizer.tokenize(text)
+   akshars = segment_akshars(text)
+   print(format_token_boundaries(text, tokens))
+   print(format_akshar_boundaries(akshars))
+
+Batch processing
+----------------
+
+.. code-block:: python
+
+   batch = ["भारत एक महान देश है", "India is a great country", "मैं India से हूं"]
+   for t in batch:
+       print(t, "→", len(tokenizer.tokenize(t)))
+
+Phonetic analysis (characters/words)
+------------------------------------
+
+.. code-block:: python
+
+   from akshar import get_phonetic_analyzer
+   pa = get_phonetic_analyzer()
+   for ch in ['क','ख','न','म','अ','आ']:
+       print(ch, pa.get_properties(ch))
+   print(pa.analyze_word("नमस्ते"))
+
+Other linguistic helpers
+------------------------
+
+.. code-block:: python
+
+   from akshar import (
+       akshara_level_tokenization, sandhi_aware_tokenization, schwa_deletion_modeling,
+       preserve_conjuncts, intelligent_anusvara_resolution, preserve_zwj,
+       preserve_independent_vowels, emoji_tokenization
+   )
+
+   print(akshara_level_tokenization("प्रकाश"))
+   print(sandhi_aware_tokenization("देवोऽपि"))
+   print(schwa_deletion_modeling("कमल"))
+   print(preserve_conjuncts("शक्ति"))
+   print(intelligent_anusvara_resolution("संकर"))
+   print(preserve_zwj("क्‍या"))
+   print(preserve_independent_vowels("ओम्"))
+   print(emoji_tokenization("शुभ रात्रि 🌙"))
+

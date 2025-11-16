@@ -1,0 +1,51 @@
+Phonetics
+=========
+
+Quick Reference
+---------------
+
+.. list-table::
+   :header-rows: 1
+
+   * - Function
+     - Parameters
+     - Returns
+   * - ``analyze_phonetics``
+     - ``text``
+     - ``Dict`` (counts)
+   * - ``PhoneticAnalyzer.get_properties``
+     - ``char``
+     - ``Dict|None``
+   * - ``is_vowel / is_consonant``
+     - ``char``
+     - ``bool``
+   * - ``is_aspirated / is_voiced``
+     - ``char``
+     - ``bool``
+   * - ``is_nasal``
+     - ``char``
+     - ``bool``
+   * - ``get_place_of_articulation``
+     - ``char``
+     - ``str|None``
+   * - ``analyze_word``
+     - ``word``
+     - ``Dict`` (counts)
+
+Toy Examples
+------------
+
+.. code-block:: python
+
+   from akshar.phonetic import analyze_phonetics, PhoneticAnalyzer
+   print(analyze_phonetics("भारत"))
+   pa = PhoneticAnalyzer()
+   print(pa.get_place_of_articulation("ट"))
+
+API
+---
+
+.. automodule:: akshar.phonetic
+   :members:
+   :undoc-members:
+

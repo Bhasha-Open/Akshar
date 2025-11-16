@@ -1,0 +1,38 @@
+Vedic
+=====
+
+Quick Reference
+---------------
+
+.. list-table::
+   :header-rows: 1
+
+   * - Function
+     - Parameters
+     - Returns
+   * - ``preserve_svara_marks``
+     - ``text``
+     - ``List[str]``
+   * - ``handle_sanskrit_punctuation``
+     - ``text``
+     - ``List[str]``
+   * - ``analyze_metre``
+     - ``text``
+     - ``Dict`` (mora stats)
+
+Toy Examples
+------------
+
+.. code-block:: python
+
+   from akshar.vedic import preserve_svara_marks, analyze_metre
+   print(preserve_svara_marks("अ॑ग्निमी॒ळे"))
+   print(analyze_metre("अ॑ग्निमी॒ळे"))
+
+API
+---
+
+.. automodule:: akshar.vedic
+   :members:
+   :undoc-members:
+

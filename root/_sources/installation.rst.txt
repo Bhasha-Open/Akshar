@@ -1,0 +1,12 @@
+Installation
+============
+
+Install from source (PyPI coming soon):
+
+.. code-block:: bash
+
+   git clone https://github.com/<your-org>/Akshar.git
+   cd Akshar
+   pip install -e .
+
+

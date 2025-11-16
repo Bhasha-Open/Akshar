@@ -1,0 +1,208 @@
+aksharTokenizer API
+===================
+
+Overview
+--------
+High-level tokenizer that chains normalization, akshar segmentation, and optional subword models (SentencePiece/BPE). When no model is loaded, returns grapheme-aware akshar tokens.
+
+.. warning::
+
+   When no model is provided, akshar falls back to akshar-level tokens. This is ideal for visualization and Indic‑aware analytics, but not a drop‑in for subword models. Load a model for ID I/O and production tokenization parity.
+
+Usage
+-----
+
+Single‑script (Hindi/Sanskrit):
+
+.. code-block:: python
+
+   from akshar.tokenizer import aksharTokenizer
+   tk = aksharTokenizer()
+   tk.tokenize("आज मौसम अच्छा है")
+
+Mixed‑script (Hinglish) with model:
+
+.. code-block:: python
+
+   sp = aksharTokenizer("models/akshar.model", "sentencepiece")
+   sp.tokenize("aaj मौसम बहुत अच्छा hai")
+
+Definitions
+-----------
+
+- akshar: A grapheme cluster in Indic scripts (conjunct + vowel nucleus).
+- code‑switch: A change in script within a text span (e.g., Roman ↔ Devanagari).
+- model_type: One of ``sentencepiece`` or ``bpe`` when a model is loaded.
+
+Quick Examples
+--------------
+
+.. code-block:: python
+
+   from akshar.tokenizer import aksharTokenizer
+
+   # akshar-level tokens
+   tk = aksharTokenizer()
+   tk.tokenize("आज मौसम अच्छा है")
+
+.. code-block:: python
+
+   # SentencePiece
+   sp = aksharTokenizer(model_path="models/akshar.model", model_type="sentencepiece")
+   sp.tokenize("aaj मौसम बहुत अच्छा hai")
+
+Micro-Recipes
+-------------
+
+- Batch tokenize:
+
+  .. code-block:: python
+
+     tk = aksharTokenizer()
+     texts = ["आज मौसम अच्छा है", "क्षेत्रे धर्मक्षेत्रे", "aaj mausam accha hai"]
+     batches = [tk.tokenize(t) for t in texts]
+
+- ID round-trip (with model):
+
+  .. code-block:: python
+
+     sp = aksharTokenizer("models/akshar.model", "sentencepiece")
+     ids = sp.encode("aaj मौसम")
+     txt = sp.decode(ids)
+
+- Detokenize heuristics:
+
+  .. code-block:: python
+
+     print(sp.detokenize(['▁aaj', '▁मौ', 'सम']))
+
+Common Scenarios
+----------------
+
+- Inspect pipeline steps:
+
+  .. code-block:: python
+
+     tk = aksharTokenizer()
+     report = tk.explain("क्षेत्रे धर्मक्षेत्रे")
+     report["akshars"], report["code_switches"]
+
+- Word-level tokens for IndicNLP style processing:
+
+  .. code-block:: python
+
+     tk = aksharTokenizer()
+     words = tk.preprocess("aaj मौसम बहुत accha hai").split()
+
+Notes on Backends
+-----------------
+
+- SentencePiece is recommended for production subword pipelines.
+- HuggingFace BPE is supported for model I/O symmetry with transformer stacks.
+- Akshar fallback preserves conjuncts and is stable for UI/analytics.
+
+Environment Variables
+---------------------
+
+None required for normal usage. Set standard variables (e.g., ``PYTHONUTF8=1``) if your environment mishandles Unicode.
+
+Deployment
+----------
+
+.. code-block:: bash
+
+   pip install akshar
+   # for SP/BPE support
+   pip install sentencepiece tokenizers
+
+Failure Modes
+-------------
+
+- Model path missing or unreadable → load falls back to akshar tokens.
+- Requesting IDs without a model → raises ``ValueError("need model for IDs")``.
+- BPE JSON incompatible with tokenizer version → follow HF upgrade path.
+
+Playground
+----------
+
+Paste into a REPL and tweak:
+
+.. code-block:: python
+
+   from akshar.tokenizer import aksharTokenizer
+   from akshar.segment import detect_code_switches, segment_akshars
+
+   s = "main California me rehta hoon और हिंदी बोलता हूं"
+   tk = aksharTokenizer()
+   print("akshars:", segment_akshars(tk.preprocess(s)))
+   print("switches:", detect_code_switches(s))
+   print("tokens:", tk.tokenize(s))
+
+Important Notices
+-----------------
+
+1. Grapheme clustering is Unicode‑driven; do not attempt to split akshars by codepoint boundaries in downstream code.
+2. Normalization is conservative by intent; if you need aggressive cleanup, do it explicitly and upstream.
+3. For subword parity, always pin the model artifact alongside your training code and log model_type.
+
+Methods
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   akshar.tokenizer.aksharTokenizer.preprocess
+   akshar.tokenizer.aksharTokenizer.tokenize
+   akshar.tokenizer.aksharTokenizer.encode
+   akshar.tokenizer.aksharTokenizer.decode
+   akshar.tokenizer.aksharTokenizer.detokenize
+   akshar.tokenizer.aksharTokenizer.explain
+   akshar.tokenizer.aksharTokenizer.vocab_size
+
+.. autoclass:: akshar.tokenizer.aksharTokenizer
+   :members: preprocess, tokenize, encode, decode, detokenize, explain, vocab_size
+   :undoc-members:
+   :show-inheritance:
+
+Quick Reference
+---------------
+
+.. list-table::
+   :header-rows: 1
+
+   * - Method
+     - Parameters
+     - Returns
+   * - ``preprocess``
+     - ``text``, flags
+     - ``str``
+   * - ``tokenize``
+     - ``text``
+     - ``List[str]`` or subword IDs if model loaded
+   * - ``encode``
+     - ``text``, ``add_special_tokens=True``
+     - ``List[int]``
+   * - ``decode``
+     - ``ids``
+     - ``str``
+   * - ``detokenize``
+     - ``tokens``
+     - ``str``
+   * - ``explain``
+     - ``text``
+     - ``Dict`` (pipeline report)
+
+Toy Examples
+------------
+
+.. code-block:: python
+
+   from akshar.tokenizer import aksharTokenizer
+   tk = aksharTokenizer()
+   print(tk.preprocess("yaaaar मौसम"))
+   print(tk.tokenize("क्षेत्रे धर्मक्षेत्रे"))
+   # with a model
+   sp = aksharTokenizer(model_path="models/akshar.model", model_type="sentencepiece")
+   ids = sp.encode("भारत")
+   print(ids, sp.decode(ids))
+

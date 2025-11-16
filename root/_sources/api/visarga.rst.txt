@@ -1,0 +1,35 @@
+Visarga
+=======
+
+Quick Reference
+---------------
+
+.. list-table::
+   :header-rows: 1
+
+   * - Function
+     - Parameters
+     - Returns
+   * - ``handle_visarga_conditions``
+     - ``text``
+     - ``List[(pos, src, tag)]``
+   * - ``annotate_visarga``
+     - ``text``
+     - ``Dict`` (annotations)
+
+Toy Examples
+------------
+
+.. code-block:: python
+
+   from akshar.visarga import handle_visarga_conditions, annotate_visarga
+   print(handle_visarga_conditions("वःशिवः"))
+   print(annotate_visarga("वःअगच्छति"))
+
+API
+---
+
+.. automodule:: akshar.visarga
+   :members:
+   :undoc-members:
+

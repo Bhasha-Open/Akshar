@@ -1,0 +1,170 @@
+Normalization API
+=================
+
+Purpose
+-------
+Clean messy mixed-script inputs without breaking Indic conjuncts. The pipeline is conservative by design.
+
+Quick Reference
+---------------
+
+=============================  ==========================  ===================
+Function                       Parameters                  Returns
+=============================  ==========================  ===================
+``normalize_text``             ``text``, flags             ``str``
+``semantic_normalize``         ``text``                    ``str``
+``remove_elongations``         ``text``                    ``str``
+``filter_garbage``             ``text``                    ``str``
+``normalize_unicode``          ``text``                    ``str``
+``roman_phonetic_signature``   ``word``                    ``str`` (signature)
+=============================  ==========================  ===================
+
+Toy Examples
+------------
+
+.. code-block:: python
+
+   from akshar.normalize import normalize_text, semantic_normalize, remove_elongations
+   print(normalize_text("yaaaar mausam bohot achaaa hai!!"))
+   print(semantic_normalize("Hello देवनागरी WORLD"))
+   print(remove_elongations("coooool -> cool"))
+
+Per‑function guides
+-------------------
+
+normalize_text
+^^^^^^^^^^^^^^
+- Pipeline: NFC → optional Roman lowercasing → optional Hinglish cleanup.
+- Keeps Devanagari intact; avoids breaking conjuncts.
+- Use as the default preprocessor before tokenization.
+- Toggle behavior via ``normalize_roman`` and ``clean_hinglish`` flags.
+
+.. code-block:: python
+
+   from akshar.normalize import normalize_text
+   print(normalize_text("YAaaAR mausam BOHOT achaAA hai!!", clean_hinglish=True))
+
+semantic_normalize
+^^^^^^^^^^^^^^^^^^
+- Lowercase only Latin letters; non‑Latin (e.g., Devanagari) is left as is.
+- Helpful when you don’t want to disturb Indic scripts.
+- Safe to chain after NFC and before any tokenization.
+- Use for dashboards/analytics that should normalize casing only.
+
+.. code-block:: python
+
+   from akshar.normalize import semantic_normalize
+   print(semantic_normalize("Hello देवनागरी WORLD"))
+
+remove_elongations
+^^^^^^^^^^^^^^^^^^
+- Collapses 3+ repeated characters; keeps doubles (cool → cool, not col).
+- Targets social‑text elongations (yaaaar → yaar).
+- Works on any script, but is most useful for Roman Hinglish.
+- Combine with ``filter_garbage`` for noisy corpora.
+
+.. code-block:: python
+
+   from akshar.normalize import remove_elongations
+   print(remove_elongations("coooool, yaaaaar"))
+
+filter_garbage
+^^^^^^^^^^^^^^
+- Conservative allowlist: Indic blocks, ASCII alnum, whitespace, basic punct.
+- Strips emojis/symbols; prefer semantic pipelines if you need to keep them.
+- Use only for very noisy user‑generated text.
+- If you need emojis, skip this step and rely on Unicode normalization.
+
+.. code-block:: python
+
+   from akshar.normalize import filter_garbage
+   print(filter_garbage("aaj 😅 mausam bohot acha!! ✔️"))
+
+normalize_unicode
+^^^^^^^^^^^^^^^^^
+- NFC normalization to keep Indic shaping stable.
+- Avoid NFD for Devanagari; it can break conjunct rendering.
+- First step in most pipelines; harmless on ASCII.
+- Pair with semantic normalization for mixed‑script content.
+
+.. code-block:: python
+
+   from akshar.normalize import normalize_unicode
+   print(normalize_unicode("क्षेत्रे"))
+
+roman_phonetic_signature
+^^^^^^^^^^^^^^^^^^^^^^^^
+- Crude, fast signature for Roman Hinglish word variants.
+- Collapses elongations and common digraphs (kh→k, th→t,…).
+- Useful for approximate matching and deduping query logs.
+- Not meant as a linguistically exact transliteration.
+
+.. code-block:: python
+
+   from akshar.normalize import roman_phonetic_signature
+   print(roman_phonetic_signature("nahee")), print(roman_phonetic_signature("nahii"))
+
+Patterns
+--------
+
+- Normalize Unicode with NFC (safe for Indic scripts)
+- Lowercase Roman only (keeps Devanagari as-is)
+- Clean Hinglish elongations and obvious noise
+
+Examples
+--------
+
+.. code-block:: python
+
+   from akshar.normalize import normalize_text
+   normalize_text("yaaaar mausam bohot achaaa hai!!")
+
+.. code-block:: python
+
+   # If you only want Roman lowercasing:
+   from akshar.normalize import semantic_normalize
+   semantic_normalize("Hello देवनागरी WORLD")
+
+Quick Recipes
+-------------
+
+- Clean a list of sentences:
+
+  .. code-block:: python
+
+     from akshar.normalize import normalize_text
+     cleaned = [normalize_text(s) for s in lines]
+
+- Keep emojis/punctuation intact:
+
+  .. code-block:: python
+
+     from akshar.normalize import normalize_unicode, semantic_normalize
+     s = "yaaaaar 😅 mausam bohot achaaa hai!!"
+     s = normalize_unicode(s)
+     s = semantic_normalize(s)  # leaves emoji and Devanagari alone
+
+Gotchas
+-------
+
+- NFD can destroy conjunct shaping; prefer NFC.
+- Over-aggressive filtering will drop valid Indic marks; use `filter_garbage` only for noisy social text.
+
+API (summary)
+-------------
+
+.. autosummary::
+   :nosignatures:
+
+   akshar.normalize.normalize_text
+   akshar.normalize.semantic_normalize
+   akshar.normalize.remove_elongations
+   akshar.normalize.filter_garbage
+   akshar.normalize.normalize_unicode
+   akshar.normalize.roman_phonetic_signature
+
+.. automodule:: akshar.normalize
+   :members: normalize_text, semantic_normalize, remove_elongations, filter_garbage, normalize_unicode, roman_phonetic_signature
+   :undoc-members:
+
+
