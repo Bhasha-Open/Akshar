@@ -60,3 +60,6 @@ data/mini_corpus.txt
 data/corpus.txt
 /data
 
+models/akshar.model
+models/akshar.preprocessed.txt
+
