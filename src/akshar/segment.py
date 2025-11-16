@@ -61,11 +61,11 @@ def segment_akshars(text, matras=False, separate_matras=None):
     Default (preserve clusters):
         >>> segment_akshars("मौसम")
         ['मौ', 'स', 'म']
-
+        
     Separate matras:
         >>> segment_akshars("मौसम", matras=True)
         ['म', 'ौ', 'स', 'म']
-
+        
     Separate conjuncts and matras:
         >>> segment_akshars("च्छा", matras=True)
         ['च', '्', 'छ', 'ा']
