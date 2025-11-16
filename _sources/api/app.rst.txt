@@ -1,0 +1,9 @@
+App
+===
+
+.. automodule:: akshar.app
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+

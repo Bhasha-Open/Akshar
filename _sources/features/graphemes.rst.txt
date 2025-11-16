@@ -1,0 +1,23 @@
+Grapheme Cluster Segmentation
+=============================
+
+Akshars are grapheme clusters. We use Unicode ``\X`` segmentation to preserve
+conjuncts and matra behavior.
+
+Examples
+--------
+
+.. code-block:: python
+
+   from akshar.segment import segment_akshars
+   segment_akshars("मौसम")            # ['मौ', 'स', 'म']
+   segment_akshars("च्छा", matras=True)  # ['च', '्', 'छ', 'ा']
+
+Guidelines
+----------
+
+- Never split inside a conjunct unless you explicitly set ``matras=True``.
+- For display/annotation, keep akshars intact.
+- For transliteration experiments, split matras/halants only as needed.
+
+

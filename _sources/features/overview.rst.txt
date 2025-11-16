@@ -1,0 +1,37 @@
+Features Overview
+=================
+
+This page sketches the main feature areas. See module docs for specifics.
+
+Grapheme-Aware Segmentation
+---------------------------
+
+- Keep conjuncts intact (e.g., क्ष, ज्ञ)
+- Optional matra/halant splitting when you really need parts
+
+Normalization
+-------------
+
+- NFC unicode normalization (safe for Indic)
+- Roman cleanup for Hinglish (elongations, basic garbage)
+
+Script Utilities
+----------------
+
+- Identify scripts present in text
+- Compute simple composition ratios for analytics
+
+Phonetic Features
+-----------------
+
+- Character properties (aspirated, voiced, nasal)
+- Place of articulation (velar/palatal/retroflex/dental/labial)
+
+Extras
+------
+
+- Sandhi boundary hints
+- Schwa deletion annotations (Hindi)
+- Vedic svara and metre helpers
+
+

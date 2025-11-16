@@ -1,0 +1,40 @@
+Visualizer
+==========
+
+Quick Reference
+---------------
+
+.. list-table::
+   :header-rows: 1
+
+   * - Function
+     - Parameters
+     - Returns
+   * - ``colorize_by_script``
+     - ``[(text, script)]``
+     - ``str`` (ANSI)
+   * - ``format_token_boundaries``
+     - ``text``, ``tokens``
+     - ``str``
+   * - ``format_akshar_boundaries``
+     - ``akshars``
+     - ``str``
+   * - ``generate_html_visualization``
+     - ``analysis``
+     - ``str`` (HTML)
+
+Toy Examples
+------------
+
+.. code-block:: python
+
+   from akshar.viz import format_token_boundaries
+   print(format_token_boundaries("x", ["▁aaj", "▁मौसम"]))
+
+API
+---
+
+.. automodule:: akshar.viz
+   :members:
+   :undoc-members:
+

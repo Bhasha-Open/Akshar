@@ -1,0 +1,24 @@
+Reference
+=========
+
+.. toctree::
+   :maxdepth: 1
+
+   app
+   cli_api
+   features
+   tokenizer
+   segment
+   normalize
+   script_utils
+   morph
+   sandhi
+   schwa
+   phonetic
+   anusvara
+   transliteration
+   vedic
+   visarga
+   viz
+
+

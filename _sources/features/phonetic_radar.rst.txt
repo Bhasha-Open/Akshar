@@ -1,0 +1,34 @@
+Phonetic Matching Radar (Hinglish ↔ Hindi)
+==========================================
+
+Suggest likely Devanagari spellings for a Hinglish input with a light‑weight
+phonetic scorer. This is useful when users type romanized Hindi and you want
+to hint what they meant without maintaining a full dictionary.
+
+Example
+-------
+
+.. code-block:: python
+
+   from akshar.phonetic import phonetic_radar_hinglish_to_hindi
+
+   phonetic_radar_hinglish_to_hindi("thand", top_k=3)
+   # [('थंड', 0.91), ('ठंड', 0.88), ('थण्ड', 0.77)]
+
+How it works
+------------
+
+- Generates a small set of Devanagari candidates using simple Hinglish rules
+  (e.g., ``th → {थ, ठ}``, ``nd → {ंड, ण्ड}``), keeping variants compact.
+- Compares the Hinglish input with each candidate’s ITRANS romanization using
+  an edit distance that penalizes near‑phonetic substitutions less (``t↔ṭ``,
+  ``d↔ḍ``, ``n↔ṇ`` etc.).
+- Returns top matches with scores in ``[0, 1]`` (higher is closer).
+
+API
+---
+
+.. autofunction:: akshar.phonetic.phonetic_radar_hinglish_to_hindi
+   :noindex:
+
+

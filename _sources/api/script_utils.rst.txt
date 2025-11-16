@@ -1,0 +1,96 @@
+Script Utilities API
+====================
+
+Overview
+--------
+These helpers tell you which Indic scripts show up in a string and how much of the text each script covers. Use them to flag Hinglish/multilingual content or to build simple dashboards.
+
+Usage
+-----
+
+.. code-block:: python
+
+   from akshar.script_utils import identify_scripts, analyze_script
+
+   # quick counts per script
+   print(identify_scripts("aaj मौसम"))
+   # {'roman': 3, 'devanagari': 4}
+
+   # compact stats for UIs
+   stats = analyze_script("क्षेत्रे धर्मक्षेत्रे")
+   # {'total_chars': ..., 'indic_chars': ..., 'scripts': {...}, 'is_multilingual': False}
+
+Examples
+--------
+
+- Label content:
+
+  .. code-block:: python
+
+     def label_content(text: str) -> str:
+         s = analyze_script(text)
+         if s["is_multilingual"]:
+             return "mixed"
+         if s["scripts"].get("devanagari"):
+             return "devanagari"
+         if s["scripts"].get("roman"):
+             return "roman"
+         return "other"
+
+API (summary)
+-------------
+
+.. autosummary::
+   :nosignatures:
+
+   akshar.script_utils.ScriptAnalyzer
+   akshar.script_utils.identify_scripts
+   akshar.script_utils.analyze_script
+
+Details
+-------
+
+.. autoclass:: akshar.script_utils.ScriptAnalyzer
+   :members: analyze_text, get_character_name, identify_scripts, is_indic_script
+   :undoc-members:
+   :no-index:
+
+.. autofunction:: akshar.script_utils.identify_scripts
+
+.. autofunction:: akshar.script_utils.analyze_script
+
+Per‑function guides
+-------------------
+
+ScriptAnalyzer.analyze_text
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- Counts total/Indic characters and per‑script breakdowns.
+- Flags ``is_multilingual`` when more than one script appears.
+- Intended for dashboards/filters rather than low‑level NLP.
+- Feed normalized text for consistent counts.
+
+.. code-block:: python
+
+   from akshar.script_utils import ScriptAnalyzer
+   print(ScriptAnalyzer().analyze_text("aaj मौसम"))
+
+identify_scripts (function)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- Convenience wrapper around ``ScriptAnalyzer.identify_scripts``.
+- Returns a dict mapping script→character count.
+- Use when you only need the per‑script histogram.
+- Works on any string; normalization recommended.
+
+.. code-block:: python
+
+   from akshar.script_utils import identify_scripts
+   print(identify_scripts("main भारत में"))
+Script Utilities
+================
+
+.. automodule:: akshar.script_utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+

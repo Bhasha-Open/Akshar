@@ -1,0 +1,9 @@
+CLI (API)
+=========
+
+.. automodule:: akshar.cli
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+

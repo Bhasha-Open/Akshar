@@ -1,0 +1,1145 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Segmentation API &#8212; Akshar  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=c1d5d17d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/segment';</script>
+    <script src="../_static/custom.js?v=258cd5fb"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Normalization API" href="normalize.html" />
+    <link rel="prev" title="aksharTokenizer API" href="tokenizer.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Akshar  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../cli.html">
+    Command Line Interface
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../features/overview.html">
+    Features Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../features/graphemes.html">
+    Grapheme Cluster Segmentation
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../tutorials/basic.html">
+    Basic Tutorial
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../tutorials/features_demo.html">
+    Features Demo
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="index.html">
+    API Reference
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../cli.html">
+    Command Line Interface
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../features/overview.html">
+    Features Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../features/graphemes.html">
+    Grapheme Cluster Segmentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/basic.html">
+    Basic Tutorial
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/features_demo.html">
+    Features Demo
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tokenizer.html">aksharTokenizer API</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Segmentation API</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="normalize.html">Normalization API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="script_utils.html">Script Utilities API</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="morph.html">Morphology API</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="sandhi.html">Sandhi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schwa.html">Schwa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phonetic.html">Phonetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="anusvara.html">Anusvara</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transliteration.html">Transliteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vedic.html">Vedic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visarga.html">Visarga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viz.html">Visualizer</a></li>
+</ul>
+</div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<div
+    id="pst-page-navigation-heading-3"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-3">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Segmentation API</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-reference">Quick Reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-examples">Toy Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perfunction-guides">Per‑function guides</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#segment-akshars">segment_akshars</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detect-code-switches">detect_code_switches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#segment-by-script">segment_by_script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-text-composition">analyze_text_composition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word-tokenize-hindi-sanskrit">word_tokenize (Hindi/Sanskrit)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recipes">Recipes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-summary">API (summary)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.segment.analyze_text_composition"><code class="docutils literal notranslate"><span class="pre">analyze_text_composition()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.segment.detect_code_switches"><code class="docutils literal notranslate"><span class="pre">detect_code_switches()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.segment.identify_script"><code class="docutils literal notranslate"><span class="pre">identify_script()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.segment.is_matra"><code class="docutils literal notranslate"><span class="pre">is_matra()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.segment.segment_akshars"><code class="docutils literal notranslate"><span class="pre">segment_akshars()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.segment.segment_by_script"><code class="docutils literal notranslate"><span class="pre">segment_by_script()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.segment.word_tokenize"><code class="docutils literal notranslate"><span class="pre">word_tokenize()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.segment.word_tokenize_hindi"><code class="docutils literal notranslate"><span class="pre">word_tokenize_hindi()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.segment.word_tokenize_sanskrit"><code class="docutils literal notranslate"><span class="pre">word_tokenize_sanskrit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#module-0">Segmentation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id0"><code class="docutils literal notranslate"><span class="pre">analyze_text_composition()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">detect_code_switches()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><code class="docutils literal notranslate"><span class="pre">identify_script()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><code class="docutils literal notranslate"><span class="pre">is_matra()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><code class="docutils literal notranslate"><span class="pre">segment_akshars()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><code class="docutils literal notranslate"><span class="pre">segment_by_script()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><code class="docutils literal notranslate"><span class="pre">word_tokenize()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7"><code class="docutils literal notranslate"><span class="pre">word_tokenize_hindi()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8"><code class="docutils literal notranslate"><span class="pre">word_tokenize_sanskrit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">API Reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Segmentation API</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="segmentation-api">
+<h1>Segmentation API<a class="headerlink" href="#segmentation-api" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>Split text into akshars (grapheme clusters) and locate script boundaries in mixed-script inputs (Hinglish).</p>
+</section>
+<section id="quick-reference">
+<h2>Quick Reference<a class="headerlink" href="#quick-reference" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Parameters</p></th>
+<th class="head"><p>Returns</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">segment_akshars</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">text</span></code>, <code class="docutils literal notranslate"><span class="pre">matras=False</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">List[str]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">detect_code_switches</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">text</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">List[(seg,</span> <span class="pre">tag)]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">segment_by_script</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">text</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">List[str]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">analyze_text_composition</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">text</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Dict</span></code> (ratios, etc.)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">word_tokenize</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">text</span></code>, <code class="docutils literal notranslate"><span class="pre">language='auto'</span></code>, <code class="docutils literal notranslate"><span class="pre">use_morphology=False</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">List[str]</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="toy-examples">
+<h2>Toy Examples<a class="headerlink" href="#toy-examples" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.segment</span><span class="w"> </span><span class="kn">import</span> <span class="n">segment_akshars</span><span class="p">,</span> <span class="n">detect_code_switches</span>
+
+<span class="c1"># keep conjuncts intact</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">segment_akshars</span><span class="p">(</span><span class="s2">&quot;च्छा&quot;</span><span class="p">))</span>           <span class="c1"># [&#39;च्छा&#39;]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">segment_akshars</span><span class="p">(</span><span class="s2">&quot;च्छा&quot;</span><span class="p">,</span> <span class="n">matras</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>  <span class="c1"># [&#39;च&#39;, &#39;्&#39;, &#39;छ&#39;, &#39;ा&#39;]</span>
+
+<span class="c1"># find script switches</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">detect_code_switches</span><span class="p">(</span><span class="s2">&quot;aaj मौसम&quot;</span><span class="p">))</span>
+<span class="c1"># [(&#39;aaj &#39;, &#39;roman&#39;), (&#39;मौसम&#39;, &#39;devanagari&#39;)]</span>
+</pre></div>
+</div>
+</section>
+<section id="perfunction-guides">
+<h2>Per‑function guides<a class="headerlink" href="#perfunction-guides" title="Link to this heading">#</a></h2>
+<section id="segment-akshars">
+<h3>segment_akshars<a class="headerlink" href="#segment-akshars" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Splits a string into Unicode grapheme clusters (akshars).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matras=True</span></code> separates matras/halants when you explicitly need parts.</p></li>
+<li><p>Default preserves conjuncts (recommended for display/analytics).</p></li>
+<li><p>Use before visualization and composition metrics.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.segment</span><span class="w"> </span><span class="kn">import</span> <span class="n">segment_akshars</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">segment_akshars</span><span class="p">(</span><span class="s2">&quot;मौसम&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="detect-code-switches">
+<h3>detect_code_switches<a class="headerlink" href="#detect-code-switches" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Labels contiguous spans by script (roman/devanagari/digit/punct/other).</p></li>
+<li><p>Punctuation/digits do not break spans.</p></li>
+<li><p>Good for Hinglish detection and mixed‑script statistics.</p></li>
+<li><p>Output is <code class="docutils literal notranslate"><span class="pre">[(segment,</span> <span class="pre">label),</span> <span class="pre">…]</span></code> in left‑to‑right order.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.segment</span><span class="w"> </span><span class="kn">import</span> <span class="n">detect_code_switches</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">detect_code_switches</span><span class="p">(</span><span class="s2">&quot;main California में&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="segment-by-script">
+<h3>segment_by_script<a class="headerlink" href="#segment-by-script" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Convenience helper: returns only the segment texts from code‑switch output.</p></li>
+<li><p>Maintains order and span boundaries.</p></li>
+<li><p>Handy for quick splitting without labels.</p></li>
+<li><p>Use when labels are implied by position.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.segment</span><span class="w"> </span><span class="kn">import</span> <span class="n">segment_by_script</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">segment_by_script</span><span class="p">(</span><span class="s2">&quot;aaj मौसम&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="analyze-text-composition">
+<h3>analyze_text_composition<a class="headerlink" href="#analyze-text-composition" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Computes akshar count, script switch count, and script ratios.</p></li>
+<li><p>Works on normalized strings; feed tokenizer.preprocess(text).</p></li>
+<li><p>Ratios are char‑based over the input string.</p></li>
+<li><p>Good for dashboards and quality checks.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.segment</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_text_composition</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">analyze_text_composition</span><span class="p">(</span><span class="s2">&quot;aaj मौसम&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="word-tokenize-hindi-sanskrit">
+<h3>word_tokenize (Hindi/Sanskrit)<a class="headerlink" href="#word-tokenize-hindi-sanskrit" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Language‑aware word tokenization with optional morphology.</p></li>
+<li><p>Danda/double‑danda are preserved as standalone tokens.</p></li>
+<li><p>When morphology is available, words may split into morphemes.</p></li>
+<li><p>Fallback is whitespace‑like splitting with Indic awareness.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.segment</span><span class="w"> </span><span class="kn">import</span> <span class="n">word_tokenize</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">word_tokenize</span><span class="p">(</span><span class="s2">&quot;आज मौसम अच्छा है&quot;</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s2">&quot;hindi&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.segment</span><span class="w"> </span><span class="kn">import</span> <span class="n">segment_akshars</span>
+<span class="n">segment_akshars</span><span class="p">(</span><span class="s2">&quot;मौसम&quot;</span><span class="p">)</span>              <span class="c1"># [&#39;मौ&#39;, &#39;स&#39;, &#39;म&#39;]</span>
+<span class="n">segment_akshars</span><span class="p">(</span><span class="s2">&quot;च्छा&quot;</span><span class="p">,</span> <span class="n">matras</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># [&#39;च&#39;, &#39;्&#39;, &#39;छ&#39;, &#39;ा&#39;]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.segment</span><span class="w"> </span><span class="kn">import</span> <span class="n">detect_code_switches</span>
+<span class="n">detect_code_switches</span><span class="p">(</span><span class="s2">&quot;aaj मौसम बहुत accha hai&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="recipes">
+<h2>Recipes<a class="headerlink" href="#recipes" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>Script-only segments (training data prep):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.segment</span><span class="w"> </span><span class="kn">import</span> <span class="n">segment_by_script</span>
+<span class="n">segment_by_script</span><span class="p">(</span><span class="s2">&quot;aaj मौसम बहुत accha hai&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Composition stats (for analytics):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.segment</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_text_composition</span>
+<span class="n">analyze_text_composition</span><span class="p">(</span><span class="s2">&quot;aaj मौसम बहुत accha hai&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="api-summary">
+<h2>API (summary)<a class="headerlink" href="#api-summary" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#id4" title="akshar.segment.segment_akshars"><code class="xref py py-obj docutils literal notranslate"><span class="pre">akshar.segment.segment_akshars</span></code></a></p></td>
+<td><p>Split text into akshars (Unicode grapheme clusters).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#id1" title="akshar.segment.detect_code_switches"><code class="xref py py-obj docutils literal notranslate"><span class="pre">akshar.segment.detect_code_switches</span></code></a></p></td>
+<td><p>Chunk text by script and return labeled segments.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#id5" title="akshar.segment.segment_by_script"><code class="xref py py-obj docutils literal notranslate"><span class="pre">akshar.segment.segment_by_script</span></code></a></p></td>
+<td><p>Split text on script boundaries (helper used for data prep).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#id0" title="akshar.segment.analyze_text_composition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">akshar.segment.analyze_text_composition</span></code></a></p></td>
+<td><p>Compute simple composition stats for a normalized string.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#id6" title="akshar.segment.word_tokenize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">akshar.segment.word_tokenize</span></code></a></p></td>
+<td><p>Word tokenization with basic language routing.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#id7" title="akshar.segment.word_tokenize_hindi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">akshar.segment.word_tokenize_hindi</span></code></a></p></td>
+<td><p>Word-level tokenization for Hindi with optional morphology.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#id8" title="akshar.segment.word_tokenize_sanskrit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">akshar.segment.word_tokenize_sanskrit</span></code></a></p></td>
+<td><p>Word-level tokenization for Sanskrit with light heuristics.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p id="module-akshar.segment">Segmentation utilities: akshar-level splits and code-switch detection.</p>
+<p>We keep Devanagari grapheme clusters intact (e.g., क्ष, ज्ञ) and expose helpers
+for measuring composition and locating script switches in mixed Hinglish text.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="akshar.segment.analyze_text_composition">
+<span class="sig-name descname"><span class="pre">analyze_text_composition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#akshar.segment.analyze_text_composition" title="Link to this definition">#</a></dt>
+<dd><p>Compute simple composition stats for a normalized string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p>akshar_count</p></li>
+<li><p>script_switches (n segments - 1)</p></li>
+<li><p>devanagari_ratio</p></li>
+<li><p>roman_ratio</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="akshar.segment.detect_code_switches">
+<span class="sig-name descname"><span class="pre">detect_code_switches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#akshar.segment.detect_code_switches" title="Link to this definition">#</a></dt>
+<dd><p>Chunk text by script and return labeled segments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> – Input string, possibly mixed scripts (Hinglish).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of (segment, script_label) where script_label ∈
+{‘devanagari’,’roman’,’digit’,’punct’,’other’}.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]]</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">detect_code_switches</span><span class="p">(</span><span class="s2">&quot;aaj मौसम&quot;</span><span class="p">)</span>
+<span class="go">[(&#39;aaj &#39;, &#39;roman&#39;), (&#39;मौसम&#39;, &#39;devanagari&#39;)]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="akshar.segment.identify_script">
+<span class="sig-name descname"><span class="pre">identify_script</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">char</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#akshar.segment.identify_script" title="Link to this definition">#</a></dt>
+<dd><p>Classify a single character as ‘devanagari’, ‘roman’, ‘digit’, ‘punct’, or ‘other’.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="akshar.segment.is_matra">
+<span class="sig-name descname"><span class="pre">is_matra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">char</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#akshar.segment.is_matra" title="Link to this definition">#</a></dt>
+<dd><p>Return True if the char is a Devanagari matra (vowel sign).</p>
+<p class="rubric">Notes</p>
+<p>This excludes the halant (virama) which participates in conjuncts.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="akshar.segment.segment_akshars">
+<span class="sig-name descname"><span class="pre">segment_akshars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matras</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separate_matras</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#akshar.segment.segment_akshars" title="Link to this definition">#</a></dt>
+<dd><p>Split text into akshars (Unicode grapheme clusters).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> – Input string (any script).</p></li>
+<li><p><strong>matras</strong> – If True, separate matras (vowel signs) and halants from bases inside each
+grapheme cluster. If False, keep clusters intact (recommended).</p></li>
+<li><p><strong>separate_matras</strong> – Deprecated alias for <code class="docutils literal notranslate"><span class="pre">matras</span></code>; kept for backward compatibility.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sequence of akshars or parts (if <code class="docutils literal notranslate"><span class="pre">matras=True</span></code>).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<dl>
+<dt>Default (preserve clusters):</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">segment_akshars</span><span class="p">(</span><span class="s2">&quot;मौसम&quot;</span><span class="p">)</span>
+<span class="go">[&#39;मौ&#39;, &#39;स&#39;, &#39;म&#39;]</span>
+</pre></div>
+</div>
+</dd>
+<dt>Separate matras:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">segment_akshars</span><span class="p">(</span><span class="s2">&quot;मौसम&quot;</span><span class="p">,</span> <span class="n">matras</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">[&#39;म&#39;, &#39;ौ&#39;, &#39;स&#39;, &#39;म&#39;]</span>
+</pre></div>
+</div>
+</dd>
+<dt>Separate conjuncts and matras:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">segment_akshars</span><span class="p">(</span><span class="s2">&quot;च्छा&quot;</span><span class="p">,</span> <span class="n">matras</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">[&#39;च&#39;, &#39;्&#39;, &#39;छ&#39;, &#39;ा&#39;]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="akshar.segment.segment_by_script">
+<span class="sig-name descname"><span class="pre">segment_by_script</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#akshar.segment.segment_by_script" title="Link to this definition">#</a></dt>
+<dd><p>Split text on script boundaries (helper used for data prep).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="akshar.segment.word_tokenize">
+<span class="sig-name descname"><span class="pre">word_tokenize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_morphology</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#akshar.segment.word_tokenize" title="Link to this definition">#</a></dt>
+<dd><p>Word tokenization with basic language routing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> – Text to tokenize.</p></li>
+<li><p><strong>language</strong> – ‘hindi’, ‘sanskrit’, or ‘auto’ (default). Auto uses a simple heuristic.</p></li>
+<li><p><strong>use_morphology</strong> – If True, use morphology when available.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Word tokens.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="akshar.segment.word_tokenize_hindi">
+<span class="sig-name descname"><span class="pre">word_tokenize_hindi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_morphology</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#akshar.segment.word_tokenize_hindi" title="Link to this definition">#</a></dt>
+<dd><p>Word-level tokenization for Hindi with optional morphology.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> – Hindi text to tokenize.</p></li>
+<li><p><strong>use_morphology</strong> – If True and Morfessor model is available, use it to split words.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Word tokens (danda/double danda kept separate).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="akshar.segment.word_tokenize_sanskrit">
+<span class="sig-name descname"><span class="pre">word_tokenize_sanskrit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_morphology</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#akshar.segment.word_tokenize_sanskrit" title="Link to this definition">#</a></dt>
+<dd><p>Word-level tokenization for Sanskrit with light heuristics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> – Sanskrit text to tokenize.</p></li>
+<li><p><strong>use_morphology</strong> – If True and Morfessor is available, use it.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Word tokens, keeping danda/double danda standalone.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-0">
+<span id="segmentation"></span><h1>Segmentation<a class="headerlink" href="#module-0" title="Link to this heading">#</a></h1>
+<p>Segmentation utilities: akshar-level splits and code-switch detection.</p>
+<p>We keep Devanagari grapheme clusters intact (e.g., क्ष, ज्ञ) and expose helpers
+for measuring composition and locating script switches in mixed Hinglish text.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">analyze_text_composition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition">#</a></dt>
+<dd><p>Compute simple composition stats for a normalized string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p>akshar_count</p></li>
+<li><p>script_switches (n segments - 1)</p></li>
+<li><p>devanagari_ratio</p></li>
+<li><p>roman_ratio</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">detect_code_switches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Link to this definition">#</a></dt>
+<dd><p>Chunk text by script and return labeled segments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> – Input string, possibly mixed scripts (Hinglish).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of (segment, script_label) where script_label ∈
+{‘devanagari’,’roman’,’digit’,’punct’,’other’}.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]]</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">detect_code_switches</span><span class="p">(</span><span class="s2">&quot;aaj मौसम&quot;</span><span class="p">)</span>
+<span class="go">[(&#39;aaj &#39;, &#39;roman&#39;), (&#39;मौसम&#39;, &#39;devanagari&#39;)]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">identify_script</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">char</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="Link to this definition">#</a></dt>
+<dd><p>Classify a single character as ‘devanagari’, ‘roman’, ‘digit’, ‘punct’, or ‘other’.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">is_matra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">char</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id3" title="Link to this definition">#</a></dt>
+<dd><p>Return True if the char is a Devanagari matra (vowel sign).</p>
+<p class="rubric">Notes</p>
+<p>This excludes the halant (virama) which participates in conjuncts.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">segment_akshars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matras</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separate_matras</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id4" title="Link to this definition">#</a></dt>
+<dd><p>Split text into akshars (Unicode grapheme clusters).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> – Input string (any script).</p></li>
+<li><p><strong>matras</strong> – If True, separate matras (vowel signs) and halants from bases inside each
+grapheme cluster. If False, keep clusters intact (recommended).</p></li>
+<li><p><strong>separate_matras</strong> – Deprecated alias for <code class="docutils literal notranslate"><span class="pre">matras</span></code>; kept for backward compatibility.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sequence of akshars or parts (if <code class="docutils literal notranslate"><span class="pre">matras=True</span></code>).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<dl>
+<dt>Default (preserve clusters):</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">segment_akshars</span><span class="p">(</span><span class="s2">&quot;मौसम&quot;</span><span class="p">)</span>
+<span class="go">[&#39;मौ&#39;, &#39;स&#39;, &#39;म&#39;]</span>
+</pre></div>
+</div>
+</dd>
+<dt>Separate matras:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">segment_akshars</span><span class="p">(</span><span class="s2">&quot;मौसम&quot;</span><span class="p">,</span> <span class="n">matras</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">[&#39;म&#39;, &#39;ौ&#39;, &#39;स&#39;, &#39;म&#39;]</span>
+</pre></div>
+</div>
+</dd>
+<dt>Separate conjuncts and matras:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">segment_akshars</span><span class="p">(</span><span class="s2">&quot;च्छा&quot;</span><span class="p">,</span> <span class="n">matras</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">[&#39;च&#39;, &#39;्&#39;, &#39;छ&#39;, &#39;ा&#39;]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">segment_by_script</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id5" title="Link to this definition">#</a></dt>
+<dd><p>Split text on script boundaries (helper used for data prep).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">word_tokenize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_morphology</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id6" title="Link to this definition">#</a></dt>
+<dd><p>Word tokenization with basic language routing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> – Text to tokenize.</p></li>
+<li><p><strong>language</strong> – ‘hindi’, ‘sanskrit’, or ‘auto’ (default). Auto uses a simple heuristic.</p></li>
+<li><p><strong>use_morphology</strong> – If True, use morphology when available.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Word tokens.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">word_tokenize_hindi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_morphology</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id7" title="Link to this definition">#</a></dt>
+<dd><p>Word-level tokenization for Hindi with optional morphology.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> – Hindi text to tokenize.</p></li>
+<li><p><strong>use_morphology</strong> – If True and Morfessor model is available, use it to split words.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Word tokens (danda/double danda kept separate).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">word_tokenize_sanskrit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_morphology</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id8" title="Link to this definition">#</a></dt>
+<dd><p>Word-level tokenization for Sanskrit with light heuristics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> – Sanskrit text to tokenize.</p></li>
+<li><p><strong>use_morphology</strong> – If True and Morfessor is available, use it.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Word tokens, keeping danda/double danda standalone.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tokenizer.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">aksharTokenizer API</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="normalize.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Normalization API</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-4"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-4">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Segmentation API</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-reference">Quick Reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-examples">Toy Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perfunction-guides">Per‑function guides</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#segment-akshars">segment_akshars</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detect-code-switches">detect_code_switches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#segment-by-script">segment_by_script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-text-composition">analyze_text_composition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word-tokenize-hindi-sanskrit">word_tokenize (Hindi/Sanskrit)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recipes">Recipes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-summary">API (summary)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.segment.analyze_text_composition"><code class="docutils literal notranslate"><span class="pre">analyze_text_composition()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.segment.detect_code_switches"><code class="docutils literal notranslate"><span class="pre">detect_code_switches()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.segment.identify_script"><code class="docutils literal notranslate"><span class="pre">identify_script()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.segment.is_matra"><code class="docutils literal notranslate"><span class="pre">is_matra()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.segment.segment_akshars"><code class="docutils literal notranslate"><span class="pre">segment_akshars()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.segment.segment_by_script"><code class="docutils literal notranslate"><span class="pre">segment_by_script()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.segment.word_tokenize"><code class="docutils literal notranslate"><span class="pre">word_tokenize()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.segment.word_tokenize_hindi"><code class="docutils literal notranslate"><span class="pre">word_tokenize_hindi()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.segment.word_tokenize_sanskrit"><code class="docutils literal notranslate"><span class="pre">word_tokenize_sanskrit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#module-0">Segmentation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id0"><code class="docutils literal notranslate"><span class="pre">analyze_text_composition()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">detect_code_switches()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><code class="docutils literal notranslate"><span class="pre">identify_script()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><code class="docutils literal notranslate"><span class="pre">is_matra()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><code class="docutils literal notranslate"><span class="pre">segment_akshars()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><code class="docutils literal notranslate"><span class="pre">segment_by_script()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><code class="docutils literal notranslate"><span class="pre">word_tokenize()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7"><code class="docutils literal notranslate"><span class="pre">word_tokenize_hindi()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8"><code class="docutils literal notranslate"><span class="pre">word_tokenize_sanskrit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Akshar contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

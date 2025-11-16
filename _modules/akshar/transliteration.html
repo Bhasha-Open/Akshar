@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>akshar.transliteration - Akshar documentation</title><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=e1a1ceaf" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=14737038" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="akshar.transliteration"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      
+      
+      <strong>Akshar</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials"></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features/overview.html">Features Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features/graphemes.html">Graphemes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/basic.html">Basic Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/tokenizer.html">Tokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/normalize.html">Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/segment.html">Segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/morph.html">Morphology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/phonetic.html">Phonetics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/script_utils.html">Script Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/sandhi.html">Sandhi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/schwa.html">Schwa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/anusvara.html">Anusvara</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/vedic.html">Vedic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/visarga.html">Visarga</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/transliteration.html">Transliteration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/features.html">Features (Module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/viz.html">Visualizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/app.html">App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/cli_api.html">CLI (API)</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">Akshar</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">Module code</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">akshar.transliteration</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <h1>Source code for akshar.transliteration</h1><div class="highlight"><pre>
+<span></span><span data-line="1"><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="2"><span class="sd">Transliteration helpers.</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="sd">We provide a minimal mapping for Devanagari → IAST as a demonstration and keep</span>
+</span><span data-line="5"><span class="sd">the API open for adding other schemes (e.g., ITRANS) without magic.</span>
+</span><span data-line="6"><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+</span><span data-line="9">
+</span><span data-line="10">
+</span><span data-line="11"><span class="c1"># basic devanagari to IAST mapping</span>
+</span><span data-line="12"><span class="n">DEVANAGARI_TO_IAST</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="13">    <span class="s1">&#39;क&#39;</span><span class="p">:</span> <span class="s1">&#39;ka&#39;</span><span class="p">,</span> <span class="s1">&#39;ख&#39;</span><span class="p">:</span> <span class="s1">&#39;kha&#39;</span><span class="p">,</span> <span class="s1">&#39;ग&#39;</span><span class="p">:</span> <span class="s1">&#39;ga&#39;</span><span class="p">,</span> <span class="s1">&#39;घ&#39;</span><span class="p">:</span> <span class="s1">&#39;gha&#39;</span><span class="p">,</span> <span class="s1">&#39;ङ&#39;</span><span class="p">:</span> <span class="s1">&#39;ṅa&#39;</span><span class="p">,</span>
+</span><span data-line="14">    <span class="s1">&#39;च&#39;</span><span class="p">:</span> <span class="s1">&#39;ca&#39;</span><span class="p">,</span> <span class="s1">&#39;छ&#39;</span><span class="p">:</span> <span class="s1">&#39;cha&#39;</span><span class="p">,</span> <span class="s1">&#39;ज&#39;</span><span class="p">:</span> <span class="s1">&#39;ja&#39;</span><span class="p">,</span> <span class="s1">&#39;झ&#39;</span><span class="p">:</span> <span class="s1">&#39;jha&#39;</span><span class="p">,</span> <span class="s1">&#39;ञ&#39;</span><span class="p">:</span> <span class="s1">&#39;ña&#39;</span><span class="p">,</span>
+</span><span data-line="15">    <span class="s1">&#39;ट&#39;</span><span class="p">:</span> <span class="s1">&#39;ṭa&#39;</span><span class="p">,</span> <span class="s1">&#39;ठ&#39;</span><span class="p">:</span> <span class="s1">&#39;ṭha&#39;</span><span class="p">,</span> <span class="s1">&#39;ड&#39;</span><span class="p">:</span> <span class="s1">&#39;ḍa&#39;</span><span class="p">,</span> <span class="s1">&#39;ढ&#39;</span><span class="p">:</span> <span class="s1">&#39;ḍha&#39;</span><span class="p">,</span> <span class="s1">&#39;ण&#39;</span><span class="p">:</span> <span class="s1">&#39;ṇa&#39;</span><span class="p">,</span>
+</span><span data-line="16">    <span class="s1">&#39;त&#39;</span><span class="p">:</span> <span class="s1">&#39;ta&#39;</span><span class="p">,</span> <span class="s1">&#39;थ&#39;</span><span class="p">:</span> <span class="s1">&#39;tha&#39;</span><span class="p">,</span> <span class="s1">&#39;द&#39;</span><span class="p">:</span> <span class="s1">&#39;da&#39;</span><span class="p">,</span> <span class="s1">&#39;ध&#39;</span><span class="p">:</span> <span class="s1">&#39;dha&#39;</span><span class="p">,</span> <span class="s1">&#39;न&#39;</span><span class="p">:</span> <span class="s1">&#39;na&#39;</span><span class="p">,</span>
+</span><span data-line="17">    <span class="s1">&#39;प&#39;</span><span class="p">:</span> <span class="s1">&#39;pa&#39;</span><span class="p">,</span> <span class="s1">&#39;फ&#39;</span><span class="p">:</span> <span class="s1">&#39;pha&#39;</span><span class="p">,</span> <span class="s1">&#39;ब&#39;</span><span class="p">:</span> <span class="s1">&#39;ba&#39;</span><span class="p">,</span> <span class="s1">&#39;भ&#39;</span><span class="p">:</span> <span class="s1">&#39;bha&#39;</span><span class="p">,</span> <span class="s1">&#39;म&#39;</span><span class="p">:</span> <span class="s1">&#39;ma&#39;</span><span class="p">,</span>
+</span><span data-line="18">    <span class="s1">&#39;य&#39;</span><span class="p">:</span> <span class="s1">&#39;ya&#39;</span><span class="p">,</span> <span class="s1">&#39;र&#39;</span><span class="p">:</span> <span class="s1">&#39;ra&#39;</span><span class="p">,</span> <span class="s1">&#39;ल&#39;</span><span class="p">:</span> <span class="s1">&#39;la&#39;</span><span class="p">,</span> <span class="s1">&#39;व&#39;</span><span class="p">:</span> <span class="s1">&#39;va&#39;</span><span class="p">,</span>
+</span><span data-line="19">    <span class="s1">&#39;श&#39;</span><span class="p">:</span> <span class="s1">&#39;śa&#39;</span><span class="p">,</span> <span class="s1">&#39;ष&#39;</span><span class="p">:</span> <span class="s1">&#39;ṣa&#39;</span><span class="p">,</span> <span class="s1">&#39;स&#39;</span><span class="p">:</span> <span class="s1">&#39;sa&#39;</span><span class="p">,</span> <span class="s1">&#39;ह&#39;</span><span class="p">:</span> <span class="s1">&#39;ha&#39;</span><span class="p">,</span>
+</span><span data-line="20">    <span class="s1">&#39;अ&#39;</span><span class="p">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;आ&#39;</span><span class="p">:</span> <span class="s1">&#39;ā&#39;</span><span class="p">,</span> <span class="s1">&#39;इ&#39;</span><span class="p">:</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;ई&#39;</span><span class="p">:</span> <span class="s1">&#39;ī&#39;</span><span class="p">,</span> <span class="s1">&#39;उ&#39;</span><span class="p">:</span> <span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="s1">&#39;ऊ&#39;</span><span class="p">:</span> <span class="s1">&#39;ū&#39;</span><span class="p">,</span>
+</span><span data-line="21">    <span class="s1">&#39;ऋ&#39;</span><span class="p">:</span> <span class="s1">&#39;ṛ&#39;</span><span class="p">,</span> <span class="s1">&#39;ॠ&#39;</span><span class="p">:</span> <span class="s1">&#39;ṝ&#39;</span><span class="p">,</span> <span class="s1">&#39;ऌ&#39;</span><span class="p">:</span> <span class="s1">&#39;ḷ&#39;</span><span class="p">,</span> <span class="s1">&#39;ए&#39;</span><span class="p">:</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;ऐ&#39;</span><span class="p">:</span> <span class="s1">&#39;ai&#39;</span><span class="p">,</span>
+</span><span data-line="22">    <span class="s1">&#39;ओ&#39;</span><span class="p">:</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;औ&#39;</span><span class="p">:</span> <span class="s1">&#39;au&#39;</span><span class="p">,</span>
+</span><span data-line="23"><span class="p">}</span>
+</span><span data-line="24">
+</span><span data-line="25">
+<div class="viewcode-block" id="token_to_iast">
+<a class="viewcode-back" href="../../api/transliteration.html#akshar.transliteration.token_to_iast">[docs]</a>
+</span><span data-line="26"><span class="k">def</span><span class="w"> </span><span class="nf">token_to_iast</span><span class="p">(</span><span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span data-line="27"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="28"><span class="sd">    Convert a Devanagari token into IAST.</span>
+</span><span data-line="29"><span class="sd">    </span>
+</span><span data-line="30"><span class="sd">    Notes</span>
+</span><span data-line="31"><span class="sd">    -----</span>
+</span><span data-line="32"><span class="sd">    This is a simplified routine; matra handling covers the common cases only.</span>
+</span><span data-line="33"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="34">    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="35">    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span data-line="36">    
+</span><span data-line="37">    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">token</span><span class="p">):</span>
+</span><span data-line="38">        <span class="n">char</span> <span class="o">=</span> <span class="n">token</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span data-line="39">        
+</span><span data-line="40">        <span class="c1"># check for matras</span>
+</span><span data-line="41">        <span class="k">if</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">token</span><span class="p">):</span>
+</span><span data-line="42">            <span class="c1"># check for vowel signs</span>
+</span><span data-line="43">            <span class="n">next_char</span> <span class="o">=</span> <span class="n">token</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+</span><span data-line="44">            <span class="k">if</span> <span class="n">next_char</span> <span class="ow">in</span> <span class="s1">&#39;ा-ौ&#39;</span><span class="p">:</span>
+</span><span data-line="45">                <span class="c1"># consonant + matra</span>
+</span><span data-line="46">                <span class="k">if</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">DEVANAGARI_TO_IAST</span><span class="p">:</span>
+</span><span data-line="47">                    <span class="n">base</span> <span class="o">=</span> <span class="n">DEVANAGARI_TO_IAST</span><span class="p">[</span><span class="n">char</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># remove &#39;a&#39;</span>
+</span><span data-line="48">                    <span class="n">matra_map</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="49">                        <span class="s1">&#39;ा&#39;</span><span class="p">:</span> <span class="s1">&#39;ā&#39;</span><span class="p">,</span> <span class="s1">&#39;ि&#39;</span><span class="p">:</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;ी&#39;</span><span class="p">:</span> <span class="s1">&#39;ī&#39;</span><span class="p">,</span> <span class="s1">&#39;ु&#39;</span><span class="p">:</span> <span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="s1">&#39;ू&#39;</span><span class="p">:</span> <span class="s1">&#39;ū&#39;</span><span class="p">,</span>
+</span><span data-line="50">                        <span class="s1">&#39;े&#39;</span><span class="p">:</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;ै&#39;</span><span class="p">:</span> <span class="s1">&#39;ai&#39;</span><span class="p">,</span> <span class="s1">&#39;ो&#39;</span><span class="p">:</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;ौ&#39;</span><span class="p">:</span> <span class="s1">&#39;au&#39;</span>
+</span><span data-line="51">                    <span class="p">}</span>
+</span><span data-line="52">                    <span class="k">if</span> <span class="n">next_char</span> <span class="ow">in</span> <span class="n">matra_map</span><span class="p">:</span>
+</span><span data-line="53">                        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">base</span> <span class="o">+</span> <span class="n">matra_map</span><span class="p">[</span><span class="n">next_char</span><span class="p">])</span>
+</span><span data-line="54">                        <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span>
+</span><span data-line="55">                        <span class="k">continue</span>
+</span><span data-line="56">        
+</span><span data-line="57">        <span class="c1"># direct mapping</span>
+</span><span data-line="58">        <span class="k">if</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">DEVANAGARI_TO_IAST</span><span class="p">:</span>
+</span><span data-line="59">            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DEVANAGARI_TO_IAST</span><span class="p">[</span><span class="n">char</span><span class="p">])</span>
+</span><span data-line="60">        <span class="k">else</span><span class="p">:</span>
+</span><span data-line="61">            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</span><span data-line="62">        
+</span><span data-line="63">        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span data-line="64">    
+</span><span data-line="65">    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
+
+</span><span data-line="66">
+</span><span data-line="67">
+<div class="viewcode-block" id="transliterate_tokens">
+<a class="viewcode-back" href="../../api/transliteration.html#akshar.transliteration.transliterate_tokens">[docs]</a>
+</span><span data-line="68"><span class="k">def</span><span class="w"> </span><span class="nf">transliterate_tokens</span><span class="p">(</span><span class="n">tokens</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">scheme</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;iast&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span data-line="69"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="70"><span class="sd">    Transliterate a token sequence to a given scheme.</span>
+</span><span data-line="71"><span class="sd">    </span>
+</span><span data-line="72"><span class="sd">    Parameters</span>
+</span><span data-line="73"><span class="sd">    ----------</span>
+</span><span data-line="74"><span class="sd">    tokens : List[str]</span>
+</span><span data-line="75"><span class="sd">        Input tokens (likely akshar- or model-level).</span>
+</span><span data-line="76"><span class="sd">    scheme : str</span>
+</span><span data-line="77"><span class="sd">        &#39;iast&#39; currently supported.</span>
+</span><span data-line="78"><span class="sd">    </span>
+</span><span data-line="79"><span class="sd">    Returns</span>
+</span><span data-line="80"><span class="sd">    -------</span>
+</span><span data-line="81"><span class="sd">    List[str]</span>
+</span><span data-line="82"><span class="sd">        Transliteration output, length-preserving to the extent possible.</span>
+</span><span data-line="83"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="84">    <span class="k">if</span> <span class="n">scheme</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;iast&#39;</span><span class="p">:</span>
+</span><span data-line="85">        <span class="k">return</span> <span class="p">[</span><span class="n">token_to_iast</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">]</span>
+</span><span data-line="86">    <span class="k">else</span><span class="p">:</span>
+</span><span data-line="87">        <span class="c1"># fallback: return as-is</span>
+</span><span data-line="88">        <span class="k">return</span> <span class="n">tokens</span></div>
+
+</span><span data-line="89">
+</span></pre></div>
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, Akshar contributors</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials"></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

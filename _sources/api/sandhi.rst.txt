@@ -1,0 +1,35 @@
+Sandhi
+======
+
+Quick Reference
+---------------
+
+.. list-table::
+   :header-rows: 1
+
+   * - Function
+     - Parameters
+     - Returns
+   * - ``detect_sandhi_boundaries``
+     - ``text``
+     - ``List[(pos, label)]``
+   * - ``mark_sandhi_boundaries``
+     - ``text``
+     - ``str`` (ZWSP-marked)
+
+Toy Examples
+------------
+
+.. code-block:: python
+
+   from akshar.sandhi import detect_sandhi_boundaries, mark_sandhi_boundaries
+   print(detect_sandhi_boundaries("वःअगच्छति"))
+   print(mark_sandhi_boundaries("वःअगच्छति"))
+
+API
+---
+
+.. automodule:: akshar.sandhi
+   :members:
+   :undoc-members:
+

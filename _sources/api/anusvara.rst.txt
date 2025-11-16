@@ -1,0 +1,35 @@
+Anusvara
+========
+
+Quick Reference
+---------------
+
+.. list-table::
+   :header-rows: 1
+
+   * - Function
+     - Parameters
+     - Returns
+   * - ``get_nasal_for_consonant``
+     - ``cons``
+     - ``str`` (nasal)
+   * - ``resolve_anusvara``
+     - ``text``, ``flag``
+     - ``Dict`` or ``{'resolved': ...}``
+
+Toy Examples
+------------
+
+.. code-block:: python
+
+   from akshar.anusvara import get_nasal_for_consonant, resolve_anusvara
+   print(get_nasal_for_consonant("क"))     # 'ङ'
+   print(resolve_anusvara("संस्कृत"))
+
+API
+---
+
+.. automodule:: akshar.anusvara
+   :members:
+   :undoc-members:
+

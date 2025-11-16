@@ -1,0 +1,167 @@
+Segmentation API
+================
+
+Overview
+--------
+Split text into akshars (grapheme clusters) and locate script boundaries in mixed-script inputs (Hinglish).
+
+Quick Reference
+---------------
+
+.. list-table::
+   :header-rows: 1
+
+   * - Function
+     - Parameters
+     - Returns
+   * - ``segment_akshars``
+     - ``text``, ``matras=False``
+     - ``List[str]``
+   * - ``detect_code_switches``
+     - ``text``
+     - ``List[(seg, tag)]``
+   * - ``segment_by_script``
+     - ``text``
+     - ``List[str]``
+   * - ``analyze_text_composition``
+     - ``text``
+     - ``Dict`` (ratios, etc.)
+   * - ``word_tokenize``
+     - ``text``, ``language='auto'``, ``use_morphology=False``
+     - ``List[str]``
+
+Toy Examples
+------------
+
+.. code-block:: python
+
+   from akshar.segment import segment_akshars, detect_code_switches
+
+   # keep conjuncts intact
+   print(segment_akshars("च्छा"))           # ['च्छा']
+   print(segment_akshars("च्छा", matras=True))  # ['च', '्', 'छ', 'ा']
+
+   # find script switches
+   print(detect_code_switches("aaj मौसम"))
+   # [('aaj ', 'roman'), ('मौसम', 'devanagari')]
+
+Per‑function guides
+-------------------
+
+segment_akshars
+^^^^^^^^^^^^^^^
+- Splits a string into Unicode grapheme clusters (akshars).
+- ``matras=True`` separates matras/halants when you explicitly need parts.
+- Default preserves conjuncts (recommended for display/analytics).
+- Use before visualization and composition metrics.
+
+.. code-block:: python
+
+   from akshar.segment import segment_akshars
+   print(segment_akshars("मौसम"))
+
+detect_code_switches
+^^^^^^^^^^^^^^^^^^^^
+- Labels contiguous spans by script (roman/devanagari/digit/punct/other).
+- Punctuation/digits do not break spans.
+- Good for Hinglish detection and mixed‑script statistics.
+- Output is ``[(segment, label), …]`` in left‑to‑right order.
+
+.. code-block:: python
+
+   from akshar.segment import detect_code_switches
+   print(detect_code_switches("main California में"))
+
+segment_by_script
+^^^^^^^^^^^^^^^^^
+- Convenience helper: returns only the segment texts from code‑switch output.
+- Maintains order and span boundaries.
+- Handy for quick splitting without labels.
+- Use when labels are implied by position.
+
+.. code-block:: python
+
+   from akshar.segment import segment_by_script
+   print(segment_by_script("aaj मौसम"))
+
+analyze_text_composition
+^^^^^^^^^^^^^^^^^^^^^^^^
+- Computes akshar count, script switch count, and script ratios.
+- Works on normalized strings; feed tokenizer.preprocess(text).
+- Ratios are char‑based over the input string.
+- Good for dashboards and quality checks.
+
+.. code-block:: python
+
+   from akshar.segment import analyze_text_composition
+   print(analyze_text_composition("aaj मौसम"))
+
+word_tokenize (Hindi/Sanskrit)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- Language‑aware word tokenization with optional morphology.
+- Danda/double‑danda are preserved as standalone tokens.
+- When morphology is available, words may split into morphemes.
+- Fallback is whitespace‑like splitting with Indic awareness.
+
+.. code-block:: python
+
+   from akshar.segment import word_tokenize
+   print(word_tokenize("आज मौसम अच्छा है", language="hindi"))
+
+Examples
+--------
+
+.. code-block:: python
+
+   from akshar.segment import segment_akshars
+   segment_akshars("मौसम")              # ['मौ', 'स', 'म']
+   segment_akshars("च्छा", matras=True)  # ['च', '्', 'छ', 'ा']
+
+.. code-block:: python
+
+   from akshar.segment import detect_code_switches
+   detect_code_switches("aaj मौसम बहुत accha hai")
+
+Recipes
+-------
+
+- Script-only segments (training data prep):
+
+  .. code-block:: python
+
+     from akshar.segment import segment_by_script
+     segment_by_script("aaj मौसम बहुत accha hai")
+
+- Composition stats (for analytics):
+
+  .. code-block:: python
+
+     from akshar.segment import analyze_text_composition
+     analyze_text_composition("aaj मौसम बहुत accha hai")
+
+API (summary)
+-------------
+
+.. autosummary::
+   :nosignatures:
+
+   akshar.segment.segment_akshars
+   akshar.segment.detect_code_switches
+   akshar.segment.segment_by_script
+   akshar.segment.analyze_text_composition
+   akshar.segment.word_tokenize
+   akshar.segment.word_tokenize_hindi
+   akshar.segment.word_tokenize_sanskrit
+
+.. automodule:: akshar.segment
+   :members: segment_akshars, detect_code_switches, segment_by_script, analyze_text_composition, word_tokenize, word_tokenize_hindi, word_tokenize_sanskrit
+   :undoc-members:
+Segmentation
+============
+
+.. automodule:: akshar.segment
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+

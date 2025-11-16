@@ -1,0 +1,316 @@
+/* Accent color override to match the requested blue tone. */
+:root,
+:root[data-theme="light"] {
+  --sy-primary: #3ea6ff;
+  --sy-link-color: #3ea6ff;
+  --sy-link-hover-color: #69bbff;
+  --sy-border-accent: #3ea6ff;
+  /* Light theme: soft blue code cards (per mock) */
+  --sy-code-bg: #f5fbff;          /* very light blue */
+  --sy-code-border: #e2f0ff;      /* pale blue border */
+  --sy-code-fg: #ffffff;          /* deep navy text */
+  --sy-hll-bg: #e8f3ff;           /* highlighted line in code (light) */
+}
+
+:root[data-theme="dark"] {
+  --sy-primary: #3ea6ff;
+  --sy-link-color: #3ea6ff;
+  --sy-link-hover-color: #69bbff;
+  --sy-border-accent: #3ea6ff;
+  /* Dark theme: comfortable contrast */
+  --sy-code-bg: #0d1117;          /* dark slate */
+  --sy-code-border: #1f2a38;      /* subtle blue-gray */
+  --sy-code-fg: #c9d1d9;          /* readable in dark */
+  --sy-hll-bg: rgba(62, 166, 255, 0.20); /* highlighted line in code (dark) */
+}
+
+/* Respect OS-level dark mode even if the theme toggle isn't set */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sy-code-bg: #0d1117;
+    --sy-code-border: #1f2a38;
+    --sy-code-fg: #c9d1d9;
+    --sy-hll-bg: rgba(62, 166, 255, 0.20);
+  }
+}
+
+/* Links/buttons (fallbacks if theme variables differ) */
+a,
+.reference,
+.wy-menu-vertical a:link,
+.wy-menu-vertical a:visited {
+  color: var(--sy-link-color) !important;
+}
+a:hover,
+.reference:hover {
+  color: var(--sy-link-hover-color) !important;
+}
+
+/* Inline code emphasis and selected nav highlight */
+code,
+.highlight .n {
+  border-color: var(--sy-border-accent);
+}
+.toc .current > a,
+.wy-menu-vertical .current > a {
+  color: var(--sy-primary) !important;
+}
+
+/* Landing hero */
+.ak-hero {
+  margin: 1.5rem 0 2rem 0;
+  padding: 1.25rem 1.5rem;
+  background: color-mix(in srgb, var(--sy-primary) 6%, var(--sy-code-bg));
+  border: 1px solid var(--sy-code-border);
+  border-radius: 12px;
+}
+.ak-hero-inner h1 { margin: 0 0 .5rem 0; font-size: 2rem; }
+.ak-tagline { margin: 0 0 1rem 0; opacity: .9; }
+.ak-actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: .75rem; }
+.ak-btn {
+  display: inline-block; padding: .45rem .7rem; border-radius: 6px;
+  border: 1px solid var(--sy-code-border); text-decoration: none;
+}
+.ak-hero .ak-actions .ak-btn { min-height: 42px; padding: .55rem .9rem; font-weight: 600; }
+.ak-btn:hover { border-color: var(--sy-border-accent); }
+.ak-btn:focus-visible { outline: 2px solid var(--sy-border-accent); outline-offset: 2px; }
+.ak-primary { background: var(--sy-primary); color: #001b33; border-color: var(--sy-primary); }
+.ak-secondary { background: color-mix(in srgb, var(--sy-primary) 14%, transparent); color: var(--sy-link-color); }
+.ak-install { margin: .25rem 0 0 0; position: relative; }
+
+/* Feature cards + details */
+.ak-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); gap: .75rem; }
+.ak-card { border: 1px solid var(--sy-code-border); background: var(--sy-code-bg); border-radius: 10px; padding: .8rem; }
+.ak-card h3 { margin: 0 0 .35rem 0; font-size: 1.05rem; }
+.ak-card p { margin: 0; opacity: .9; }
+details.ak-details { border: 1px solid var(--sy-code-border); border-radius: 8px; padding: .5rem .7rem; background: var(--sy-code-bg); margin: .6rem 0; }
+details.ak-details > summary { cursor: pointer; font-weight: 600; color: var(--sy-link-color); }
+.bd-header .navbar-nav .nav-link { white-space: nowrap; }
+@media (min-width: 992px) {
+  /* tighten nav a bit so long labels keep to one line on desktop */
+  .bd-header .navbar-nav .nav-link { font-size: 0.95rem; }
+  .bd-header .navbar-nav .nav-item { margin-right: .6rem; }
+}
+.ak-copy-btn {
+  position: absolute;
+  top: .35rem;
+  right: .45rem;
+  font-size: .75rem;
+  line-height: 1;
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: .1px;
+  padding: .28rem .55rem;
+  border-radius: 8px;
+  border: 1px solid var(--sy-code-border);
+  background: transparent;
+  color: var(--sy-link-color);
+  cursor: pointer;
+  box-shadow: none;
+  text-shadow: none;
+  -webkit-font-smoothing: antialiased;
+  display: inline-flex; gap: .35rem; align-items: center;
+}
+.ak-copy-btn:hover {
+  border-color: var(--sy-border-accent);
+  background: color-mix(in srgb, var(--sy-primary) 10%, var(--sy-code-bg));
+}
+.ak-copy-btn:active {
+  transform: translateY(1px);
+}
+.ak-copy-btn:focus-visible {
+  outline: 2px solid var(--sy-border-accent);
+  outline-offset: 2px;
+}
+.ak-copy-btn.ak-copied {
+  background: var(--sy-primary);
+  color: #001b33;
+  border-color: var(--sy-primary);
+}
+
+/* Keep theme-provided copy buttons hidden; use our own */
+.highlight .copybtn,
+.highlight .copybutton,
+.highlight .highlight-copybtn,
+button.copybtn,
+button.copybutton,
+button.highlight-copybtn,
+button[aria-label="Copy to clipboard"]:not(.ak-copy-btn),
+button[title="Copy"]:not(.ak-copy-btn) { display: none !important; }
+
+/* Ensure content doesn't sit under the copy button (ours) */
+.ak-copy-btn { display: inline-flex !important; }
+.ak-copy-added pre { padding-right: 3.6rem !important; }
+pre.ak-copy-added { padding-right: 3.6rem !important; }
+
+/* Tighter copy button inside single-line install snippet */
+pre.ak-install { padding-right: 3.4rem !important; line-height: 1.4; }
+pre.ak-install .ak-copy-btn {
+  top: 50%;
+  transform: translateY(-50%);
+  right: .35rem;
+  font-size: .70rem;
+  padding: .12rem .30rem;
+  border-radius: 7px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  z-index: 2;
+}
+pre.ak-install .ak-copy-btn .ak-copy-label { display: none; }
+pre.ak-install .ak-copy-btn .ak-copy-ic { width: 16px; height: 16px; }
+
+/* Hide any theme-provided copy buttons so we don't double-show */
+.highlight .copybtn,
+.highlight .copybutton,
+.highlight .highlight-copybtn,
+button.copybtn,
+button.copybutton,
+button.highlight-copybtn,
+button[aria-label="Copy to clipboard"]:not(.ak-copy-btn),
+button[title="Copy"]:not(.ak-copy-btn) {
+  display: none !important;
+}
+
+/* Keep our copy button above scrollbars/overlays */
+.ak-copy-btn { z-index: 5; }
+
+/* Subtle gradient/shadow for hero for more depth */
+.ak-hero { background: transparent; border: none; box-shadow: none; padding: 0; margin: 0 0 1rem 0; border-radius: 0; }
+
+/* Override theme code block background in both themes */
+div.highlight,
+.highlight,
+.literal-block,
+pre {
+  background: var(--sy-code-bg) !important;
+  border: 1px solid var(--sy-code-border) !important;
+  box-shadow: none !important;
+  color: var(--sy-code-fg, inherit) !important;
+  border-radius: 8px !important;
+}
+
+/* Increase specificity for themes that style inner <pre><code> */
+.highlight pre,
+.highlight code,
+pre code,
+.highlighttable .highlight,
+.highlighttable pre {
+  background: var(--sy-code-bg) !important;
+  color: var(--sy-code-fg, inherit) !important;
+  border-color: var(--sy-code-border) !important;
+}
+
+/* Force LIGHT mode styles even if the base theme sets dark blocks */
+html[data-theme="light"] .highlight,
+html[data-theme="light"] div.highlight,
+html[data-theme="light"] pre,
+html[data-theme="light"] .highlight pre,
+html[data-theme="light"] .highlight code,
+html[data-theme="light"] pre code,
+html[data-theme="light"] .literal-block,
+html[data-theme="light"] .highlighttable .highlight,
+html[data-theme="light"] .highlighttable pre {
+  background: #f5fbff !important;
+  border-color: #e2f0ff !important;
+  color: #0b1f33 !important;
+}
+
+/* Shibuya sometimes attaches data-theme to <body>, support that too */
+body[data-theme="light"] .highlight,
+body[data-theme="light"] div.highlight,
+body[data-theme="light"] pre,
+body[data-theme="light"] .highlight pre,
+body[data-theme="light"] .highlight code,
+body[data-theme="light"] pre code,
+body[data-theme="light"] .literal-block,
+body[data-theme="light"] .highlighttable .highlight,
+body[data-theme="light"] .highlighttable pre {
+  background: #f5fbff !important;
+  border-color: #e2f0ff !important;
+  color: #0b1f33 !important;
+}
+
+/* Pygments/Chroma containers */
+.highlight .chroma,
+html[data-theme="light"] .chroma,
+body[data-theme="light"] .chroma {
+  background: #f5fbff !important;
+  border-color: #e2f0ff !important;
+  color: #0b1f33 !important;
+  border-radius: 8px !important;
+}
+
+/* Dark-mode chroma */
+html[data-theme="dark"] .chroma,
+body[data-theme="dark"] .chroma {
+  background: #0d1117 !important;
+  border-color: #1f2a38 !important;
+  color: #c9d1d9 !important;
+}
+
+/* Inline code chips - light mode */
+:root[data-theme="light"] code.literal,
+:root[data-theme="light"] tt.literal,
+:root[data-theme="light"] .docutils .literal,
+html[data-theme="light"] code.literal,
+html[data-theme="light"] tt.literal,
+html[data-theme="light"] .docutils .literal,
+body[data-theme="light"] code.literal,
+body[data-theme="light"] tt.literal,
+body[data-theme="light"] .docutils .literal {
+  background: color-mix(in srgb, #3ea6ff 14%, white) !important;
+  border: 1px solid color-mix(in srgb, #3ea6ff 28%, #e2f0ff) !important;
+  color: #0b66c3 !important;
+  border-radius: 4px;
+  padding: 0.05rem 0.25rem;
+}
+
+/* Inline code chips - dark mode */
+:root[data-theme="dark"] code.literal,
+:root[data-theme="dark"] tt.literal,
+:root[data-theme="dark"] .docutils .literal,
+html[data-theme="dark"] code.literal,
+html[data-theme="dark"] tt.literal,
+html[data-theme="dark"] .docutils .literal,
+body[data-theme="dark"] code.literal,
+body[data-theme="dark"] tt.literal,
+body[data-theme="dark"] .docutils .literal {
+  background: rgba(62, 166, 255, 0.12) !important;
+  border: 1px solid rgba(62, 166, 255, 0.24) !important;
+  color: #69bbff !important;
+  border-radius: 4px;
+  padding: 0.05rem 0.25rem;
+}
+
+/* OS dark mode fallback */
+@media (prefers-color-scheme: dark) {
+  code.literal,
+  tt.literal,
+  .docutils .literal {
+    background: rgba(62, 166, 255, 0.12) !important;
+    border: 1px solid rgba(62, 166, 255, 0.24) !important;
+    color: #69bbff !important;
+  }
+}
+
+/* Pygments/Chroma "highlighted line" (hll) — avoid bright white */
+.highlight .hll,
+.chroma .hll,
+pre .hll {
+  background: var(--sy-hll-bg) !important;
+}
+
+/* Text selection colors (avoid white flash on select) */
+::selection {
+  background: color-mix(in srgb, var(--sy-primary) 24%, transparent);
+  color: inherit;
+}
+::-moz-selection {
+  background: color-mix(in srgb, var(--sy-primary) 24%, transparent);
+  color: inherit;
+}
+code::selection, pre::selection, .highlight code::selection, .highlight pre::selection {
+  background: color-mix(in srgb, var(--sy-primary) 30%, var(--sy-code-bg));
+}
+

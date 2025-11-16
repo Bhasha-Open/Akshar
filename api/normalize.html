@@ -1,0 +1,896 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Normalization API &#8212; Akshar  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=c1d5d17d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/normalize';</script>
+    <script src="../_static/custom.js?v=258cd5fb"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Script Utilities API" href="script_utils.html" />
+    <link rel="prev" title="Segmentation API" href="segment.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Akshar  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../cli.html">
+    Command Line Interface
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../features/overview.html">
+    Features Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../features/graphemes.html">
+    Grapheme Cluster Segmentation
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../tutorials/basic.html">
+    Basic Tutorial
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../tutorials/features_demo.html">
+    Features Demo
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="index.html">
+    API Reference
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../cli.html">
+    Command Line Interface
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../features/overview.html">
+    Features Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../features/graphemes.html">
+    Grapheme Cluster Segmentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/basic.html">
+    Basic Tutorial
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/features_demo.html">
+    Features Demo
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tokenizer.html">aksharTokenizer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="segment.html">Segmentation API</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Normalization API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="script_utils.html">Script Utilities API</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="morph.html">Morphology API</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="sandhi.html">Sandhi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schwa.html">Schwa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phonetic.html">Phonetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="anusvara.html">Anusvara</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transliteration.html">Transliteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vedic.html">Vedic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visarga.html">Visarga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viz.html">Visualizer</a></li>
+</ul>
+</div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<div
+    id="pst-page-navigation-heading-3"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-3">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#purpose">Purpose</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-reference">Quick Reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-examples">Toy Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perfunction-guides">Per‑function guides</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalize-text">normalize_text</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#semantic-normalize">semantic_normalize</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-elongations">remove_elongations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-garbage">filter_garbage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalize-unicode">normalize_unicode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roman-phonetic-signature">roman_phonetic_signature</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#patterns">Patterns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-recipes">Quick Recipes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gotchas">Gotchas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-summary">API (summary)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.normalize.filter_garbage"><code class="docutils literal notranslate"><span class="pre">filter_garbage()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.normalize.normalize_hinglish"><code class="docutils literal notranslate"><span class="pre">normalize_hinglish()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.normalize.normalize_text"><code class="docutils literal notranslate"><span class="pre">normalize_text()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.normalize.normalize_unicode"><code class="docutils literal notranslate"><span class="pre">normalize_unicode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.normalize.remove_elongations"><code class="docutils literal notranslate"><span class="pre">remove_elongations()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.normalize.roman_phonetic_signature"><code class="docutils literal notranslate"><span class="pre">roman_phonetic_signature()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.normalize.semantic_normalize"><code class="docutils literal notranslate"><span class="pre">semantic_normalize()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">API Reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Normalization API</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="normalization-api">
+<h1>Normalization API<a class="headerlink" href="#normalization-api" title="Link to this heading">#</a></h1>
+<section id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Link to this heading">#</a></h2>
+<p>Clean messy mixed-script inputs without breaking Indic conjuncts. The pipeline is conservative by design.</p>
+</section>
+<section id="quick-reference">
+<h2>Quick Reference<a class="headerlink" href="#quick-reference" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Parameters</p></th>
+<th class="head"><p>Returns</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">normalize_text</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">text</span></code>, flags</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">semantic_normalize</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">text</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">remove_elongations</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">text</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">filter_garbage</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">text</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">normalize_unicode</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">text</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">roman_phonetic_signature</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">word</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code> (signature)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="toy-examples">
+<h2>Toy Examples<a class="headerlink" href="#toy-examples" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.normalize</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize_text</span><span class="p">,</span> <span class="n">semantic_normalize</span><span class="p">,</span> <span class="n">remove_elongations</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">normalize_text</span><span class="p">(</span><span class="s2">&quot;yaaaar mausam bohot achaaa hai!!&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">semantic_normalize</span><span class="p">(</span><span class="s2">&quot;Hello देवनागरी WORLD&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">remove_elongations</span><span class="p">(</span><span class="s2">&quot;coooool -&gt; cool&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="perfunction-guides">
+<h2>Per‑function guides<a class="headerlink" href="#perfunction-guides" title="Link to this heading">#</a></h2>
+<section id="normalize-text">
+<h3>normalize_text<a class="headerlink" href="#normalize-text" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Pipeline: NFC → optional Roman lowercasing → optional Hinglish cleanup.</p></li>
+<li><p>Keeps Devanagari intact; avoids breaking conjuncts.</p></li>
+<li><p>Use as the default preprocessor before tokenization.</p></li>
+<li><p>Toggle behavior via <code class="docutils literal notranslate"><span class="pre">normalize_roman</span></code> and <code class="docutils literal notranslate"><span class="pre">clean_hinglish</span></code> flags.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.normalize</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize_text</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">normalize_text</span><span class="p">(</span><span class="s2">&quot;YAaaAR mausam BOHOT achaAA hai!!&quot;</span><span class="p">,</span> <span class="n">clean_hinglish</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="semantic-normalize">
+<h3>semantic_normalize<a class="headerlink" href="#semantic-normalize" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Lowercase only Latin letters; non‑Latin (e.g., Devanagari) is left as is.</p></li>
+<li><p>Helpful when you don’t want to disturb Indic scripts.</p></li>
+<li><p>Safe to chain after NFC and before any tokenization.</p></li>
+<li><p>Use for dashboards/analytics that should normalize casing only.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.normalize</span><span class="w"> </span><span class="kn">import</span> <span class="n">semantic_normalize</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">semantic_normalize</span><span class="p">(</span><span class="s2">&quot;Hello देवनागरी WORLD&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="remove-elongations">
+<h3>remove_elongations<a class="headerlink" href="#remove-elongations" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Collapses 3+ repeated characters; keeps doubles (cool → cool, not col).</p></li>
+<li><p>Targets social‑text elongations (yaaaar → yaar).</p></li>
+<li><p>Works on any script, but is most useful for Roman Hinglish.</p></li>
+<li><p>Combine with <code class="docutils literal notranslate"><span class="pre">filter_garbage</span></code> for noisy corpora.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.normalize</span><span class="w"> </span><span class="kn">import</span> <span class="n">remove_elongations</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">remove_elongations</span><span class="p">(</span><span class="s2">&quot;coooool, yaaaaar&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="filter-garbage">
+<h3>filter_garbage<a class="headerlink" href="#filter-garbage" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Conservative allowlist: Indic blocks, ASCII alnum, whitespace, basic punct.</p></li>
+<li><p>Strips emojis/symbols; prefer semantic pipelines if you need to keep them.</p></li>
+<li><p>Use only for very noisy user‑generated text.</p></li>
+<li><p>If you need emojis, skip this step and rely on Unicode normalization.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.normalize</span><span class="w"> </span><span class="kn">import</span> <span class="n">filter_garbage</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">filter_garbage</span><span class="p">(</span><span class="s2">&quot;aaj 😅 mausam bohot acha!! ✔️&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="normalize-unicode">
+<h3>normalize_unicode<a class="headerlink" href="#normalize-unicode" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>NFC normalization to keep Indic shaping stable.</p></li>
+<li><p>Avoid NFD for Devanagari; it can break conjunct rendering.</p></li>
+<li><p>First step in most pipelines; harmless on ASCII.</p></li>
+<li><p>Pair with semantic normalization for mixed‑script content.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.normalize</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize_unicode</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">normalize_unicode</span><span class="p">(</span><span class="s2">&quot;क्षेत्रे&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="roman-phonetic-signature">
+<h3>roman_phonetic_signature<a class="headerlink" href="#roman-phonetic-signature" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Crude, fast signature for Roman Hinglish word variants.</p></li>
+<li><p>Collapses elongations and common digraphs (kh→k, th→t,…).</p></li>
+<li><p>Useful for approximate matching and deduping query logs.</p></li>
+<li><p>Not meant as a linguistically exact transliteration.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.normalize</span><span class="w"> </span><span class="kn">import</span> <span class="n">roman_phonetic_signature</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">roman_phonetic_signature</span><span class="p">(</span><span class="s2">&quot;nahee&quot;</span><span class="p">)),</span> <span class="nb">print</span><span class="p">(</span><span class="n">roman_phonetic_signature</span><span class="p">(</span><span class="s2">&quot;nahii&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="patterns">
+<h2>Patterns<a class="headerlink" href="#patterns" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Normalize Unicode with NFC (safe for Indic scripts)</p></li>
+<li><p>Lowercase Roman only (keeps Devanagari as-is)</p></li>
+<li><p>Clean Hinglish elongations and obvious noise</p></li>
+</ul>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.normalize</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize_text</span>
+<span class="n">normalize_text</span><span class="p">(</span><span class="s2">&quot;yaaaar mausam bohot achaaa hai!!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you only want Roman lowercasing:</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">akshar.normalize</span><span class="w"> </span><span class="kn">import</span> <span class="n">semantic_normalize</span>
+<span class="n">semantic_normalize</span><span class="p">(</span><span class="s2">&quot;Hello देवनागरी WORLD&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="quick-recipes">
+<h2>Quick Recipes<a class="headerlink" href="#quick-recipes" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>Clean a list of sentences:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.normalize</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize_text</span>
+<span class="n">cleaned</span> <span class="o">=</span> <span class="p">[</span><span class="n">normalize_text</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Keep emojis/punctuation intact:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">akshar.normalize</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize_unicode</span><span class="p">,</span> <span class="n">semantic_normalize</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;yaaaaar 😅 mausam bohot achaaa hai!!&quot;</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">normalize_unicode</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">semantic_normalize</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>  <span class="c1"># leaves emoji and Devanagari alone</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="gotchas">
+<h2>Gotchas<a class="headerlink" href="#gotchas" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>NFD can destroy conjunct shaping; prefer NFC.</p></li>
+<li><p>Over-aggressive filtering will drop valid Indic marks; use <cite>filter_garbage</cite> only for noisy social text.</p></li>
+</ul>
+</section>
+<section id="api-summary">
+<h2>API (summary)<a class="headerlink" href="#api-summary" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#akshar.normalize.normalize_text" title="akshar.normalize.normalize_text"><code class="xref py py-obj docutils literal notranslate"><span class="pre">akshar.normalize.normalize_text</span></code></a></p></td>
+<td><p>Main normalization function used by the tokenizer.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#akshar.normalize.semantic_normalize" title="akshar.normalize.semantic_normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">akshar.normalize.semantic_normalize</span></code></a></p></td>
+<td><p>Lowercase Roman characters but keep Indic scripts unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#akshar.normalize.remove_elongations" title="akshar.normalize.remove_elongations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">akshar.normalize.remove_elongations</span></code></a></p></td>
+<td><p>Collapse 3+ repeated characters to 1 (keep doubles).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#akshar.normalize.filter_garbage" title="akshar.normalize.filter_garbage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">akshar.normalize.filter_garbage</span></code></a></p></td>
+<td><p>Drop characters outside a conservative allowlist for noisy inputs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#akshar.normalize.normalize_unicode" title="akshar.normalize.normalize_unicode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">akshar.normalize.normalize_unicode</span></code></a></p></td>
+<td><p>Apply NFC Unicode normalization.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#akshar.normalize.roman_phonetic_signature" title="akshar.normalize.roman_phonetic_signature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">akshar.normalize.roman_phonetic_signature</span></code></a></p></td>
+<td><p>Compute a crude phonetic signature for Roman Hinglish variants.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p id="module-akshar.normalize">Normalization utilities for Hindi/Sanskrit/Hinglish text.</p>
+<p>We keep Devanagari intact while lightly normalizing Roman script and cleaning
+social-media style noise. This is intentionally conservative to avoid breaking
+conjuncts or script-specific semantics.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="akshar.normalize.filter_garbage">
+<span class="sig-name descname"><span class="pre">filter_garbage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#akshar.normalize.filter_garbage" title="Link to this definition">#</a></dt>
+<dd><p>Drop characters outside a conservative allowlist for noisy inputs.</p>
+<p>This keeps Devanagari, basic punctuation, ASCII alnum, and whitespace.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="akshar.normalize.normalize_hinglish">
+<span class="sig-name descname"><span class="pre">normalize_hinglish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#akshar.normalize.normalize_hinglish" title="Link to this definition">#</a></dt>
+<dd><p>Clean up Hinglish text (garbage filter + elongation removal).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="akshar.normalize.normalize_text">
+<span class="sig-name descname"><span class="pre">normalize_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_roman</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clean_hinglish</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#akshar.normalize.normalize_text" title="Link to this definition">#</a></dt>
+<dd><p>Main normalization function used by the tokenizer.</p>
+<dl class="simple">
+<dt>Steps:</dt><dd><ol class="arabic simple">
+<li><p>NFC unicode normalization</p></li>
+<li><p>Roman lowercasing (optional)</p></li>
+<li><p>Hinglish cleanup (optional)</p></li>
+</ol>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Input string.</p></li>
+<li><p><strong>normalize_roman</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, lowercase Roman letters only.</p></li>
+<li><p><strong>clean_hinglish</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, apply lightweight social-text cleanup.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Normalized string.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="akshar.normalize.normalize_unicode">
+<span class="sig-name descname"><span class="pre">normalize_unicode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#akshar.normalize.normalize_unicode" title="Link to this definition">#</a></dt>
+<dd><p>Apply NFC Unicode normalization.</p>
+<p>We use NFC because NFD can break conjunct shaping in Indic scripts.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="akshar.normalize.remove_elongations">
+<span class="sig-name descname"><span class="pre">remove_elongations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#akshar.normalize.remove_elongations" title="Link to this definition">#</a></dt>
+<dd><p>Collapse 3+ repeated characters to 1 (keep doubles).</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">remove_elongations</span><span class="p">(</span><span class="s2">&quot;yaaaaar&quot;</span><span class="p">)</span>
+<span class="go">&#39;yaar&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="akshar.normalize.roman_phonetic_signature">
+<span class="sig-name descname"><span class="pre">roman_phonetic_signature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#akshar.normalize.roman_phonetic_signature" title="Link to this definition">#</a></dt>
+<dd><p>Compute a crude phonetic signature for Roman Hinglish variants.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">roman_phonetic_signature</span><span class="p">(</span><span class="s2">&quot;nahee&quot;</span><span class="p">)</span>
+<span class="go">&#39;nahi&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="akshar.normalize.semantic_normalize">
+<span class="sig-name descname"><span class="pre">semantic_normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#akshar.normalize.semantic_normalize" title="Link to this definition">#</a></dt>
+<dd><p>Lowercase Roman characters but keep Indic scripts unchanged.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Mixed-script input.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lowercased only for characters whose Unicode name contains ‘LATIN’.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="segment.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Segmentation API</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="script_utils.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Script Utilities API</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-4"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-4">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#purpose">Purpose</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-reference">Quick Reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-examples">Toy Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perfunction-guides">Per‑function guides</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalize-text">normalize_text</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#semantic-normalize">semantic_normalize</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-elongations">remove_elongations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-garbage">filter_garbage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalize-unicode">normalize_unicode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roman-phonetic-signature">roman_phonetic_signature</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#patterns">Patterns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-recipes">Quick Recipes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gotchas">Gotchas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-summary">API (summary)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.normalize.filter_garbage"><code class="docutils literal notranslate"><span class="pre">filter_garbage()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.normalize.normalize_hinglish"><code class="docutils literal notranslate"><span class="pre">normalize_hinglish()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.normalize.normalize_text"><code class="docutils literal notranslate"><span class="pre">normalize_text()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.normalize.normalize_unicode"><code class="docutils literal notranslate"><span class="pre">normalize_unicode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.normalize.remove_elongations"><code class="docutils literal notranslate"><span class="pre">remove_elongations()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.normalize.roman_phonetic_signature"><code class="docutils literal notranslate"><span class="pre">roman_phonetic_signature()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akshar.normalize.semantic_normalize"><code class="docutils literal notranslate"><span class="pre">semantic_normalize()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Akshar contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>akshar.features - Akshar documentation</title><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=e1a1ceaf" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=14737038" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="akshar.features"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      
+      
+      <strong>Akshar</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials"></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features/overview.html">Features Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features/graphemes.html">Graphemes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/basic.html">Basic Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/tokenizer.html">Tokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/normalize.html">Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/segment.html">Segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/morph.html">Morphology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/phonetic.html">Phonetics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/script_utils.html">Script Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/sandhi.html">Sandhi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/schwa.html">Schwa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/anusvara.html">Anusvara</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/vedic.html">Vedic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/visarga.html">Visarga</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/transliteration.html">Transliteration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/features.html">Features (Module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/viz.html">Visualizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/app.html">App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/cli_api.html">CLI (API)</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">Akshar</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">Module code</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">akshar.features</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <h1>Source code for akshar.features</h1><div class="highlight"><pre>
+<span></span><span data-line="1"><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="2"><span class="sd">Feature helpers used by Akshar.</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="sd">This module collects focused utilities (akshara-level ops, sandhi-aware hints,</span>
+</span><span data-line="5"><span class="sd">schwa and anusvāra handling, transliteration hooks, etc.). Most functions are</span>
+</span><span data-line="6"><span class="sd">thin wrappers around specialized modules to keep call sites simple.</span>
+</span><span data-line="7"><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="kn">import</span><span class="w"> </span><span class="nn">regex</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">re</span>
+</span><span data-line="10"><span class="kn">import</span><span class="w"> </span><span class="nn">unicodedata</span>
+</span><span data-line="11"><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
+</span><span data-line="12"><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+</span><span data-line="13">
+</span><span data-line="14"><span class="kn">from</span><span class="w"> </span><span class="nn">.segment</span><span class="w"> </span><span class="kn">import</span> <span class="n">segment_akshars</span><span class="p">,</span> <span class="n">detect_code_switches</span><span class="p">,</span> <span class="n">identify_script</span>
+</span><span data-line="15"><span class="kn">from</span><span class="w"> </span><span class="nn">.normalize</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize_unicode</span>
+</span><span data-line="16"><span class="kn">from</span><span class="w"> </span><span class="nn">.sandhi</span><span class="w"> </span><span class="kn">import</span> <span class="n">detect_sandhi_boundaries</span><span class="p">,</span> <span class="n">mark_sandhi_boundaries</span>
+</span><span data-line="17"><span class="kn">from</span><span class="w"> </span><span class="nn">.schwa</span><span class="w"> </span><span class="kn">import</span> <span class="n">predict_schwa_deletion</span><span class="p">,</span> <span class="n">annotate_schwa_deletions</span>
+</span><span data-line="18"><span class="kn">from</span><span class="w"> </span><span class="nn">.anusvara</span><span class="w"> </span><span class="kn">import</span> <span class="n">resolve_anusvara</span><span class="p">,</span> <span class="n">get_nasal_for_consonant</span>
+</span><span data-line="19"><span class="kn">from</span><span class="w"> </span><span class="nn">.vedic</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+</span><span data-line="20">    <span class="n">preserve_svara_marks</span><span class="p">,</span> <span class="n">handle_sanskrit_punctuation</span><span class="p">,</span>
+</span><span data-line="21">    <span class="n">count_mora</span><span class="p">,</span> <span class="n">analyze_metre</span><span class="p">,</span> <span class="n">is_svara_mark</span>
+</span><span data-line="22"><span class="p">)</span>
+</span><span data-line="23"><span class="kn">from</span><span class="w"> </span><span class="nn">.transliteration</span><span class="w"> </span><span class="kn">import</span> <span class="n">transliterate_tokens</span><span class="p">,</span> <span class="n">token_to_iast</span>
+</span><span data-line="24"><span class="kn">from</span><span class="w"> </span><span class="nn">.visarga</span><span class="w"> </span><span class="kn">import</span> <span class="n">handle_visarga_conditions</span><span class="p">,</span> <span class="n">annotate_visarga</span>
+</span><span data-line="25">
+</span><span data-line="26">
+</span><span data-line="27"><span class="c1"># Feature 2: Akṣara-Level Tokenization</span>
+<div class="viewcode-block" id="akshara_level_tokenization">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.akshara_level_tokenization">[docs]</a>
+</span><span data-line="28"><span class="k">def</span><span class="w"> </span><span class="nf">akshara_level_tokenization</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span data-line="29"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="30"><span class="sd">    Segment by akṣara (cluster + vowel nucleus).</span>
+</span><span data-line="31"><span class="sd">    </span>
+</span><span data-line="32"><span class="sd">    Returns</span>
+</span><span data-line="33"><span class="sd">    -------</span>
+</span><span data-line="34"><span class="sd">    List[str]</span>
+</span><span data-line="35"><span class="sd">        Grapheme-aware segments that preserve conjuncts.</span>
+</span><span data-line="36"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="37">    <span class="n">clusters</span> <span class="o">=</span> <span class="n">segment_akshars</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">matras</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span data-line="38">    <span class="n">aksharas</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="39">    <span class="n">current</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="40">    
+</span><span data-line="41">    <span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
+</span><span data-line="42">        <span class="k">if</span> <span class="s1">&#39;्&#39;</span> <span class="ow">in</span> <span class="n">cluster</span><span class="p">:</span>
+</span><span data-line="43">            <span class="c1"># halant present - continue building akshara</span>
+</span><span data-line="44">            <span class="n">current</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
+</span><span data-line="45">        <span class="k">else</span><span class="p">:</span>
+</span><span data-line="46">            <span class="c1"># no halant - complete current akshara</span>
+</span><span data-line="47">            <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+</span><span data-line="48">                <span class="n">aksharas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current</span><span class="p">))</span>
+</span><span data-line="49">                <span class="n">current</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="50">            <span class="n">aksharas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
+</span><span data-line="51">    
+</span><span data-line="52">    <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+</span><span data-line="53">        <span class="n">aksharas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current</span><span class="p">))</span>
+</span><span data-line="54">    
+</span><span data-line="55">    <span class="k">return</span> <span class="n">aksharas</span></div>
+
+</span><span data-line="56">
+</span><span data-line="57">
+</span><span data-line="58"><span class="c1"># Feature 4: Sandhi-Aware Boundary Heuristics</span>
+<div class="viewcode-block" id="sandhi_aware_tokenization">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.sandhi_aware_tokenization">[docs]</a>
+</span><span data-line="59"><span class="k">def</span><span class="w"> </span><span class="nf">sandhi_aware_tokenization</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+</span><span data-line="60"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="61"><span class="sd">    Detect sandhi boundaries and return a non-destructive mark-up.</span>
+</span><span data-line="62"><span class="sd">    </span>
+</span><span data-line="63"><span class="sd">    Returns</span>
+</span><span data-line="64"><span class="sd">    -------</span>
+</span><span data-line="65"><span class="sd">    Dict</span>
+</span><span data-line="66"><span class="sd">        original, boundaries, and a marked string variant.</span>
+</span><span data-line="67"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="68">    <span class="n">boundaries</span> <span class="o">=</span> <span class="n">detect_sandhi_boundaries</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span data-line="69">    <span class="n">marked</span> <span class="o">=</span> <span class="n">mark_sandhi_boundaries</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span data-line="70">    
+</span><span data-line="71">    <span class="k">return</span> <span class="p">{</span>
+</span><span data-line="72">        <span class="s1">&#39;original&#39;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
+</span><span data-line="73">        <span class="s1">&#39;boundaries&#39;</span><span class="p">:</span> <span class="n">boundaries</span><span class="p">,</span>
+</span><span data-line="74">        <span class="s1">&#39;marked&#39;</span><span class="p">:</span> <span class="n">marked</span>
+</span><span data-line="75">    <span class="p">}</span></div>
+
+</span><span data-line="76">
+</span><span data-line="77">
+</span><span data-line="78"><span class="c1"># Feature 5: Schwa-Deletion Modeling (Hindi)</span>
+<div class="viewcode-block" id="schwa_deletion_modeling">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.schwa_deletion_modeling">[docs]</a>
+</span><span data-line="79"><span class="k">def</span><span class="w"> </span><span class="nf">schwa_deletion_modeling</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+</span><span data-line="80"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="81"><span class="sd">    Predict positions where inherent vowels are dropped (Hindi).</span>
+</span><span data-line="82"><span class="sd">    </span>
+</span><span data-line="83"><span class="sd">    Returns</span>
+</span><span data-line="84"><span class="sd">    -------</span>
+</span><span data-line="85"><span class="sd">    Dict</span>
+</span><span data-line="86"><span class="sd">        Original text and a per-word annotation of deletion positions.</span>
+</span><span data-line="87"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="88">    <span class="n">annotations</span> <span class="o">=</span> <span class="n">annotate_schwa_deletions</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span data-line="89">    
+</span><span data-line="90">    <span class="k">return</span> <span class="p">{</span>
+</span><span data-line="91">        <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
+</span><span data-line="92">        <span class="s1">&#39;deletion_annotations&#39;</span><span class="p">:</span> <span class="n">annotations</span>
+</span><span data-line="93">    <span class="p">}</span></div>
+
+</span><span data-line="94">
+</span><span data-line="95">
+</span><span data-line="96"><span class="c1"># Feature 6: Conjunct-Cluster Preservation (already handled)</span>
+<div class="viewcode-block" id="preserve_conjuncts">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.preserve_conjuncts">[docs]</a>
+</span><span data-line="97"><span class="k">def</span><span class="w"> </span><span class="nf">preserve_conjuncts</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span data-line="98"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="99"><span class="sd">    Preserve conjunct clusters as indivisible units.</span>
+</span><span data-line="100"><span class="sd">    </span>
+</span><span data-line="101"><span class="sd">    Returns</span>
+</span><span data-line="102"><span class="sd">    -------</span>
+</span><span data-line="103"><span class="sd">    List[str]</span>
+</span><span data-line="104"><span class="sd">        Grapheme-level segments (same as segment_akshars(..., matras=False)).</span>
+</span><span data-line="105"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="106">    <span class="k">return</span> <span class="n">segment_akshars</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">matras</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+</span><span data-line="107">
+</span><span data-line="108">
+</span><span data-line="109"><span class="c1"># Feature 7: Intelligent Anusvāra Resolution</span>
+<div class="viewcode-block" id="intelligent_anusvara_resolution">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.intelligent_anusvara_resolution">[docs]</a>
+</span><span data-line="110"><span class="k">def</span><span class="w"> </span><span class="nf">intelligent_anusvara_resolution</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+</span><span data-line="111"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="112"><span class="sd">    Map anusvāra to homorganic nasal; keep original alongside.</span>
+</span><span data-line="113"><span class="sd">    </span>
+</span><span data-line="114"><span class="sd">    Returns</span>
+</span><span data-line="115"><span class="sd">    -------</span>
+</span><span data-line="116"><span class="sd">    Dict</span>
+</span><span data-line="117"><span class="sd">        With &#39;original&#39; and &#39;resolved&#39;.</span>
+</span><span data-line="118"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="119">    <span class="k">return</span> <span class="n">resolve_anusvara</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">store_both</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+</span><span data-line="120">
+</span><span data-line="121">
+</span><span data-line="122"><span class="c1"># Feature 8: Chandrabindu Handling</span>
+<div class="viewcode-block" id="handle_chandrabindu">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.handle_chandrabindu">[docs]</a>
+</span><span data-line="123"><span class="k">def</span><span class="w"> </span><span class="nf">handle_chandrabindu</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span data-line="124"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="125"><span class="sd">    keep nasalization marks (ँ) bound to their vowel</span>
+</span><span data-line="126"><span class="sd">    </span>
+</span><span data-line="127"><span class="sd">    never detaches chandrabindu from vowel</span>
+</span><span data-line="128"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="129">    <span class="c1"># chandrabindu is 0x0901</span>
+</span><span data-line="130">    <span class="n">CHANDRABINDU</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\u0901</span><span class="s1">&#39;</span>
+</span><span data-line="131">    
+</span><span data-line="132">    <span class="n">segments</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="133">    <span class="n">current</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="134">    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span data-line="135">    
+</span><span data-line="136">    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+</span><span data-line="137">        <span class="n">char</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span data-line="138">        
+</span><span data-line="139">        <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="n">CHANDRABINDU</span><span class="p">:</span>
+</span><span data-line="140">            <span class="c1"># attach to current segment</span>
+</span><span data-line="141">            <span class="n">current</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</span><span data-line="142">            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span data-line="143">        <span class="k">elif</span> <span class="n">char</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
+</span><span data-line="144">            <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+</span><span data-line="145">                <span class="n">segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current</span><span class="p">))</span>
+</span><span data-line="146">                <span class="n">current</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="147">            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span data-line="148">        <span class="k">else</span><span class="p">:</span>
+</span><span data-line="149">            <span class="c1"># check if next is chandrabindu</span>
+</span><span data-line="150">            <span class="k">if</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="ow">and</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">CHANDRABINDU</span><span class="p">:</span>
+</span><span data-line="151">                <span class="n">current</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</span><span data-line="152">                <span class="n">current</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+</span><span data-line="153">                <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span>
+</span><span data-line="154">            <span class="k">else</span><span class="p">:</span>
+</span><span data-line="155">                <span class="n">current</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</span><span data-line="156">                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span data-line="157">    
+</span><span data-line="158">    <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+</span><span data-line="159">        <span class="n">segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current</span><span class="p">))</span>
+</span><span data-line="160">    
+</span><span data-line="161">    <span class="k">return</span> <span class="n">segments</span></div>
+
+</span><span data-line="162">
+</span><span data-line="163">
+</span><span data-line="164"><span class="c1"># Feature 10: Urdu-Loanword Accommodation</span>
+<div class="viewcode-block" id="preserve_nukta">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.preserve_nukta">[docs]</a>
+</span><span data-line="165"><span class="k">def</span><span class="w"> </span><span class="nf">preserve_nukta</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span data-line="166"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="167"><span class="sd">    treat phonetic borrowings with nukta as stable units</span>
+</span><span data-line="168"><span class="sd">    </span>
+</span><span data-line="169"><span class="sd">    never strips nukta characters; they change meaning</span>
+</span><span data-line="170"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="171">    <span class="c1"># nukta is 0x093C</span>
+</span><span data-line="172">    <span class="n">NUKTA</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\u093C</span><span class="s1">&#39;</span>
+</span><span data-line="173">    
+</span><span data-line="174">    <span class="c1"># segment but preserve nukta-bound characters</span>
+</span><span data-line="175">    <span class="n">segments</span> <span class="o">=</span> <span class="n">segment_akshars</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">matras</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span data-line="176">    
+</span><span data-line="177">    <span class="c1"># merge segments that contain nukta with following character</span>
+</span><span data-line="178">    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="179">    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span data-line="180">    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">segments</span><span class="p">):</span>
+</span><span data-line="181">        <span class="n">seg</span> <span class="o">=</span> <span class="n">segments</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span data-line="182">        <span class="k">if</span> <span class="n">NUKTA</span> <span class="ow">in</span> <span class="n">seg</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">segments</span><span class="p">):</span>
+</span><span data-line="183">            <span class="c1"># merge with next segment</span>
+</span><span data-line="184">            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seg</span> <span class="o">+</span> <span class="n">segments</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+</span><span data-line="185">            <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span>
+</span><span data-line="186">        <span class="k">else</span><span class="p">:</span>
+</span><span data-line="187">            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seg</span><span class="p">)</span>
+</span><span data-line="188">            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span data-line="189">    
+</span><span data-line="190">    <span class="k">return</span> <span class="n">result</span></div>
+
+</span><span data-line="191">
+</span><span data-line="192">
+</span><span data-line="193"><span class="c1"># Feature 11: Virāma-Function Recognition</span>
+<div class="viewcode-block" id="recognize_virama_function">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.recognize_virama_function">[docs]</a>
+</span><span data-line="194"><span class="k">def</span><span class="w"> </span><span class="nf">recognize_virama_function</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+</span><span data-line="195"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="196"><span class="sd">    halant can mean continuation or explicit vowel suppression</span>
+</span><span data-line="197"><span class="sd">    </span>
+</span><span data-line="198"><span class="sd">    context matters - never assume halant always produces conjunct</span>
+</span><span data-line="199"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="200">    <span class="c1"># find all halants and analyze context</span>
+</span><span data-line="201">    <span class="n">halant_positions</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="202">    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">char</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+</span><span data-line="203">        <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="s1">&#39;्&#39;</span><span class="p">:</span>
+</span><span data-line="204">            <span class="c1"># check context</span>
+</span><span data-line="205">            <span class="n">prev</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+</span><span data-line="206">            <span class="n">next_char</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+</span><span data-line="207">            
+</span><span data-line="208">            <span class="n">context</span> <span class="o">=</span> <span class="s1">&#39;unknown&#39;</span>
+</span><span data-line="209">            <span class="k">if</span> <span class="n">next_char</span> <span class="ow">and</span> <span class="nb">ord</span><span class="p">(</span><span class="n">next_char</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mh">0x0915</span> <span class="ow">and</span> <span class="nb">ord</span><span class="p">(</span><span class="n">next_char</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mh">0x0939</span><span class="p">:</span>
+</span><span data-line="210">                <span class="n">context</span> <span class="o">=</span> <span class="s1">&#39;conjunct_formation&#39;</span>
+</span><span data-line="211">            <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">next_char</span><span class="p">:</span>
+</span><span data-line="212">                <span class="n">context</span> <span class="o">=</span> <span class="s1">&#39;vowel_suppression&#39;</span>
+</span><span data-line="213">            
+</span><span data-line="214">            <span class="n">halant_positions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">prev</span> <span class="o">+</span> <span class="s1">&#39;्&#39;</span> <span class="o">+</span> <span class="n">next_char</span><span class="p">))</span>
+</span><span data-line="215">    
+</span><span data-line="216">    <span class="k">return</span> <span class="p">{</span>
+</span><span data-line="217">        <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
+</span><span data-line="218">        <span class="s1">&#39;halant_analysis&#39;</span><span class="p">:</span> <span class="n">halant_positions</span>
+</span><span data-line="219">    <span class="p">}</span></div>
+
+</span><span data-line="220">
+</span><span data-line="221">
+</span><span data-line="222"><span class="c1"># Feature 12: Mora-Aware Meter Structuring (Sanskrit)</span>
+<div class="viewcode-block" id="mora_aware_segmentation">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.mora_aware_segmentation">[docs]</a>
+</span><span data-line="223"><span class="k">def</span><span class="w"> </span><span class="nf">mora_aware_segmentation</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+</span><span data-line="224"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="225"><span class="sd">    count light/heavy syllables for metrical integrity</span>
+</span><span data-line="226"><span class="sd">    </span>
+</span><span data-line="227"><span class="sd">    never merges mora differences</span>
+</span><span data-line="228"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="229">    <span class="k">return</span> <span class="n">analyze_metre</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
+
+</span><span data-line="230">
+</span><span data-line="231">
+</span><span data-line="232"><span class="c1"># Feature 13: Punctuation Sensitivity for Sanskrit Verse</span>
+<div class="viewcode-block" id="sanskrit_punctuation_tokenization">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.sanskrit_punctuation_tokenization">[docs]</a>
+</span><span data-line="233"><span class="k">def</span><span class="w"> </span><span class="nf">sanskrit_punctuation_tokenization</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span data-line="234"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="235"><span class="sd">    handle danda (।) and double danda (॥) as special tokens</span>
+</span><span data-line="236"><span class="sd">    </span>
+</span><span data-line="237"><span class="sd">    never merges dandas with nearby words</span>
+</span><span data-line="238"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="239">    <span class="k">return</span> <span class="n">handle_sanskrit_punctuation</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
+
+</span><span data-line="240">
+</span><span data-line="241">
+</span><span data-line="242"><span class="c1"># Feature 14: Swara-Mark Preservation (Vedic Texts)</span>
+<div class="viewcode-block" id="preserve_svara_marks_feature">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.preserve_svara_marks_feature">[docs]</a>
+</span><span data-line="243"><span class="k">def</span><span class="w"> </span><span class="nf">preserve_svara_marks_feature</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span data-line="244"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="245"><span class="sd">    keep svaras attached to syllable they mark</span>
+</span><span data-line="246"><span class="sd">    </span>
+</span><span data-line="247"><span class="sd">    never drops or repositions metre marks</span>
+</span><span data-line="248"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="249">    <span class="k">return</span> <span class="n">preserve_svara_marks</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
+
+</span><span data-line="250">
+</span><span data-line="251">
+</span><span data-line="252"><span class="c1"># Feature 15: Number-System Adaptation</span>
+<div class="viewcode-block" id="devanagari_digit_tokenization">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.devanagari_digit_tokenization">[docs]</a>
+</span><span data-line="253"><span class="k">def</span><span class="w"> </span><span class="nf">devanagari_digit_tokenization</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span data-line="254"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="255"><span class="sd">    handle devanagari digits as their own tokens</span>
+</span><span data-line="256"><span class="sd">    </span>
+</span><span data-line="257"><span class="sd">    never maps devanagari digits to latin silently</span>
+</span><span data-line="258"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="259">    <span class="c1"># devanagari digits: 0x0966-0x096F</span>
+</span><span data-line="260">    <span class="n">segments</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="261">    <span class="n">current</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="262">    
+</span><span data-line="263">    <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+</span><span data-line="264">        <span class="k">if</span> <span class="mh">0x0966</span> <span class="o">&lt;=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mh">0x096F</span><span class="p">:</span>
+</span><span data-line="265">            <span class="c1"># devanagari digit - separate token</span>
+</span><span data-line="266">            <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+</span><span data-line="267">                <span class="n">segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current</span><span class="p">))</span>
+</span><span data-line="268">                <span class="n">current</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="269">            <span class="n">segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</span><span data-line="270">        <span class="k">elif</span> <span class="n">char</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
+</span><span data-line="271">            <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+</span><span data-line="272">                <span class="n">segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current</span><span class="p">))</span>
+</span><span data-line="273">                <span class="n">current</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="274">        <span class="k">else</span><span class="p">:</span>
+</span><span data-line="275">            <span class="n">current</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</span><span data-line="276">    
+</span><span data-line="277">    <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+</span><span data-line="278">        <span class="n">segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current</span><span class="p">))</span>
+</span><span data-line="279">    
+</span><span data-line="280">    <span class="k">return</span> <span class="n">segments</span></div>
+
+</span><span data-line="281">
+</span><span data-line="282">
+</span><span data-line="283"><span class="c1"># Feature 16: Robust Zero-Width Joiner Handling</span>
+<div class="viewcode-block" id="preserve_zwj">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.preserve_zwj">[docs]</a>
+</span><span data-line="284"><span class="k">def</span><span class="w"> </span><span class="nf">preserve_zwj</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span data-line="285"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="286"><span class="sd">    preserve ZWJ/ZWNJ in canonical data</span>
+</span><span data-line="287"><span class="sd">    </span>
+</span><span data-line="288"><span class="sd">    never strips them; it breaks shapes</span>
+</span><span data-line="289"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="290">    <span class="c1"># ZWJ = 0x200D, ZWNJ = 0x200C</span>
+</span><span data-line="291">    <span class="c1"># just return as-is, normalization should preserve them</span>
+</span><span data-line="292">    <span class="k">return</span> <span class="n">text</span></div>
+
+</span><span data-line="293">
+</span><span data-line="294">
+</span><span data-line="295"><span class="c1"># Feature 17: Proper-Name Integrity</span>
+<div class="viewcode-block" id="preserve_proper_names">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.preserve_proper_names">[docs]</a>
+</span><span data-line="296"><span class="k">def</span><span class="w"> </span><span class="nf">preserve_proper_names</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">names</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span data-line="297"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="298"><span class="sd">    names with unusual spellings should remain whole</span>
+</span><span data-line="299"><span class="sd">    </span>
+</span><span data-line="300"><span class="sd">    never forces tokenizing inside established lexical names</span>
+</span><span data-line="301"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="302">    <span class="k">if</span> <span class="n">names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="303">        <span class="c1"># common proper names</span>
+</span><span data-line="304">        <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;श्री&#39;</span><span class="p">,</span> <span class="s1">&#39;राम&#39;</span><span class="p">,</span> <span class="s1">&#39;कृष्ण&#39;</span><span class="p">,</span> <span class="s1">&#39;शिव&#39;</span><span class="p">,</span> <span class="s1">&#39;दुर्गा&#39;</span><span class="p">]</span>
+</span><span data-line="305">    
+</span><span data-line="306">    <span class="c1"># simple approach: if word matches known name, keep whole</span>
+</span><span data-line="307">    <span class="n">words</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span><span data-line="308">    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="309">    
+</span><span data-line="310">    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+</span><span data-line="311">        <span class="c1"># check if word starts with known name</span>
+</span><span data-line="312">        <span class="n">matched</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span data-line="313">        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+</span><span data-line="314">            <span class="k">if</span> <span class="n">word</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+</span><span data-line="315">                <span class="c1"># might be compound, but preserve if in list</span>
+</span><span data-line="316">                <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+</span><span data-line="317">                    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+</span><span data-line="318">                    <span class="n">matched</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span data-line="319">                    <span class="k">break</span>
+</span><span data-line="320">        
+</span><span data-line="321">        <span class="k">if</span> <span class="ow">not</span> <span class="n">matched</span><span class="p">:</span>
+</span><span data-line="322">            <span class="c1"># normal tokenization</span>
+</span><span data-line="323">            <span class="n">tokens</span> <span class="o">=</span> <span class="n">segment_akshars</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">matras</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span data-line="324">            <span class="n">result</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+</span><span data-line="325">        <span class="k">else</span><span class="p">:</span>
+</span><span data-line="326">            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+</span><span data-line="327">    
+</span><span data-line="328">    <span class="k">return</span> <span class="n">result</span></div>
+
+</span><span data-line="329">
+</span><span data-line="330">
+</span><span data-line="331"><span class="c1"># Feature 18: Dictionary-Backed Lemma Hints</span>
+<div class="viewcode-block" id="provide_lemma_hints">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.provide_lemma_hints">[docs]</a>
+</span><span data-line="332"><span class="k">def</span><span class="w"> </span><span class="nf">provide_lemma_hints</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">lemma_dict</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+</span><span data-line="333"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="334"><span class="sd">    provide optional lemma mapping for morphologically heavy sanskrit</span>
+</span><span data-line="335"><span class="sd">    </span>
+</span><span data-line="336"><span class="sd">    never replaces surface form; only side-channels</span>
+</span><span data-line="337"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="338">    <span class="k">if</span> <span class="n">lemma_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="339">        <span class="c1"># example mappings</span>
+</span><span data-line="340">        <span class="n">lemma_dict</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="341">            <span class="s1">&#39;गच्छामि&#39;</span><span class="p">:</span> <span class="s1">&#39;गम्&#39;</span><span class="p">,</span>
+</span><span data-line="342">            <span class="s1">&#39;करोति&#39;</span><span class="p">:</span> <span class="s1">&#39;कृ&#39;</span><span class="p">,</span>
+</span><span data-line="343">            <span class="s1">&#39;भवति&#39;</span><span class="p">:</span> <span class="s1">&#39;भू&#39;</span><span class="p">,</span>
+</span><span data-line="344">        <span class="p">}</span>
+</span><span data-line="345">    
+</span><span data-line="346">    <span class="n">words</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span><span data-line="347">    <span class="n">lemmas</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="348">    
+</span><span data-line="349">    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+</span><span data-line="350">        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">lemma_dict</span><span class="p">:</span>
+</span><span data-line="351">            <span class="n">lemmas</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">word</span><span class="p">,</span> <span class="n">lemma_dict</span><span class="p">[</span><span class="n">word</span><span class="p">]))</span>
+</span><span data-line="352">        <span class="k">else</span><span class="p">:</span>
+</span><span data-line="353">            <span class="n">lemmas</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">word</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+</span><span data-line="354">    
+</span><span data-line="355">    <span class="k">return</span> <span class="p">{</span>
+</span><span data-line="356">        <span class="s1">&#39;surface_forms&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">lemmas</span><span class="p">],</span>
+</span><span data-line="357">        <span class="s1">&#39;lemma_hints&#39;</span><span class="p">:</span> <span class="n">lemmas</span>
+</span><span data-line="358">    <span class="p">}</span></div>
+
+</span><span data-line="359">
+</span><span data-line="360">
+</span><span data-line="361"><span class="c1"># Feature 19: Mixed-Era Orthography Support</span>
+<div class="viewcode-block" id="preserve_orthographic_variants">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.preserve_orthographic_variants">[docs]</a>
+</span><span data-line="362"><span class="k">def</span><span class="w"> </span><span class="nf">preserve_orthographic_variants</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span data-line="363"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="364"><span class="sd">    preserve orthographic differences (ऋ vs रि)</span>
+</span><span data-line="365"><span class="sd">    </span>
+</span><span data-line="366"><span class="sd">    never normalizes these away; preserves orthographic history</span>
+</span><span data-line="367"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="368">    <span class="c1"># just return as-is - don&#39;t normalize orthographic variants</span>
+</span><span data-line="369">    <span class="k">return</span> <span class="n">text</span></div>
+
+</span><span data-line="370">
+</span><span data-line="371">
+</span><span data-line="372"><span class="c1"># Feature 20: Transliteration-Friendly Tokens</span>
+<div class="viewcode-block" id="transliteration_tokenization">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.transliteration_tokenization">[docs]</a>
+</span><span data-line="373"><span class="k">def</span><span class="w"> </span><span class="nf">transliteration_tokenization</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">scheme</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;iast&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+</span><span data-line="374"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="375"><span class="sd">    support consistent mapping to latin schemes</span>
+</span><span data-line="376"><span class="sd">    </span>
+</span><span data-line="377"><span class="sd">    never introduces tokens without direct reversibility</span>
+</span><span data-line="378"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="379">    <span class="n">tokens</span> <span class="o">=</span> <span class="n">segment_akshars</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">matras</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span data-line="380">    <span class="n">transliterated</span> <span class="o">=</span> <span class="n">transliterate_tokens</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="n">scheme</span><span class="p">)</span>
+</span><span data-line="381">    
+</span><span data-line="382">    <span class="k">return</span> <span class="p">{</span>
+</span><span data-line="383">        <span class="s1">&#39;original_tokens&#39;</span><span class="p">:</span> <span class="n">tokens</span><span class="p">,</span>
+</span><span data-line="384">        <span class="s1">&#39;transliterated&#39;</span><span class="p">:</span> <span class="n">transliterated</span><span class="p">,</span>
+</span><span data-line="385">        <span class="s1">&#39;scheme&#39;</span><span class="p">:</span> <span class="n">scheme</span>
+</span><span data-line="386">    <span class="p">}</span></div>
+
+</span><span data-line="387">
+</span><span data-line="388">
+</span><span data-line="389"><span class="c1"># Feature 21: Visarga-Condition Handling</span>
+<div class="viewcode-block" id="visarga_condition_tokenization">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.visarga_condition_tokenization">[docs]</a>
+</span><span data-line="390"><span class="k">def</span><span class="w"> </span><span class="nf">visarga_condition_tokenization</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+</span><span data-line="391"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="392"><span class="sd">    handle visarga behavior before sibilants or vowels</span>
+</span><span data-line="393"><span class="sd">    </span>
+</span><span data-line="394"><span class="sd">    never treats visarga as inert punctuation</span>
+</span><span data-line="395"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="396">    <span class="k">return</span> <span class="n">annotate_visarga</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
+
+</span><span data-line="397">
+</span><span data-line="398">
+</span><span data-line="399"><span class="c1"># Feature 22: Non-Breaking Vowel Recognition</span>
+<div class="viewcode-block" id="preserve_independent_vowels">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.preserve_independent_vowels">[docs]</a>
+</span><span data-line="400"><span class="k">def</span><span class="w"> </span><span class="nf">preserve_independent_vowels</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span data-line="401"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="402"><span class="sd">    independent vowels must remain whole</span>
+</span><span data-line="403"><span class="sd">    </span>
+</span><span data-line="404"><span class="sd">    never mis-segments vowel carriers</span>
+</span><span data-line="405"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="406">    <span class="c1"># independent vowels: अ-औ (0x0905-0x0914)</span>
+</span><span data-line="407">    <span class="n">segments</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="408">    <span class="n">current</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="409">    
+</span><span data-line="410">    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span data-line="411">    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+</span><span data-line="412">        <span class="n">char</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span data-line="413">        <span class="n">cp</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</span><span data-line="414">        
+</span><span data-line="415">        <span class="c1"># check if independent vowel</span>
+</span><span data-line="416">        <span class="k">if</span> <span class="mh">0x0905</span> <span class="o">&lt;=</span> <span class="n">cp</span> <span class="o">&lt;=</span> <span class="mh">0x0914</span><span class="p">:</span>
+</span><span data-line="417">            <span class="c1"># independent vowel - keep whole</span>
+</span><span data-line="418">            <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+</span><span data-line="419">                <span class="n">segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current</span><span class="p">))</span>
+</span><span data-line="420">                <span class="n">current</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="421">            <span class="c1"># check for following anusvara/visarga</span>
+</span><span data-line="422">            <span class="k">if</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="ow">and</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="s1">&#39;ंः&#39;</span><span class="p">:</span>
+</span><span data-line="423">                <span class="n">segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span> <span class="o">+</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+</span><span data-line="424">                <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span>
+</span><span data-line="425">            <span class="k">else</span><span class="p">:</span>
+</span><span data-line="426">                <span class="n">segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</span><span data-line="427">                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span data-line="428">        <span class="k">elif</span> <span class="n">char</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
+</span><span data-line="429">            <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+</span><span data-line="430">                <span class="n">segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current</span><span class="p">))</span>
+</span><span data-line="431">                <span class="n">current</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="432">            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span data-line="433">        <span class="k">else</span><span class="p">:</span>
+</span><span data-line="434">            <span class="n">current</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</span><span data-line="435">            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span data-line="436">    
+</span><span data-line="437">    <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+</span><span data-line="438">        <span class="n">segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current</span><span class="p">))</span>
+</span><span data-line="439">    
+</span><span data-line="440">    <span class="k">return</span> <span class="n">segments</span></div>
+
+</span><span data-line="441">
+</span><span data-line="442">
+</span><span data-line="443"><span class="c1"># Feature 24: Emoji Stability Rules</span>
+<div class="viewcode-block" id="emoji_tokenization">
+<a class="viewcode-back" href="../../api/features.html#akshar.features.emoji_tokenization">[docs]</a>
+</span><span data-line="444"><span class="k">def</span><span class="w"> </span><span class="nf">emoji_tokenization</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span data-line="445"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="446"><span class="sd">    treat each emoji as full token</span>
+</span><span data-line="447"><span class="sd">    </span>
+</span><span data-line="448"><span class="sd">    never combines emoji with adjacent text</span>
+</span><span data-line="449"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="450">    <span class="c1"># emoji detection - check for emoji unicode ranges</span>
+</span><span data-line="451">    <span class="c1"># using character code point checking instead of complex regex</span>
+</span><span data-line="452">    <span class="k">def</span><span class="w"> </span><span class="nf">is_emoji</span><span class="p">(</span><span class="n">char</span><span class="p">):</span>
+</span><span data-line="453">        <span class="n">cp</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</span><span data-line="454">        <span class="c1"># emoji ranges</span>
+</span><span data-line="455">        <span class="k">return</span> <span class="p">(</span>
+</span><span data-line="456">            <span class="p">(</span><span class="mh">0x1F600</span> <span class="o">&lt;=</span> <span class="n">cp</span> <span class="o">&lt;=</span> <span class="mh">0x1F64F</span><span class="p">)</span> <span class="ow">or</span>  <span class="c1"># emoticons</span>
+</span><span data-line="457">            <span class="p">(</span><span class="mh">0x1F300</span> <span class="o">&lt;=</span> <span class="n">cp</span> <span class="o">&lt;=</span> <span class="mh">0x1F5FF</span><span class="p">)</span> <span class="ow">or</span>  <span class="c1"># misc symbols</span>
+</span><span data-line="458">            <span class="p">(</span><span class="mh">0x1F680</span> <span class="o">&lt;=</span> <span class="n">cp</span> <span class="o">&lt;=</span> <span class="mh">0x1F6FF</span><span class="p">)</span> <span class="ow">or</span>  <span class="c1"># transport</span>
+</span><span data-line="459">            <span class="p">(</span><span class="mh">0x1F1E0</span> <span class="o">&lt;=</span> <span class="n">cp</span> <span class="o">&lt;=</span> <span class="mh">0x1F1FF</span><span class="p">)</span> <span class="ow">or</span>  <span class="c1"># flags</span>
+</span><span data-line="460">            <span class="p">(</span><span class="mh">0x2600</span> <span class="o">&lt;=</span> <span class="n">cp</span> <span class="o">&lt;=</span> <span class="mh">0x26FF</span><span class="p">)</span> <span class="ow">or</span>   <span class="c1"># misc symbols</span>
+</span><span data-line="461">            <span class="p">(</span><span class="mh">0x2700</span> <span class="o">&lt;=</span> <span class="n">cp</span> <span class="o">&lt;=</span> <span class="mh">0x27BF</span><span class="p">)</span>       <span class="c1"># dingbats</span>
+</span><span data-line="462">        <span class="p">)</span>
+</span><span data-line="463">    
+</span><span data-line="464">    <span class="n">tokens</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="465">    <span class="n">current</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="466">    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span data-line="467">    
+</span><span data-line="468">    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+</span><span data-line="469">        <span class="n">char</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span data-line="470">        
+</span><span data-line="471">        <span class="k">if</span> <span class="n">is_emoji</span><span class="p">(</span><span class="n">char</span><span class="p">):</span>
+</span><span data-line="472">            <span class="c1"># save current text if any</span>
+</span><span data-line="473">            <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+</span><span data-line="474">                <span class="n">pre_text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+</span><span data-line="475">                <span class="k">if</span> <span class="n">pre_text</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+</span><span data-line="476">                    <span class="n">pre_tokens</span> <span class="o">=</span> <span class="n">segment_akshars</span><span class="p">(</span><span class="n">pre_text</span><span class="p">,</span> <span class="n">matras</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span data-line="477">                    <span class="n">tokens</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">pre_tokens</span><span class="p">)</span>
+</span><span data-line="478">                <span class="n">current</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="479">            
+</span><span data-line="480">            <span class="c1"># collect emoji (might be multiple chars for some emojis)</span>
+</span><span data-line="481">            <span class="n">emoji_chars</span> <span class="o">=</span> <span class="p">[</span><span class="n">char</span><span class="p">]</span>
+</span><span data-line="482">            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span data-line="483">            <span class="c1"># check for variation selectors or combining marks</span>
+</span><span data-line="484">            <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="mh">0xFE00</span> <span class="o">&lt;=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="mh">0xFE0F</span> <span class="ow">or</span> <span class="nb">ord</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">==</span> <span class="mh">0x200D</span><span class="p">):</span>
+</span><span data-line="485">                <span class="n">emoji_chars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span data-line="486">                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span data-line="487">            
+</span><span data-line="488">            <span class="n">tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">emoji_chars</span><span class="p">))</span>
+</span><span data-line="489">        <span class="k">elif</span> <span class="n">char</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
+</span><span data-line="490">            <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+</span><span data-line="491">                <span class="n">pre_text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+</span><span data-line="492">                <span class="k">if</span> <span class="n">pre_text</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+</span><span data-line="493">                    <span class="n">pre_tokens</span> <span class="o">=</span> <span class="n">segment_akshars</span><span class="p">(</span><span class="n">pre_text</span><span class="p">,</span> <span class="n">matras</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span data-line="494">                    <span class="n">tokens</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">pre_tokens</span><span class="p">)</span>
+</span><span data-line="495">                <span class="n">current</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="496">            <span class="n">tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</span><span data-line="497">            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span data-line="498">        <span class="k">else</span><span class="p">:</span>
+</span><span data-line="499">            <span class="n">current</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</span><span data-line="500">            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span data-line="501">    
+</span><span data-line="502">    <span class="c1"># add remaining</span>
+</span><span data-line="503">    <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+</span><span data-line="504">        <span class="n">pre_text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+</span><span data-line="505">        <span class="k">if</span> <span class="n">pre_text</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+</span><span data-line="506">            <span class="n">pre_tokens</span> <span class="o">=</span> <span class="n">segment_akshars</span><span class="p">(</span><span class="n">pre_text</span><span class="p">,</span> <span class="n">matras</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span data-line="507">            <span class="n">tokens</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">pre_tokens</span><span class="p">)</span>
+</span><span data-line="508">    
+</span><span data-line="509">    <span class="k">return</span> <span class="n">tokens</span></div>
+
+</span><span data-line="510">
+</span><span data-line="511">
+</span><span data-line="512">
+</span></pre></div>
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, Akshar contributors</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials"></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

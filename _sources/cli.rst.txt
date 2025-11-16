@@ -1,0 +1,91 @@
+Command Line Interface
+======================
+
+akshar provides command-line tools for tokenization, analysis, and model training.
+
+Basic Usage
+-----------
+
+All commands follow this pattern:
+
+.. code-block:: bash
+
+   akshar <command> [options] <input>
+
+Available commands:
+
+- ``tokenize`` - Convert text to tokens
+- ``detokenize`` - Convert tokens back to text
+- ``explain`` - Detailed analysis
+- ``train`` - Train tokenization model
+
+tokenize
+--------
+
+Tokenize input text:
+
+.. code-block:: bash
+
+   akshar tokenize "आज मौसम अच्छा है"
+
+Output:
+
+.. code-block:: text
+
+   ['आ', 'ज', ' ', 'मौ', 'स', 'म', ' ', 'अ', 'च्', 'छ', 'ा', ' ', 'है']
+
+Options:
+
+.. code-block:: text
+
+   --model PATH           # use trained model
+   --model-type TYPE      # sentencepiece|bpe
+   --format text|json|id  # output format (id requires --model)
+   -i, --input FILE       # read text from file
+   -o, --output FILE      # write output to file
+
+detokenize
+----------
+
+.. code-block:: bash
+
+   akshar detokenize "▁aaj ▁मौ सम ▁बहुत ▁अच्छा ▁hai" --model models/akshar.model
+
+explain
+-------
+
+.. code-block:: bash
+
+   akshar explain "क्षेत्रे धर्मक्षेत्रे समवेता युयुत्सवः"
+
+train
+-----
+
+SentencePiece:
+
+.. code-block:: bash
+
+   akshar train data/corpus.txt --output models/akshar --vocab-size 24000
+
+HuggingFace BPE:
+
+.. code-block:: bash
+
+   akshar train data/corpus.txt --output models/akshar --model-type bpe --vocab-size 32000
+
+Advanced Usage
+--------------
+
+- Batch process files via shell loops.
+- Use ``--no-preprocess`` if your corpus is already cleaned.
+- For IDs, always supply ``--model``.
+
+API
+---
+
+.. automodule:: akshar.cli
+   :members:
+   :undoc-members:
+   :noindex:
+
+

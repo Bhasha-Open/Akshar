@@ -1,0 +1,118 @@
+Morphology API
+==============
+
+Overview
+--------
+Helpers for basic morphological segmentation and lemmas where available.
+
+Quick Reference
+---------------
+
+.. list-table::
+   :header-rows: 1
+
+   * - Function
+     - Parameters
+     - Returns
+   * - ``segment_morphemes``
+     - ``word``, ``language='auto'``
+     - ``List[str]``
+   * - ``guess_lemma``
+     - ``word``, ``language='auto'``
+     - ``str|None``
+   * - ``analyze_morphology``
+     - ``text``, ``language='auto'``
+     - ``List[(word, parts)]``
+
+Toy Examples
+------------
+
+.. code-block:: python
+
+   from akshar.morph import segment_morphemes, guess_lemma, analyze_morphology
+   print(segment_morphemes("अधिकारियों", language="hindi"))
+   print(guess_lemma("अधिकारियों", language="hindi"))
+   print(analyze_morphology("भारत अधिकारियों"))
+
+Per‑function guides
+-------------------
+
+segment_morphemes
+^^^^^^^^^^^^^^^^^
+- Break a word into plausible morphemes using lightweight rules.
+- Prefers conservative splits; avoids over‑segmenting short words.
+- Works best on Hindi/Sanskrit nouns/verbs.
+- Feed normalized input for stable output.
+
+guess_lemma
+^^^^^^^^^^^
+- Heuristic lemma finder; falls back to the original word.
+- Avoids lossy guesses; returns ``None`` if uncertain.
+- Good for grouping inflected forms in dashboards.
+- Not a full‑blown lemmatizer.
+
+analyze_morphology
+^^^^^^^^^^^^^^^^^^
+- Tokenize a string and attach morpheme splits per token.
+- Returns a list of (word, parts) for quick inspection.
+- Handy for notebooks and error analysis.
+- Combine with segmentation and normalization first.
+
+API
+---
+
+.. automodule:: akshar.morph
+   :members:
+   :undoc-members:
+Morphology API
+==============
+
+Overview
+--------
+Optional Morfessor-backed segmentation for Hindi/Sanskrit. Gracefully degrades to word-level if models are not available.
+
+Examples
+--------
+
+.. code-block:: python
+
+   from akshar.morph import segment_hindi, segment_sanskrit, get_hindi_segmenter
+   segment_hindi("लोकतांत्रिक")
+
+   seg = get_hindi_segmenter()
+   print(seg.is_model_loaded())
+
+Recipes
+-------
+
+- Use morphology when available else fallback:
+
+  .. code-block:: python
+
+     from akshar.segment import word_tokenize
+     word_tokenize("भारत लोकतांत्रिक देश है", language="hindi", use_morphology=True)
+
+API (summary)
+-------------
+
+.. autosummary::
+   :nosignatures:
+
+   akshar.morph.segment_hindi
+   akshar.morph.segment_sanskrit
+   akshar.morph.get_hindi_segmenter
+   akshar.morph.get_sanskrit_segmenter
+   akshar.morph.MorphSegmenter
+
+.. automodule:: akshar.morph
+   :members: segment_hindi, segment_sanskrit, get_hindi_segmenter, get_sanskrit_segmenter, MorphSegmenter
+   :undoc-members:
+Morphology
+==========
+
+.. automodule:: akshar.morph
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+

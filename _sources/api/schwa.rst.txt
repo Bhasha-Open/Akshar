@@ -1,0 +1,29 @@
+Schwa
+=====
+
+Quick Reference
+---------------
+
+=============================  =================  =======================
+Function                        Parameters         Returns
+=============================  =================  =======================
+``predict_schwa_deletion``      ``word``           ``List[int]``
+``annotate_schwa_deletions``    ``text``           ``List[(word, idxs)]``
+=============================  =================  =======================
+
+Toy Examples
+------------
+
+.. code-block:: python
+
+   from akshar.schwa import predict_schwa_deletion, annotate_schwa_deletions
+   print(predict_schwa_deletion("वर्तमान"))
+   print(annotate_schwa_deletions("भारत वर्तमान काल"))
+
+API
+---
+
+.. automodule:: akshar.schwa
+   :members:
+   :undoc-members:
+
