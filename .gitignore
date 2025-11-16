@@ -63,3 +63,4 @@ data/corpus.txt
 models/akshar.model
 models/akshar.preprocessed.txt
 
+.gh-pages/
