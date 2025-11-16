@@ -1,5 +1,5 @@
 """
-vedic text handling - svaras, metre, danda punctuation
+Vedic/Sanskrit helpers: svara marks, metre, and danda punctuation.
 """
 
 import regex as re
@@ -17,15 +17,13 @@ SVARA_MARKS = [
 
 
 def is_svara_mark(char: str) -> bool:
-    """check if character is a vedic svara mark"""
+    """Return True if the character is a Vedic svara mark."""
     return ord(char) in SVARA_MARKS
 
 
 def preserve_svara_marks(text: str) -> List[str]:
     """
-    segment text preserving svara marks with their syllables
-    
-    keeps svaras attached to the syllable they mark
+    Segment text while keeping svara marks attached to base syllables.
     """
     segments = []
     current = []
@@ -61,9 +59,7 @@ def preserve_svara_marks(text: str) -> List[str]:
 
 def handle_sanskrit_punctuation(text: str) -> List[str]:
     """
-    handle danda (।) and double danda (॥) as special tokens
-    
-    never merges dandas with nearby words
+    Split on danda (।) and double danda (॥) and return them as standalone tokens.
     """
     # split on dandas but keep them as separate tokens
     parts = re.split(r'([।॥])', text)
@@ -82,9 +78,7 @@ def handle_sanskrit_punctuation(text: str) -> List[str]:
 
 def count_mora(syllable: str) -> int:
     """
-    count mora (light/heavy syllables) for sanskrit metre
-    
-    returns: 1 for light, 2 for heavy
+    Count mora weight for a syllable: 1=light, 2=heavy (coarse rule-of-thumb).
     """
     # heavy if ends with long vowel, anusvara, visarga, or consonant cluster
     if re.search(r'[ा-ौंः]$|[क-ह]्[क-ह]$', syllable):
@@ -94,9 +88,7 @@ def count_mora(syllable: str) -> int:
 
 def analyze_metre(text: str) -> Dict:
     """
-    analyze metrical structure of sanskrit text
-    
-    counts light/heavy syllables for vedic text
+    Analyze light/heavy syllable counts for a simplistic metrical view.
     """
     syllables = preserve_svara_marks(text)
     

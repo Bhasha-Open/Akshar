@@ -1,6 +1,9 @@
 """
-comprehensive feature set for akshar tokenizer
-implements all 25 features
+Feature helpers used by Akshar.
+
+This module collects focused utilities (akshara-level ops, sandhi-aware hints,
+schwa and anusvāra handling, transliteration hooks, etc.). Most functions are
+thin wrappers around specialized modules to keep call sites simple.
 """
 
 import regex as re
@@ -24,9 +27,12 @@ from .visarga import handle_visarga_conditions, annotate_visarga
 # Feature 2: Akṣara-Level Tokenization
 def akshara_level_tokenization(text: str) -> List[str]:
     """
-    segment by fundamental phonological unit: consonant cluster + vowel
+    Segment by akṣara (cluster + vowel nucleus).
     
-    halant indicates akṣara continues; never cut mid-cluster
+    Returns
+    -------
+    List[str]
+        Grapheme-aware segments that preserve conjuncts.
     """
     clusters = segment_akshars(text, matras=False)
     aksharas = []
@@ -52,9 +58,12 @@ def akshara_level_tokenization(text: str) -> List[str]:
 # Feature 4: Sandhi-Aware Boundary Heuristics
 def sandhi_aware_tokenization(text: str) -> Dict:
     """
-    detect sandhi boundaries without splitting
+    Detect sandhi boundaries and return a non-destructive mark-up.
     
-    marks boundaries but preserves original text
+    Returns
+    -------
+    Dict
+        original, boundaries, and a marked string variant.
     """
     boundaries = detect_sandhi_boundaries(text)
     marked = mark_sandhi_boundaries(text)
@@ -69,9 +78,12 @@ def sandhi_aware_tokenization(text: str) -> Dict:
 # Feature 5: Schwa-Deletion Modeling (Hindi)
 def schwa_deletion_modeling(text: str) -> Dict:
     """
-    predict positions where inherent vowels are dropped
+    Predict positions where inherent vowels are dropped (Hindi).
     
-    only annotates, never removes written 'a'
+    Returns
+    -------
+    Dict
+        Original text and a per-word annotation of deletion positions.
     """
     annotations = annotate_schwa_deletions(text)
     
@@ -84,9 +96,12 @@ def schwa_deletion_modeling(text: str) -> Dict:
 # Feature 6: Conjunct-Cluster Preservation (already handled)
 def preserve_conjuncts(text: str) -> List[str]:
     """
-    treat clusters like क्त, ज्ञ, ह्न as single structural units
+    Preserve conjunct clusters as indivisible units.
     
-    never splits conjunct between halant and following consonant
+    Returns
+    -------
+    List[str]
+        Grapheme-level segments (same as segment_akshars(..., matras=False)).
     """
     return segment_akshars(text, matras=False)
 
@@ -94,9 +109,12 @@ def preserve_conjuncts(text: str) -> List[str]:
 # Feature 7: Intelligent Anusvāra Resolution
 def intelligent_anusvara_resolution(text: str) -> Dict:
     """
-    map anusvara to real nasal class based on following consonant
+    Map anusvāra to homorganic nasal; keep original alongside.
     
-    stores both original and resolved forms
+    Returns
+    -------
+    Dict
+        With 'original' and 'resolved'.
     """
     return resolve_anusvara(text, store_both=True)
 
@@ -104,9 +122,17 @@ def intelligent_anusvara_resolution(text: str) -> Dict:
 # Feature 8: Chandrabindu Handling
 def handle_chandrabindu(text: str) -> List[str]:
     """
-    keep nasalization marks (ँ) bound to their vowel
+    Preserve chandrabindu (ँ) with its vowel.
     
-    never detaches chandrabindu from vowel
+    Parameters
+    ----------
+    text : str
+        Input string.
+    
+    Returns
+    -------
+    List[str]
+        Segments where chandrabindu remains attached to the vowel.
     """
     # chandrabindu is 0x0901
     CHANDRABINDU = '\u0901'
@@ -146,9 +172,17 @@ def handle_chandrabindu(text: str) -> List[str]:
 # Feature 10: Urdu-Loanword Accommodation
 def preserve_nukta(text: str) -> List[str]:
     """
-    treat phonetic borrowings with nukta as stable units
+    Preserve nukta characters as stable units.
     
-    never strips nukta characters; they change meaning
+    Parameters
+    ----------
+    text : str
+        Input string.
+    
+    Returns
+    -------
+    List[str]
+        Segments that keep nukta-bound characters intact.
     """
     # nukta is 0x093C
     NUKTA = '\u093C'
@@ -175,9 +209,12 @@ def preserve_nukta(text: str) -> List[str]:
 # Feature 11: Virāma-Function Recognition
 def recognize_virama_function(text: str) -> Dict:
     """
-    halant can mean continuation or explicit vowel suppression
+    Heuristically label virama (halant) contexts.
     
-    context matters - never assume halant always produces conjunct
+    Returns
+    -------
+    Dict
+        Original text and a list of tuples (index, context, snippet).
     """
     # find all halants and analyze context
     halant_positions = []
@@ -204,9 +241,12 @@ def recognize_virama_function(text: str) -> Dict:
 # Feature 12: Mora-Aware Meter Structuring (Sanskrit)
 def mora_aware_segmentation(text: str) -> Dict:
     """
-    count light/heavy syllables for metrical integrity
+    Count light/heavy syllables for metrical integrity.
     
-    never merges mora differences
+    Returns
+    -------
+    Dict
+        Keys: syllables, mora_counts, total_mora, light_syllables, heavy_syllables.
     """
     return analyze_metre(text)
 
@@ -214,9 +254,12 @@ def mora_aware_segmentation(text: str) -> Dict:
 # Feature 13: Punctuation Sensitivity for Sanskrit Verse
 def sanskrit_punctuation_tokenization(text: str) -> List[str]:
     """
-    handle danda (।) and double danda (॥) as special tokens
+    Treat danda (।) and double danda (॥) as standalone tokens.
     
-    never merges dandas with nearby words
+    Returns
+    -------
+    List[str]
+        Tokens with danda/double danda preserved.
     """
     return handle_sanskrit_punctuation(text)
 
@@ -224,9 +267,12 @@ def sanskrit_punctuation_tokenization(text: str) -> List[str]:
 # Feature 14: Swara-Mark Preservation (Vedic Texts)
 def preserve_svara_marks_feature(text: str) -> List[str]:
     """
-    keep svaras attached to syllable they mark
+    Keep Vedic svara marks attached to their syllable.
     
-    never drops or repositions metre marks
+    Returns
+    -------
+    List[str]
+        Segments with svara marks preserved on the base.
     """
     return preserve_svara_marks(text)
 
@@ -234,9 +280,12 @@ def preserve_svara_marks_feature(text: str) -> List[str]:
 # Feature 15: Number-System Adaptation
 def devanagari_digit_tokenization(text: str) -> List[str]:
     """
-    handle devanagari digits as their own tokens
+    Tokenize Devanagari digits as independent tokens.
     
-    never maps devanagari digits to latin silently
+    Returns
+    -------
+    List[str]
+        Tokens with digits separated from surrounding text.
     """
     # devanagari digits: 0x0966-0x096F
     segments = []
@@ -265,9 +314,12 @@ def devanagari_digit_tokenization(text: str) -> List[str]:
 # Feature 16: Robust Zero-Width Joiner Handling
 def preserve_zwj(text: str) -> str:
     """
-    preserve ZWJ/ZWNJ in canonical data
+    Preserve ZWJ/ZWNJ (do not strip; it breaks shaping).
     
-    never strips them; it breaks shapes
+    Returns
+    -------
+    str
+        Unchanged input.
     """
     # ZWJ = 0x200D, ZWNJ = 0x200C
     # just return as-is, normalization should preserve them
@@ -277,9 +329,19 @@ def preserve_zwj(text: str) -> str:
 # Feature 17: Proper-Name Integrity
 def preserve_proper_names(text: str, names: Optional[List[str]] = None) -> List[str]:
     """
-    names with unusual spellings should remain whole
+    Keep known proper names whole; tokenize others.
     
-    never forces tokenizing inside established lexical names
+    Parameters
+    ----------
+    text : str
+        Input text.
+    names : Optional[List[str]]
+        Known name list; defaults to a small built‑in set.
+    
+    Returns
+    -------
+    List[str]
+        Tokens with known names preserved.
     """
     if names is None:
         # common proper names
@@ -313,9 +375,19 @@ def preserve_proper_names(text: str, names: Optional[List[str]] = None) -> List[
 # Feature 18: Dictionary-Backed Lemma Hints
 def provide_lemma_hints(text: str, lemma_dict: Optional[Dict] = None) -> Dict:
     """
-    provide optional lemma mapping for morphologically heavy sanskrit
+    Provide optional lemma hints for Sanskrit.
     
-    never replaces surface form; only side-channels
+    Parameters
+    ----------
+    text : str
+        Input text.
+    lemma_dict : Optional[Dict]
+        Mapping surface→lemma; if None, uses a tiny demo map.
+    
+    Returns
+    -------
+    Dict
+        surface_forms and lemma_hints list[(surface, lemma|None)].
     """
     if lemma_dict is None:
         # example mappings
@@ -343,9 +415,12 @@ def provide_lemma_hints(text: str, lemma_dict: Optional[Dict] = None) -> Dict:
 # Feature 19: Mixed-Era Orthography Support
 def preserve_orthographic_variants(text: str) -> str:
     """
-    preserve orthographic differences (ऋ vs रि)
+    Preserve orthographic variants (e.g., ऋ vs रि) without normalization.
     
-    never normalizes these away; preserves orthographic history
+    Returns
+    -------
+    str
+        Unchanged input.
     """
     # just return as-is - don't normalize orthographic variants
     return text
@@ -354,9 +429,19 @@ def preserve_orthographic_variants(text: str) -> str:
 # Feature 20: Transliteration-Friendly Tokens
 def transliteration_tokenization(text: str, scheme: str = 'iast') -> Dict:
     """
-    support consistent mapping to latin schemes
+    Tokenize and transliterate tokens to the given scheme.
     
-    never introduces tokens without direct reversibility
+    Parameters
+    ----------
+    text : str
+        Input string.
+    scheme : str
+        'iast' supported.
+    
+    Returns
+    -------
+    Dict
+        original_tokens, transliterated, and scheme.
     """
     tokens = segment_akshars(text, matras=False)
     transliterated = transliterate_tokens(tokens, scheme=scheme)
@@ -371,9 +456,12 @@ def transliteration_tokenization(text: str, scheme: str = 'iast') -> Dict:
 # Feature 21: Visarga-Condition Handling
 def visarga_condition_tokenization(text: str) -> Dict:
     """
-    handle visarga behavior before sibilants or vowels
+    Annotate visarga behavior before sibilants or vowels.
     
-    never treats visarga as inert punctuation
+    Returns
+    -------
+    Dict
+        original text and visarga annotations.
     """
     return annotate_visarga(text)
 
@@ -381,9 +469,12 @@ def visarga_condition_tokenization(text: str) -> Dict:
 # Feature 22: Non-Breaking Vowel Recognition
 def preserve_independent_vowels(text: str) -> List[str]:
     """
-    independent vowels must remain whole
+    Keep independent vowels (अ‑औ) as indivisible tokens.
     
-    never mis-segments vowel carriers
+    Returns
+    -------
+    List[str]
+        Segments where independent vowels are not split.
     """
     # independent vowels: अ-औ (0x0905-0x0914)
     segments = []
@@ -425,9 +516,12 @@ def preserve_independent_vowels(text: str) -> List[str]:
 # Feature 24: Emoji Stability Rules
 def emoji_tokenization(text: str) -> List[str]:
     """
-    treat each emoji as full token
+    Tokenize emojis as standalone tokens and keep surrounding text intact.
     
-    never combines emoji with adjacent text
+    Returns
+    -------
+    List[str]
+        Tokens where emoji sequences appear as single elements.
     """
     # emoji detection - check for emoji unicode ranges
     # using character code point checking instead of complex regex

@@ -1,6 +1,8 @@
 """
-transliteration-friendly token mapping
-supports consistent mapping to latin schemes (IAST, ITRANS)
+Transliteration helpers.
+
+We provide a minimal mapping for Devanagari → IAST as a demonstration and keep
+the API open for adding other schemes (e.g., ITRANS) without magic.
 """
 
 from typing import Dict, List, Tuple
@@ -23,9 +25,11 @@ DEVANAGARI_TO_IAST = {
 
 def token_to_iast(token: str) -> str:
     """
-    convert devanagari token to IAST transliteration
+    Convert a Devanagari token into IAST.
     
-    handles basic mapping, preserves reversibility
+    Notes
+    -----
+    This is a simplified routine; matra handling covers the common cases only.
     """
     result = []
     i = 0
@@ -63,9 +67,19 @@ def token_to_iast(token: str) -> str:
 
 def transliterate_tokens(tokens: List[str], scheme: str = 'iast') -> List[str]:
     """
-    transliterate list of tokens to latin scheme
+    Transliterate a token sequence to a given scheme.
     
-    supports IAST, can be extended to ITRANS
+    Parameters
+    ----------
+    tokens : List[str]
+        Input tokens (likely akshar- or model-level).
+    scheme : str
+        'iast' currently supported.
+    
+    Returns
+    -------
+    List[str]
+        Transliteration output, length-preserving to the extent possible.
     """
     if scheme.lower() == 'iast':
         return [token_to_iast(t) for t in tokens]

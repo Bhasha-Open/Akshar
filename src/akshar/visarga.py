@@ -1,6 +1,8 @@
 """
-visarga condition handling
-visarga behaves differently before sibilants or vowels
+Visarga behavior annotations.
+
+Visarga behaves differently before sibilants and vowels. We provide annotations
+to capture these contexts without rewriting input.
 """
 
 import regex as re
@@ -9,10 +11,12 @@ from typing import List, Tuple, Dict
 
 def handle_visarga_conditions(text: str) -> List[Tuple[int, str, str]]:
     """
-    detect and annotate visarga behavior
+    Detect and annotate visarga behavior around sibilants and vowels.
     
-    returns list of (position, original, transformation) tuples
-    does not modify text, only annotates
+    Returns
+    -------
+    List[Tuple[int, str, str]]
+        (position, original_span, transformation_label) tuples.
     """
     annotations = []
     
@@ -36,9 +40,12 @@ def handle_visarga_conditions(text: str) -> List[Tuple[int, str, str]]:
 
 def annotate_visarga(text: str) -> Dict:
     """
-    annotate visarga conditions without modifying text
+    Annotate visarga-related contexts without modifying the text.
     
-    returns dict with original and annotations
+    Returns
+    -------
+    Dict
+        original, annotations, and a boolean 'has_visarga'.
     """
     annotations = handle_visarga_conditions(text)
     

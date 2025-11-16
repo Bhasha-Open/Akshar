@@ -1,8 +1,8 @@
 """
-Streamlit web application for interactive akshar tokenization.
+Streamlit app: interactive Akshar explorer.
 
-This provides a visual interface to explore how text is tokenized,
-showing akshars, script boundaries, and token breakdowns.
+This app is for demos and manual QA. It visualizes normalization, akshars,
+script boundaries, and tokens. Not meant to be imported as a library module.
 """
 
 import streamlit as st

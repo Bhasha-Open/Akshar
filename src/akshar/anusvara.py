@@ -1,6 +1,9 @@
 """
-intelligent anusvara resolution
-maps anusvara to its real nasal class based on following consonant
+Anusvāra handling for Devanagari.
+
+Resolves anusvāra (ं) to an appropriate homorganic nasal based on the following
+consonant’s place of articulation. We return both forms so callers can decide
+how aggressive they want to be when rewriting.
 """
 
 import regex as re
@@ -18,7 +21,18 @@ NASAL_MAP = {
 
 
 def get_nasal_for_consonant(cons: str) -> str:
-    """get appropriate nasal for consonant based on place of articulation"""
+    """Return the homorganic nasal for a given consonant.
+    
+    Parameters
+    ----------
+    cons : str
+        Single Devanagari consonant.
+    
+    Returns
+    -------
+    str
+        One of 'ङ', 'ञ', 'ण', 'न', 'म' or 'ं' as fallback.
+    """
     cp = ord(cons) if cons else 0
     
     # velar: क-घ (0x0915-0x0918)
@@ -47,10 +61,24 @@ def get_nasal_for_consonant(cons: str) -> str:
 
 def resolve_anusvara(text: str, store_both: bool = True) -> Dict[str, str]:
     """
-    resolve anusvara to appropriate nasal
+    Resolve anusvāra (ं) into a homorganic nasal, conservatively.
     
-    returns dict with original and resolved forms
-    does not rewrite input, stores both forms
+    Parameters
+    ----------
+    text : str
+        Input string.
+    store_both : bool
+        If True, return both 'original' and 'resolved' (non-destructive).
+    
+    Returns
+    -------
+    Dict[str, str]
+        Mapping with 'original' and 'resolved' keys (or only 'resolved').
+    
+    Examples
+    --------
+        >>> resolve_anusvara("संस्कृत")
+        {'original': 'संस्कृत', 'resolved': 'संसकृत'}  # example, depends on following consonant
     """
     original = text
     resolved = text

@@ -1,6 +1,8 @@
 """
-schwa deletion modeling for hindi
-predicts where inherent vowels are dropped in pronunciation
+Schwa-deletion modeling for Hindi.
+
+We annotate positions where an inherent vowel is likely dropped in pronunciation.
+This is strictly non-destructive — we mark positions but do not rewrite text.
 """
 
 import regex as re
@@ -9,10 +11,17 @@ from typing import List, Tuple, Dict
 
 def predict_schwa_deletion(word: str) -> List[int]:
     """
-    predict positions where schwa deletion occurs in hindi
+    Predict likely schwa deletion positions in a word.
     
-    returns list of character positions where schwa would be deleted
-    does not modify the text, only annotates positions
+    Parameters
+    ----------
+    word : str
+        Single word (Devanagari).
+    
+    Returns
+    -------
+    List[int]
+        Sorted unique indices where schwa is commonly dropped.
     """
     deletions = []
     
@@ -40,9 +49,12 @@ def predict_schwa_deletion(word: str) -> List[int]:
 
 def annotate_schwa_deletions(text: str) -> List[Tuple[str, List[int]]]:
     """
-    annotate schwa deletion positions for each word
+    Annotate schwa-deletion positions for each whitespace-delimited token.
     
-    returns list of (word, deletion_positions) tuples
+    Returns
+    -------
+    List[Tuple[str, List[int]]]
+        Pairs of (word, deletion_indices).
     """
     words = text.split()
     result = []

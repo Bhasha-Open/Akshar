@@ -1,8 +1,8 @@
 """
-akshar segmentation + code-switch detection
+Segmentation utilities: akshar-level splits and code-switch detection.
 
-keeps devanagari clusters together (क्ष, ज्ञ etc) and 
-finds where script changes in hinglish text
+We keep Devanagari grapheme clusters intact (e.g., क्ष, ज्ञ) and expose helpers
+for measuring composition and locating script switches in mixed Hinglish text.
 """
 
 import regex as re
@@ -24,7 +24,12 @@ MATRA_RANGES = [
 ]
 
 def is_matra(char):
-    """check if char is a devanagari matra (vowel sign) - excludes halant"""
+    """Return True if the char is a Devanagari matra (vowel sign).
+
+    Notes
+    -----
+    This excludes the halant (virama) which participates in conjuncts.
+    """
     cp = ord(char)
     for start, end in MATRA_RANGES:
         if start <= cp <= end:
@@ -34,26 +39,36 @@ def is_matra(char):
 
 def segment_akshars(text, matras=False, separate_matras=None):
     """
-    split into akshars (grapheme clusters)
+    Split text into akshars (Unicode grapheme clusters).
     
-    Args:
-        text: input text
-        matras: if True, separate matras (vowel signs) and conjuncts from consonants.
-                splits conjuncts like च्छ into ['च', '्', 'छ'] and matras like मौ into ['म', 'ौ']
-        separate_matras: deprecated, use 'matras' instead. kept for backward compatibility
+    Parameters
+    ----------
+    text:
+        Input string (any script).
+    matras:
+        If True, separate matras (vowel signs) and halants from bases inside each
+        grapheme cluster. If False, keep clusters intact (recommended).
+    separate_matras:
+        Deprecated alias for ``matras``; kept for backward compatibility.
     
-    Returns:
-        list of akshar segments
+    Returns
+    -------
+    list[str]
+        Sequence of akshars or parts (if ``matras=True``).
     
-    Examples:
+    Examples
+    --------
+    Default (preserve clusters):
         >>> segment_akshars("मौसम")
-        ['मौ', 'स', 'म']  # default: preserves grapheme clusters
-        
+        ['मौ', 'स', 'म']
+
+    Separate matras:
         >>> segment_akshars("मौसम", matras=True)
-        ['म', 'ौ', 'स', 'म']  # separates matras
-        
+        ['म', 'ौ', 'स', 'म']
+
+    Separate conjuncts and matras:
         >>> segment_akshars("च्छा", matras=True)
-        ['च', '्', 'छ', 'ा']  # separates conjuncts and matras
+        ['च', '्', 'छ', 'ा']
     """
     # handle deprecated parameter
     if separate_matras is not None:
@@ -111,7 +126,7 @@ def segment_akshars(text, matras=False, separate_matras=None):
 
 
 def identify_script(char):
-    """figure out if char is devanagari, roman, digit, etc"""
+    """Classify a single character as 'devanagari', 'roman', 'digit', 'punct', or 'other'."""
     cp = ord(char)
     
     # devanagari unicode range
@@ -134,10 +149,23 @@ def identify_script(char):
 
 def detect_code_switches(text):
     """
-    find where script changes - for hinglish text
+    Chunk text by script and return labeled segments.
     
-    returns: [(segment, script_type), ...]
-    eg "aaj मौसम" -> [("aaj ", "roman"), ("मौसम", "devanagari")]
+    Parameters
+    ----------
+    text:
+        Input string, possibly mixed scripts (Hinglish).
+    
+    Returns
+    -------
+    list[tuple[str, str]]
+        List of (segment, script_label) where script_label ∈
+        {'devanagari','roman','digit','punct','other'}.
+    
+    Examples
+    --------
+        >>> detect_code_switches(\"aaj मौसम\")
+        [('aaj ', 'roman'), ('मौसम', 'devanagari')]
     """
     if not text:
         return []
@@ -174,14 +202,22 @@ def detect_code_switches(text):
 
 
 def segment_by_script(text):
-    """split text purely on script boundaries - used for training data prep"""
+    """Split text on script boundaries (helper used for data prep)."""
     switches = detect_code_switches(text)
     return [seg for seg, _ in switches]
 
 
 def analyze_text_composition(text):
     """
-    get stats about text - how much devanagari vs roman, switches, etc
+    Compute simple composition stats for a normalized string.
+
+    Returns
+    -------
+    dict
+        - akshar_count
+        - script_switches (n segments - 1)
+        - devanagari_ratio
+        - roman_ratio
     """
     akshars = segment_akshars(text)
     switches = detect_code_switches(text)
@@ -202,17 +238,19 @@ def analyze_text_composition(text):
 
 def word_tokenize_hindi(text: str, use_morphology: bool = False) -> List[str]:
     """
-    word-level tokenization for hindi text
+    Word-level tokenization for Hindi with optional morphology.
     
-    handles compound words, sandhi, and common hindi patterns
-    uses normalization and intelligent word boundary detection
+    Parameters
+    ----------
+    text:
+        Hindi text to tokenize.
+    use_morphology:
+        If True and Morfessor model is available, use it to split words.
     
-    Args:
-        text: hindi text to tokenize
-        use_morphology: if True, uses morfessor for morphological segmentation
-    
-    Returns:
-        list of word tokens
+    Returns
+    -------
+    List[str]
+        Word tokens (danda/double danda kept separate).
     """
     from .normalize import normalize_text
     
@@ -263,17 +301,19 @@ def word_tokenize_hindi(text: str, use_morphology: bool = False) -> List[str]:
 
 def word_tokenize_sanskrit(text: str, use_morphology: bool = False) -> List[str]:
     """
-    word-level tokenization for sanskrit text
+    Word-level tokenization for Sanskrit with light heuristics.
     
-    handles sandhi rules, compound words (samasa), and sanskrit-specific patterns
-    more complex than hindi due to extensive sandhi rules
+    Parameters
+    ----------
+    text:
+        Sanskrit text to tokenize.
+    use_morphology:
+        If True and Morfessor is available, use it.
     
-    Args:
-        text: sanskrit text to tokenize
-        use_morphology: if True, uses morfessor for morphological segmentation
-    
-    Returns:
-        list of word tokens
+    Returns
+    -------
+    List[str]
+        Word tokens, keeping danda/double danda standalone.
     """
     from .normalize import normalize_text
     
@@ -325,18 +365,21 @@ def word_tokenize_sanskrit(text: str, use_morphology: bool = False) -> List[str]
 
 def word_tokenize(text: str, language: str = 'auto', use_morphology: bool = False) -> List[str]:
     """
-    word-level tokenization with language detection
+    Word tokenization with basic language routing.
     
-    automatically detects language or uses specified one
-    falls back to simple whitespace splitting if language not supported
+    Parameters
+    ----------
+    text:
+        Text to tokenize.
+    language:
+        'hindi', 'sanskrit', or 'auto' (default). Auto uses a simple heuristic.
+    use_morphology:
+        If True, use morphology when available.
     
-    Args:
-        text: text to tokenize
-        language: 'hindi', 'sanskrit', 'auto' (default: auto-detect)
-        use_morphology: if True, uses morphological segmentation when available
-    
-    Returns:
-        list of word tokens
+    Returns
+    -------
+    List[str]
+        Word tokens.
     """
     if language == 'auto':
         # simple heuristic: check for sanskrit markers

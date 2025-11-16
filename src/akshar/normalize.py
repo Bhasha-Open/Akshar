@@ -1,8 +1,9 @@
 """
-Text normalization for hindi/sanskrit/hinglish mix.
+Normalization utilities for Hindi/Sanskrit/Hinglish text.
 
-handles unicode stuff, lowercasing latin, and cleaning up 
-the messy hinglish text you get from twitter etc
+We keep Devanagari intact while lightly normalizing Roman script and cleaning
+social-media style noise. This is intentionally conservative to avoid breaking
+conjuncts or script-specific semantics.
 """
 
 import unicodedata
@@ -10,13 +11,26 @@ import regex as re
 
 
 def normalize_unicode(text):
-    # just use NFC, seems to work fine
-    # tried NFD before but it breaks some conjuncts
+    """Apply NFC Unicode normalization.
+    
+    We use NFC because NFD can break conjunct shaping in Indic scripts.
+    """
     return unicodedata.normalize('NFC', text)
 
 
 def semantic_normalize(text):
-    """lowercase english but keep devanagari as-is"""
+    """Lowercase Roman characters but keep Indic scripts unchanged.
+    
+    Parameters
+    ----------
+    text : str
+        Mixed-script input.
+    
+    Returns
+    -------
+    str
+        Lowercased only for characters whose Unicode name contains 'LATIN'.
+    """
     result = []
     for char in text:
         try:
@@ -32,15 +46,24 @@ def semantic_normalize(text):
 
 
 def remove_elongations(text):
-    # handles "heyyy" -> "hey", "yaaaaar" -> "yaar" etc
-    # keep doubles tho, cuz "book" vs "bok" matters
+    """Collapse 3+ repeated characters to 1 (keep doubles).
+    
+    Examples
+    --------
+        >>> remove_elongations("yaaaaar")
+        'yaar'
+    """
     return re.sub(r'(.)\1{2,}', r'\1', text)
 
 
 def roman_phonetic_signature(word):
     """
-    phonetic sig for roman text - helps match hinglish variants
-    eg: nahi/nahii/nahee all map to same sig
+    Compute a crude phonetic signature for Roman Hinglish variants.
+    
+    Examples
+    --------
+        >>> roman_phonetic_signature("nahee")
+        'nahi'
     """
     w = word.lower()
     w = remove_elongations(w)
@@ -67,8 +90,10 @@ def roman_phonetic_signature(word):
 
 
 def filter_garbage(text):
-    # remove weird chars from social media - emojis, special unicode etc
-    # keep basic stuff only
+    """Drop characters outside a conservative allowlist for noisy inputs.
+    
+    This keeps Devanagari, basic punctuation, ASCII alnum, and whitespace.
+    """
     allowed = re.compile(
         r'[\u0900-\u097F'  # devanagari
         r'\u0980-\u09FF'   # bengali (sometimes see this mixed in)
@@ -83,7 +108,7 @@ def filter_garbage(text):
 
 
 def normalize_hinglish(text):
-    """clean up hinglish text - remove elongations, garbage chars"""
+    """Clean up Hinglish text (garbage filter + elongation removal)."""
     text = filter_garbage(text)
     text = remove_elongations(text)
     return text
@@ -91,9 +116,26 @@ def normalize_hinglish(text):
 
 def normalize_text(text, normalize_roman=True, clean_hinglish=True):
     """
-    main normalization func
+    Main normalization function used by the tokenizer.
     
-    does: unicode norm -> lowercase english -> clean hinglish stuff
+    Steps:
+      1) NFC unicode normalization
+      2) Roman lowercasing (optional)
+      3) Hinglish cleanup (optional)
+    
+    Parameters
+    ----------
+    text : str
+        Input string.
+    normalize_roman : bool
+        If True, lowercase Roman letters only.
+    clean_hinglish : bool
+        If True, apply lightweight social-text cleanup.
+    
+    Returns
+    -------
+    str
+        Normalized string.
     """
     text = normalize_unicode(text)
     

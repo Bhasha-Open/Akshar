@@ -1,7 +1,16 @@
 """
-Command-line interface for akshar tokenizer.
+Command-line interface for Akshar.
 
-Provides simple commands for tokenization, detokenization, and analysis.
+Commands
+--------
+tokenize:
+    Tokenize text from an argument or file, with optional model and formats.
+detokenize:
+    Convert tokens back to text (best-effort heuristics per model type).
+explain:
+    Print a human-readable breakdown of the processing pipeline.
+train:
+    Train a SentencePiece or BPE tokenizer from a corpus.
 """
 
 import argparse
@@ -14,7 +23,19 @@ from .normalize import normalize_text
 
 
 def tokenize_command(args):
-    """Handle 'tokenize' command."""
+    """Handle the 'tokenize' subcommand.
+    
+    Parameters
+    ----------
+    args:
+        argparse.Namespace with fields:
+        - text (str | None)
+        - input (str | None) path to a text file
+        - model (str | None) model path if using SP/BPE
+        - model_type (str) 'sentencepiece' or 'bpe'
+        - format (str) 'text' | 'json' | 'id'
+        - output (str | None) file to write output
+    """
     # check if model file exists when provided
     if args.model and not Path(args.model).exists():
         print(f"Error: Model file not found: {args.model}", file=sys.stderr)
@@ -70,7 +91,17 @@ def tokenize_command(args):
 
 
 def detokenize_command(args):
-    """Handle 'detokenize' command."""
+    """Handle the 'detokenize' subcommand.
+    
+    Parameters
+    ----------
+    args:
+        argparse.Namespace with fields:
+        - tokens (str | None) space-separated tokens if not using --input
+        - input (str | None) file path containing tokens or JSON list
+        - output (str | None) destination path
+        - model (str | None), model_type (str) for model-aware heuristics
+    """
     tokenizer = aksharTokenizer(
         model_path=args.model,
         model_type=args.model_type
@@ -98,7 +129,10 @@ def detokenize_command(args):
 
 
 def explain_command(args):
-    """Handle 'explain' command - detailed analysis."""
+    """Handle 'explain' - print a detailed pipeline breakdown.
+    
+    Shows normalized text, akshars, script segments, tokens, and stats.
+    """
     tokenizer = aksharTokenizer(
         model_path=args.model,
         model_type=args.model_type
@@ -129,7 +163,13 @@ def explain_command(args):
 
 
 def preprocess_corpus(input_file, output_file):
-    """Preprocess corpus with akshar normalization."""
+    """Preprocess a corpus file with Akshar normalization.
+    
+    Returns
+    -------
+    str
+        Path to the written output_file.
+    """
     print(f"Preprocessing {input_file}...")
     
     with open(input_file, 'r', encoding='utf-8') as f:
@@ -151,7 +191,13 @@ def preprocess_corpus(input_file, output_file):
 
 
 def train_command(args):
-    """Handle 'train' command - train a tokenizer model."""
+    """Handle 'train' - train SentencePiece or BPE on a corpus.
+    
+    Parameters
+    ----------
+    args:
+        argparse.Namespace containing corpus path, output prefix, and options.
+    """
     input_file = Path(args.input)
     if not input_file.exists():
         print(f"Error: Input file not found: {args.input}", file=sys.stderr)
@@ -257,7 +303,7 @@ def train_command(args):
 
 
 def main():
-    """Main CLI entry point."""
+    """Main CLI entry point. Dispatches to subcommands."""
     parser = argparse.ArgumentParser(
         description="akshar: Linguistically-aware tokenizer for Hindi, Sanskrit, and Hinglish"
     )

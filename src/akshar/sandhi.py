@@ -1,5 +1,9 @@
 """
-sandhi detection and boundary marking for sanskrit/hindi
+Sandhi detection and non-destructive boundary marking.
+
+We offer simple heuristics for likely sandhi positions in Sanskrit/Hindi text.
+Use this to annotate or visualize where phonological boundaries may be present
+without rewriting the underlying text.
 """
 
 import regex as re
@@ -8,10 +12,17 @@ from typing import List, Tuple, Dict
 
 def detect_sandhi_boundaries(text: str) -> List[Tuple[int, str]]:
     """
-    detect likely sandhi boundaries without splitting
+    Detect likely sandhi boundaries using a few common patterns.
     
-    returns list of (position, boundary_type) tuples
-    marks where sandhi likely occurs but preserves original text
+    Parameters
+    ----------
+    text : str
+        Input Devanagari text.
+    
+    Returns
+    -------
+    List[Tuple[int, str]]
+        Sorted list of (position, boundary_type) markers.
     """
     boundaries = []
     
@@ -36,9 +47,12 @@ def detect_sandhi_boundaries(text: str) -> List[Tuple[int, str]]:
 
 def mark_sandhi_boundaries(text: str) -> str:
     """
-    mark sandhi boundaries in text without splitting
+    Insert zero-width markers at detected sandhi boundaries.
     
-    adds markers that can be used for analysis but preserves original
+    Returns
+    -------
+    str
+        Same string but with zero-width spaces at boundary positions.
     """
     boundaries = detect_sandhi_boundaries(text)
     if not boundaries:

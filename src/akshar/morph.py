@@ -1,5 +1,8 @@
 """
-morph segmentation - uses morfessor models from indic_nlp_resources
+Morphological segmentation using (optional) Morfessor models.
+
+If models are not available, we fall back gracefully and return whole words
+so the caller doesn’t get surprised by missing dependencies.
 """
 
 from pathlib import Path
@@ -8,10 +11,9 @@ from typing import List, Optional
 
 class MorphSegmenter:
     """
-    morph segmenter for hindi/sanskrit
+    Morphological segmenter for Hindi/Sanskrit based on Morfessor.
     
-    uses morfessor for unsupervised segmentation
-    falls back to returning whole word if no model
+    If the model cannot be loaded, the segmenter returns the input word intact.
     """
     
     def __init__(self, language='hi'):
@@ -20,7 +22,7 @@ class MorphSegmenter:
         self._try_load_model()
     
     def _try_load_model(self):
-        """try loading morfessor model"""
+        """Attempt to load a Morfessor model from a few known locations."""
         try:
             import morfessor
         except ImportError:
@@ -57,7 +59,7 @@ class MorphSegmenter:
                 pass
     
     def segment_word(self, word: str) -> List[str]:
-        """segment word into morphemes"""
+        """Segment a single word into morphemes (if model available)."""
         if self.model is not None:
             try:
                 # use viterbi algo
@@ -75,7 +77,7 @@ class MorphSegmenter:
         return [word]
     
     def segment_text(self, text: str) -> List[str]:
-        """segment all words in text"""
+        """Segment a whitespace-delimited string into morphemes."""
         words = text.split()
         result = []
         
@@ -86,7 +88,7 @@ class MorphSegmenter:
         return result
     
     def is_model_loaded(self) -> bool:
-        """check if model loaded"""
+        """Return True if a Morfessor model was loaded successfully."""
         return self.model is not None
 
 
@@ -96,7 +98,7 @@ _sanskrit_seg = None
 
 
 def get_hindi_segmenter() -> MorphSegmenter:
-    """get hindi segmenter (singleton)"""
+    """Get a cached Hindi segmenter instance (singleton)."""
     global _hindi_seg
     if _hindi_seg is None:
         _hindi_seg = MorphSegmenter("hi")
@@ -104,7 +106,7 @@ def get_hindi_segmenter() -> MorphSegmenter:
 
 
 def get_sanskrit_segmenter() -> MorphSegmenter:
-    """get sanskrit segmenter (singleton)"""
+    """Get a cached Sanskrit segmenter instance (singleton)."""
     global _sanskrit_seg
     if _sanskrit_seg is None:
         _sanskrit_seg = MorphSegmenter('sa')
@@ -112,11 +114,11 @@ def get_sanskrit_segmenter() -> MorphSegmenter:
 
 
 def segment_hindi(text: str) -> List[str]:
-    """segment hindi text"""
+    """Segment Hindi text into morphemes or words (fallback)."""
     return get_hindi_segmenter().segment_text(text)
 
 
 def segment_sanskrit(text: str) -> List[str]:
-    """segment sanskrit text"""
+    """Segment Sanskrit text into morphemes or words (fallback)."""
     return get_sanskrit_segmenter().segment_text(text)
 

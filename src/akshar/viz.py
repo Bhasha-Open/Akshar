@@ -1,7 +1,8 @@
 """
-Visualization helpers for akshar tokenizer.
+Visualization helpers for Akshar outputs.
 
-Provides utilities for displaying token boundaries, akshars, and script switches.
+Small, dependency-light utilities to visualize script segments, akshar
+boundaries, tokens, and simple stats either in terminal or HTML contexts.
 """
 
 from typing import List, Tuple

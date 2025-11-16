@@ -1,5 +1,10 @@
 """
-main tokenizer - wraps sentencepiece/bpe with our intelligence layers
+Tokenizer orchestration for Akshar.
+
+This module wraps optional subword models (SentencePiece/BPE) with Akshar’s
+linguistic steps: normalization, akshar segmentation, and code-switch analysis.
+When no model is provided, we fall back to akshar-level tokens that respect
+grapheme clusters (conjuncts etc.).
 """
 
 import os
@@ -12,10 +17,38 @@ from .segment import segment_akshars, detect_code_switches, analyze_text_composi
 
 class aksharTokenizer:
     """
-    tokenizer for hindi/sanskrit/hinglish
-    
-    does normalization -> akshar segmentation -> code-switch detection 
-    then applies SP/BPE if model is loaded
+    High-level tokenizer for Hindi/Sanskrit/Hinglish text.
+
+    Pipeline:
+        normalize_text → segment_akshars (for analysis) → optional SP/BPE encode
+
+    If a model is not loaded, the tokenizer returns akshar-level tokens that
+    never split grapheme clusters.
+
+    Parameters
+    ----------
+    model_path:
+        Path to a trained model. For SentencePiece this is typically ``.model``;
+        for BPE this is usually a ``.json`` file from HuggingFace tokenizers.
+    model_type:
+        One of ``"sentencepiece"`` or ``"bpe"``. Ignored if ``model_path`` is None.
+    normalize_roman:
+        Whether to lowercase/normalize Roman script during preprocessing.
+    clean_hinglish:
+        Whether to apply Hinglish cleanup (elongations, garbage filter, etc.).
+
+    Examples
+    --------
+    No model (akshar-level tokens):
+        >>> from akshar.tokenizer import aksharTokenizer
+        >>> tk = aksharTokenizer()
+        >>> tk.tokenize("मौसम अच्छा है")
+        ['मौ', 'स', 'म', ' ', 'अ', 'च्', 'छ', 'ा', ' ', 'है']
+
+    With SentencePiece:
+        >>> tk = aksharTokenizer(model_path="models/akshar.model", model_type="sentencepiece")
+        >>> tk.tokenize("aaj मौसम बहुत अच्छा hai")
+        ['▁aaj', '▁', 'मौ', 'सम', '▁बहुत', '▁अच्छा', '▁hai']
     """
     
     def __init__(
@@ -38,7 +71,15 @@ class aksharTokenizer:
             self.model_type = "akshar"
     
     def _load_model(self):
-        """load SP or BPE model"""
+        """Load the configured subword model (SentencePiece or BPE).
+
+        Raises
+        ------
+        ImportError
+            If the required backend library is not installed.
+        ValueError
+            If ``model_type`` is not one of the supported values.
+        """
         # use configured model type when loading
         model_type = self._configured_model_type
         
@@ -61,7 +102,18 @@ class aksharTokenizer:
             raise ValueError(f"unknown model_type: {model_type}")
     
     def preprocess(self, text: str) -> str:
-        """run normalization before tokenizing"""
+        """Apply Akshar normalization prior to tokenization.
+
+        Parameters
+        ----------
+        text:
+            Input string (may contain mixed scripts).
+
+        Returns
+        -------
+        str
+            Normalized text with Roman cleaned (config-dependent).
+        """
         return normalize_text(
             text,
             normalize_roman=self.normalize_roman,
@@ -70,9 +122,24 @@ class aksharTokenizer:
     
     def tokenize(self, text: str, return_metadata: bool = False) -> Union[List[str], dict]:
         """
-        tokenize text
-        
-        if no model loaded, falls back to akshar-level tokens
+        Tokenize text using the configured model or akshar fallback.
+
+        Parameters
+        ----------
+        text:
+            Input string.
+        return_metadata:
+            If True, return a dict with composition stats in addition to tokens.
+
+        Returns
+        -------
+        List[str] | dict
+            Tokens or a metadata dict with tokens and stats.
+
+        Notes
+        -----
+        - Without a model, tokens are grapheme clusters that preserve conjuncts.
+        - With SentencePiece/BPE, tokens follow the model’s subword scheme.
         """
         norm = self.preprocess(text)
         
@@ -98,7 +165,23 @@ class aksharTokenizer:
         return tokens
     
     def encode(self, text: str) -> List[int]:
-        """get token IDs"""
+        """Convert text to token IDs.
+
+        Parameters
+        ----------
+        text:
+            Input string.
+
+        Returns
+        -------
+        List[int]
+            Token IDs from the loaded model.
+
+        Raises
+        ------
+        ValueError
+            If no model is loaded.
+        """
         norm = self.preprocess(text)
         
         if self.model is None:
@@ -110,7 +193,23 @@ class aksharTokenizer:
             return self.model.encode(norm).ids
     
     def decode(self, ids: List[int]) -> str:
-        """IDs -> text"""
+        """Convert token IDs back to text.
+
+        Parameters
+        ----------
+        ids:
+            Sequence of token IDs.
+
+        Returns
+        -------
+        str
+            Decoded string per the loaded model.
+
+        Raises
+        ------
+        ValueError
+            If no model is loaded.
+        """
         if self.model is None:
             raise ValueError("need model to decode")
         
@@ -120,7 +219,18 @@ class aksharTokenizer:
             return self.model.decode(ids)
     
     def detokenize(self, tokens: List[str]) -> str:
-        """tokens -> text"""
+        """Join tokens back into a string.
+
+        Parameters
+        ----------
+        tokens:
+            Sequence of token strings (model-dependent).
+
+        Returns
+        -------
+        str
+            Reconstructed text (heuristic per model type).
+        """
         if self.model_type == "sentencepiece":
             # SP uses ▁ for space
             txt = ''.join(tokens)
@@ -137,9 +247,18 @@ class aksharTokenizer:
     
     def explain(self, text: str) -> dict:
         """
-        show all the processing steps for debugging
-        
-        useful to see whats happening inside
+        Explain all processing steps for a given input.
+
+        Parameters
+        ----------
+        text:
+            Input string.
+
+        Returns
+        -------
+        dict
+            Dictionary with original/normalized text, akshars, script segments,
+            produced tokens and composition statistics.
         """
         norm = self.preprocess(text)
         akshars = segment_akshars(norm)
@@ -157,7 +276,7 @@ class aksharTokenizer:
         }
     
     def vocab_size(self) -> int:
-        """get vocab size"""
+        """Return vocabulary size for the loaded model (0 if none)."""
         if self.model is None:
             return 0
         
